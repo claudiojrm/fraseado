@@ -29,17 +29,17 @@ export default class Post extends Component {
                 <div className="post-content">
                     {
                         post.thumbnail ? (
-                            <figure><img src={'/public/' + post.thumbnail} width="100%" alt={post.excerpt} /></figure>
+                            <figure><img src={'/public/' + post.thumbnail} width="100%" alt={post.content} /></figure>
                         ) : null
                     }
 
                     {
                         post.link ? (
-                            <a href={post.link} dangerouslySetInnerHTML={{__html : post.excerpt}} />
+                            <a href={post.link} dangerouslySetInnerHTML={{__html : post.content}} />
                         ) : (
                             <div>
                                 <h2 dangerouslySetInnerHTML={{__html : post.title}} />
-                                <div dangerouslySetInnerHTML={{__html : post.excerpt}} />
+                                <div dangerouslySetInnerHTML={{__html : post.content}} />
                             </div>
                         )
                     }
