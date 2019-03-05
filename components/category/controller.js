@@ -32,14 +32,15 @@ export default class Category {
         const Neo4j = new tools.Neo4j();
         
         // busca os dados da categoria
-        const {records: [record]} = await Neo4j.run('MATCH (c:Category {slug: $props.slug}) RETURN c.name AS name', {
+        const {records: [record]} = await Neo4j.run('MATCH (c:Category {slug: $props.slug}) RETURN c.name AS name, c.description AS description', {
             slug : this.data.slug
         });
 
         // define as informações da categoria
         if(record) {
             this.data.category = {
-                name : record.get('name')
+                name : record.get('name'),
+                description : record.get('description')
             };
         }
         

@@ -34,20 +34,26 @@ export default class Crawler {
             const Neo4j = new tools.Neo4j();
             
             for(const term of terms) {
-                const [[id], [slug], [name], [tax]] = [
-                    term['wp:term_id'], 
-                    term['wp:term_slug'], 
-                    term['wp:term_name'],
-                    term['wp:term_taxonomy']
-                ];
+                const [id] = term['wp:term_id'];
+                const [slug] = term['wp:term_slug'];
+                const [name] = term['wp:term_name'];
+                const [description] = term['wp:term_description'] || [''];
+                const [tax] = term['wp:term_taxonomy'];
+                const [parent] = term['wp:term_parent'] || [];
                 
                 if(tax == 'category') {
-                    console.log(id, slug, name, JSON.stringify(term, null, 4));
-                    
-                    await Neo4j.run('MERGE (c:Category {id:$props.id, slug: $props.slug, name: $props.name})', {
+                    let run = 'MERGE (c:Category {id:$props.id, slug: $props.slug, name: $props.name, description: $props.description})';
+
+                    if(parent) {
+                        run = 'MATCH (p:Category {slug: $props.parent}) ' + run + ' MERGE (c)-[:CATEGORY {slug: $props.parent}]->(p)';
+                    }
+
+                    await Neo4j.run(run, {
                         id,
                         slug,
-                        name
+                        name,
+                        description,
+                        parent
                     });
                 }
             }
