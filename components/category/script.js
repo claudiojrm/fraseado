@@ -3,6 +3,6 @@ import { hydrate } from 'react-dom';
 import Category from './view';
 
 hydrate(
-    <Category {...window.STARKData} Page={{loadJS:true}} />,
+    <Category {...window.STARKData} />,
     document.querySelector('#App')
 );
