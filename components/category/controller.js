@@ -6,19 +6,47 @@ export default class Category {
     /**
      * @memberof Category
      * @method constructor
-     * @param {Object} tools Tools do projeto
      * @returns {Void}
      */
-    constructor({tools}) {
+    constructor() {
         this.default = {
-            category : tools.request.params.sub,
-            page : tools.request.params.page || 1,
-            posts : []
+            category : {
+                name : 'Bom dia',
+                description : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.   '
+            },
+            posts : [
+                {
+                    link : '/frases/bom-dia/ola',
+                    excerpt : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                    thumbnail : 'uploads/natal.jpg'
+                },
+                {
+                    link : '/frases/bom-dia/ola',
+                    excerpt : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                    thumbnail : 'uploads/natal.jpg'
+                },
+                {
+                    link : '/frases/bom-dia/ola',
+                    excerpt : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                    thumbnail : 'uploads/natal.jpg'
+                },
+                {
+                    link : '/frases/bom-dia/ola',
+                    excerpt : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                    thumbnail : 'uploads/natal.jpg'
+                },
+                {
+                    link : '/frases/bom-dia/ola',
+                    excerpt : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                    thumbnail : 'uploads/natal.jpg'
+                }
+            ]
         };
     }
 
     /**
      * @memberof Category
+     * @method _dispatch
      * @description Método para tratamento de dados do componente, antes da renderização da view
      * @param {Function} next Callback dispatch
      * @returns {Function}

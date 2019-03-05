@@ -11,7 +11,13 @@ export default class Article {
     constructor({tools}) {
         this.default = {
             post : {
-                slug : tools.request.params.post
+                title : 'Tenha um bom dia',
+                excerpt : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                thumbnail : 'uploads/natal.jpg',
+                categories : {
+                    name : 'Bom dia',
+                    link : '/frases/bom-dia'
+                }
             }
         };
     }

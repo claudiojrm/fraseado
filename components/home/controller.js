@@ -10,7 +10,53 @@ export default class Home {
      */
     constructor() {
         this.default = {
-            posts : []
+            posts : [
+                {
+                    link : '/frases/bom-dia/ola',
+                    excerpt : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                    thumbnail : 'uploads/natal.jpg',
+                    categories : {
+                        name : 'Bom dia',
+                        link : '/frases/bom-dia'
+                    }
+                },
+                {
+                    link : '/frases/bom-dia/ola',
+                    excerpt : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                    thumbnail : 'uploads/natal.jpg',
+                    categories : {
+                        name : 'Bom dia',
+                        link : '/frases/bom-dia'
+                    }
+                },
+                {
+                    link : '/frases/bom-dia/ola',
+                    excerpt : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                    thumbnail : 'uploads/natal.jpg',
+                    categories : {
+                        name : 'Bom dia',
+                        link : '/frases/bom-dia'
+                    }
+                },
+                {
+                    link : '/frases/bom-dia/ola',
+                    excerpt : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                    thumbnail : 'uploads/natal.jpg',
+                    categories : {
+                        name : 'Bom dia',
+                        link : '/frases/bom-dia'
+                    }
+                },
+                {
+                    link : '/frases/bom-dia/ola',
+                    excerpt : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+                    thumbnail : 'uploads/natal.jpg',
+                    categories : {
+                        name : 'Bom dia',
+                        link : '/frases/bom-dia'
+                    }
+                }
+            ]
         };
     }
 

@@ -35,11 +35,11 @@ export default class Post extends Component {
 
                     {
                         post.link ? (
-                            <a href={post.link} dangerouslySetInnerHTML={{__html : post.content}} />
+                            <a href={post.link} dangerouslySetInnerHTML={{__html : post.excerpt}} />
                         ) : (
                             <div>
                                 <h2 dangerouslySetInnerHTML={{__html : post.title}} />
-                                <div dangerouslySetInnerHTML={{__html : post.content}} />
+                                <div dangerouslySetInnerHTML={{__html : post.excerpt}} />
                             </div>
                         )
                     }
