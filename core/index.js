@@ -98,9 +98,9 @@ export default class Core {
         }
 
         const context = Object.assign(data, {
-            Page : {
+            App : {
                 STARKData : JSON.stringify(data),
-                components : JSON.stringify(Object.keys(manifest).filter(cp => [name, 'page'].includes(cp.split(/-(script|style)/)[0]))),
+                components : JSON.stringify(Object.keys(manifest).filter(cp => [name, 'app'].includes(cp.split(/-(script|style)/)[0]))),
                 main : manifest['main.js']
             }
         });

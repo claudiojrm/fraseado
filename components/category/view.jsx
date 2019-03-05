@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Page from '../page/view';
+import App from '../app/view';
 import Header from '../header/view';
 import Menu from '../menu/view';
 import Post from '../post/view';
@@ -19,7 +19,7 @@ export default class Category extends Component {
         const {posts, category} = this.props;
 
         return (
-            <Page {...this.props.Page}>
+            <App {...this.props.App}>
                 <Header />
                 <Menu />
                 <main className="container">
@@ -47,7 +47,7 @@ export default class Category extends Component {
                         ) : null
                     }
                 </main>
-            </Page>
+            </App>
         );
     }
 }

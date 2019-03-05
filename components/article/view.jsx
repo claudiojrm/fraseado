@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Page from '../page/view';
+import App from '../app/view';
 import Header from '../header/view';
 import Menu from '../menu/view';
 import Post from '../post/view';
@@ -16,13 +16,13 @@ export default class Article extends Component {
      */
     render() {
         return (
-            <Page {...this.props.Page}>
+            <App {...this.props.App}>
                 <Header />
                 <Menu />
                 <main className="container">
                     <Post post={this.props.post} />
                 </main>
-            </Page>
+            </App>
         );
     }
 }

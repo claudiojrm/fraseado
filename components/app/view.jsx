@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Page extends Component {
+export default class App extends Component {
     render() {
         return this.props.main ? (
             <html>
