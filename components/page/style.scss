@@ -1,0 +1,52 @@
+@import 'bootstrap/scss/bootstrap.scss';
+
+body {
+    background-color: #FAFAFA;
+    font-size: 16px;
+}
+
+a {
+    transition: color .15s ease-in-out, background-color .15s ease-in-out;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+p, ul, li, h1, h2, h3, h4, h5, h6, form {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    padding: 70px 0;
+}
+
+.container,
+.navigation ul {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.btn-p1 {
+    background-color: #D33569;
+    border-color: transparent;
+    box-shadow: 0 0 5px #eaeaea;
+    color: #fff;
+    text-transform: lowercase;
+    &:hover {
+        background-color: #fff;
+        color: #D33569;
+    }
+}

@@ -1,0 +1,36 @@
+.navigation {
+    background: #fff;
+    border-top: 1px solid #eaeaea;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+
+    ul {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    li {
+        flex: 1;
+        text-align: center;
+    }
+
+    a {
+        color: #D33569;
+        display: block;
+        font-size: 12px;
+        letter-spacing: 1px;
+        padding: 15px;
+        text-transform: uppercase;
+
+        span {
+            display: none;
+        }
+
+        &:hover {
+            color: #fff;
+            background-color: #D33569;
+        }
+    }
+}

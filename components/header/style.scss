@@ -1,0 +1,22 @@
+.header {
+    background: #D33569;
+    padding-top: 10px;
+    padding-bottom: 14px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+
+    h1 {
+        background: no-repeat url(/public/logo.png);
+        height: 23px;
+        margin: 0 auto;
+        text-indent: -9999px;
+        width: 119px;
+
+        a {
+            display: block;
+            height: 100%;
+        }
+    }
+}
