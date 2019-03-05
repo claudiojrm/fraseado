@@ -97,19 +97,29 @@ export default class Core {
             return response.send(this.error(error));
         }
 
-        const context = Object.assign(data, {
+        return response.send(
+            renderToString(
+                <Component {...Object.assign(data, this.getAppData(data, name))} />
+            )
+        );
+    }
+
+    /**
+     * @memberof Core
+     * @method getAppData
+     * @description Método responsável por retornar os dados iniciais da view da aplicação
+     * @param {Object} name Nome do componente
+     * @param {Object} data Dados de configurações do componente
+     * @returns {Object}
+     */
+    getAppData(data, name) {
+        return {
             App : {
                 STARKData : JSON.stringify(data),
                 components : JSON.stringify(Object.keys(manifest).filter(cp => [name, 'app'].includes(cp.split(/-(script|style)/)[0]))),
                 main : manifest['main.js']
             }
-        });
-
-        return response.send(
-            renderToString(
-                <Component {...context} />
-            )
-        );
+        };
     }
 
     /**
