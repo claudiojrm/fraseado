@@ -18,7 +18,7 @@ config.api = config.proxy + Object.values(config.params).join('');
  * @class Core
  * @description Classe de Inicialização do projeto
  */
-class Core {
+export default class Core {
     /**
      * @memberof Core
      * @method config
@@ -177,7 +177,7 @@ class Core {
                     tools,
                     config,
                     next: (dt) => {
-                        // first render (view jsx)
+                        // render template
                         if(response) {
                             this.render({ response, name, data : extend(Controller.data, dt), Component });
                         } else {
@@ -195,5 +195,3 @@ class Core {
         }
     }
 }
-
-export default Core;
