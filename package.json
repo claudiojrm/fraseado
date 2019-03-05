@@ -37,7 +37,8 @@
         "react-dom": "^16.8.1",
         "react-icons-kit": "^1.2.1",
         "react-router-dom": "^4.3.1",
-        "spdy": "^4.0.0"
+        "spdy": "^4.0.0",
+        "xml2js": "^0.4.19"
     },
     "devDependencies": {
         "@babel/core": "^7.2.2",
@@ -60,5 +61,5 @@
         "webpack-cli": "^3.2.3",
         "webpack-manifest-plugin": "^2.0.4",
         "workbox-webpack-plugin": "^3.6.3"
-    }   
+    }
 }

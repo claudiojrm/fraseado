@@ -1,6 +1,7 @@
 import Home from '../components/home/view';
 import Category from '../components/category/view';
 import Article from '../components/article/view';
+import Crawler from '../components/crawler/view';
 
 /**
  * @type {Object}
@@ -18,5 +19,9 @@ export const routes = {
     '/:cat/:sub/:post' : {
         name : 'article',
         Component : Article
+    },
+    '/crawler' : {
+        name : 'crawler',
+        Component : Crawler
     }
 };
