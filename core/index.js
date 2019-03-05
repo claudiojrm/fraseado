@@ -11,9 +11,6 @@ import { routes } from '../routes';
 import { tools } from './tools';
 import manifest from '../public/dist/bundle/manifest.json';
 
-// path da api
-config.api = config.proxy + Object.values(config.params).join('');
-
 /**
  * @class Core
  * @description Classe de Inicialização do projeto
@@ -54,11 +51,8 @@ export default class Core {
             data.push({
                 key : route,
                 value : async (request, response) => {
-                    // adiciona o request a tools de request
+                    // adiciona o request, axios ao objeto de tools 
                     tools.request = request;
-
-                    // define o token para os request via axios e adiciona no objeto de tools
-                    await this.setToken();
                     tools.axios = axios;
 
                     const {name, Component} = routes[route];
@@ -68,17 +62,6 @@ export default class Core {
         }
 
         return data;
-    }
-
-    /**
-     * @memberof Core
-     * @method setToken
-     * @description Método responsável por retornar o token da api
-     * @returns {String}
-     */
-    async setToken() {
-        const { data : { token } } = await axios.post(config.proxy + config.params.json + '/jwt-auth/v1/token', config.jwt);
-        axios.defaults.headers.common.Authorization = `Bearer ${token}`;
     }
 
     /**
@@ -132,6 +115,7 @@ export default class Core {
     error(error) {
         return '<h1>Application error</h1>' + error.toString();
     }
+
     /**
      * @memberof Core
      * @method update

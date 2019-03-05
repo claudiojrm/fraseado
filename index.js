@@ -10,7 +10,7 @@ import Core from './core/index';
 const App = express();
 
 // porta da aplicação
-const port = 443;
+const port = 3001;
 
 // create server
 export default spdy.createServer({
