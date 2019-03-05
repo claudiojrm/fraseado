@@ -11,7 +11,8 @@ export default class Category {
      */
     constructor({tools}) {
         this.default = {
-            slug : tools.request.params.sub,
+            cat : tools.request.params.cat,
+            sub : tools.request.params.sub,
             category : {
                 name : 'não tem'
             },
@@ -32,8 +33,9 @@ export default class Category {
         const Neo4j = new tools.Neo4j();
         
         // busca os dados da categoria
-        const {records: [record]} = await Neo4j.run('MATCH (c:Category {slug: $props.slug}) RETURN c.name AS name, c.description AS description', {
-            slug : this.data.slug
+        const {records: [record]} = await Neo4j.run('MATCH (c:Category {slug: $props.sub})-[:CATEGORY {slug: $props.cat}]->() RETURN c.name AS name, c.description AS description', {
+            cat : this.data.cat,
+            sub : this.data.sub
         });
 
         // define as informações da categoria

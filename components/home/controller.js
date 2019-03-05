@@ -10,53 +10,7 @@ export default class Home {
      */
     constructor() {
         this.default = {
-            posts : [
-                {
-                    link : '/frases/bom-dia/ola',
-                    excerpt : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                    thumbnail : 'uploads/natal.jpg',
-                    categories : {
-                        name : 'Bom dia',
-                        link : '/frases/bom-dia'
-                    }
-                },
-                {
-                    link : '/frases/bom-dia/ola',
-                    excerpt : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                    thumbnail : 'uploads/natal.jpg',
-                    categories : {
-                        name : 'Bom dia',
-                        link : '/frases/bom-dia'
-                    }
-                },
-                {
-                    link : '/frases/bom-dia/ola',
-                    excerpt : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                    thumbnail : 'uploads/natal.jpg',
-                    categories : {
-                        name : 'Bom dia',
-                        link : '/frases/bom-dia'
-                    }
-                },
-                {
-                    link : '/frases/bom-dia/ola',
-                    excerpt : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                    thumbnail : 'uploads/natal.jpg',
-                    categories : {
-                        name : 'Bom dia',
-                        link : '/frases/bom-dia'
-                    }
-                },
-                {
-                    link : '/frases/bom-dia/ola',
-                    excerpt : 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-                    thumbnail : 'uploads/natal.jpg',
-                    categories : {
-                        name : 'Bom dia',
-                        link : '/frases/bom-dia'
-                    }
-                }
-            ]
+            posts : []
         };
     }
 
@@ -65,9 +19,25 @@ export default class Home {
      * @method _dispatch
      * @description Método para tratamento de dados do componente, antes da renderização da view
      * @param {Function} next Callback dispatch
+     * @param {Object} tools Tools do projeto
      * @returns {Function}
      */
-    async _dispatch({next}) {
+    async _dispatch({next, tools}) {
+        // start o banco de dados
+        const Neo4j = new tools.Neo4j();
+        
+        // busca os dados da categoria
+        const {records} = await Neo4j.run('MATCH (c:Category)-[p]->() RETURN c.name AS name, c.slug AS slug, p.slug AS pslug');
+        
+        for(const record of records) {
+            this.data.posts.push({
+                categories : {
+                    name : record.get('name'),
+                    link : record.get('pslug') + '/' + record.get('slug')
+                }
+            });
+        }
+
         return next(this.data);
     }
 }
