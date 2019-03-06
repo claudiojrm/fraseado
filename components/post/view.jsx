@@ -16,12 +16,12 @@ export default class Post extends Component {
         return(
             <article className="post">
                 {
-                    post.categories ? (<div className="category-info">
-                        <a href={post.categories.link} className="category-name">
+                    post.category ? (<div className="category-info">
+                        <a href={post.category.link} className="category-name">
                             <figure>
                                 <img src="https://fraseado.com.br/wp-content/uploads/2014/11/frases-de-amizade-80x60.jpg" />
                             </figure>
-                            <h6>{post.categories.name}</h6>
+                            <h6>{post.category.name}</h6>
                         </a>
                     </div>) : null
                 }
@@ -29,7 +29,7 @@ export default class Post extends Component {
                 <div className="post-content">
                     {
                         post.thumbnail ? (
-                            <figure><img src={'/public/' + post.thumbnail} width="100%" alt={post.content} /></figure>
+                            <figure><img src={'/public/uploads/' + post.thumbnail} width="100%" alt={post.content} /></figure>
                         ) : null
                     }
 

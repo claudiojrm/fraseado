@@ -37,6 +37,7 @@
         h6 {
             font-size: 24px;
             text-transform: none;
+            margin-left: 10px;
         }
 
         figure,
@@ -66,6 +67,7 @@
 
         a {
             color: #212529;
+            display: inline-block;
             &:hover {
                 color: #D33569;
             }

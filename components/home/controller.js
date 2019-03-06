@@ -25,15 +25,15 @@ export default class Home {
     async _dispatch({next, tools}) {
         // start o banco de dados
         const Neo4j = new tools.Neo4j();
-        
+
         // busca os dados da categoria
-        const {records} = await Neo4j.run('MATCH (c:Category)-[p]->() RETURN c.name AS name, c.slug AS slug, p.slug AS pslug');
-        
+        const {records} = await Neo4j.run('MATCH (c:Category)-[p]->() RETURN c.name, c.slug, p.slug');
+
         for(const record of records) {
             this.data.posts.push({
-                categories : {
-                    name : record.get('name'),
-                    link : record.get('pslug') + '/' + record.get('slug')
+                category : {
+                    name : record.get('c.name'),
+                    link : record.get('p.slug') + '/' + record.get('c.slug')
                 }
             });
         }

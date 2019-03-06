@@ -11,8 +11,7 @@ export default class Category {
      */
     constructor({tools}) {
         this.default = {
-            cat : tools.request.params.cat,
-            sub : tools.request.params.sub,
+            params : tools.request.params,
             category : {
                 name : 'não tem'
             },
@@ -31,21 +30,34 @@ export default class Category {
     async _dispatch({next, tools}) {
         // start o banco de dados
         const Neo4j = new tools.Neo4j();
-        
+        const {params} = this.data;
+
         // busca os dados da categoria
-        const {records: [record]} = await Neo4j.run('MATCH (c:Category {slug: $props.sub})-[:CATEGORY {slug: $props.cat}]->() RETURN c.name AS name, c.description AS description', {
-            cat : this.data.cat,
-            sub : this.data.sub
+        const {records: [record]} = await Neo4j.run('MATCH a=(c:Category {slug: $props.sub})-[]-(pc:Category) RETURN c.slug, c.name, c.description, pc.slug', {
+            ...params
         });
 
         // define as informações da categoria
-        if(record) {
-            this.data.category = {
-                name : record.get('name'),
-                description : record.get('description')
-            };
+        if(record && (record.get('c.slug') == params.sub && record.get('pc.slug') == params.cat)) {
+            Object.assign(this.data.category, {
+                name : record.get('c.name'),
+                description : record.get('c.description')
+            });
+
+            // lista de posts
+            const {records:posts} = await Neo4j.run('MATCH b=(c:Category {slug:$props.sub})-[]-(p:Post) OPTIONAL MATCH (p)-[:ATTACHMENT]-(a:Attachment) RETURN p.content, p.slug, a.file LIMIT 5', {
+                ...params
+            });
+
+            for(const post of posts) {
+                this.data.posts.push({
+                    link : ['', ...Object.values(params), post.get('p.slug'), ''].join('/'),
+                    content : post.get('p.content'),
+                    thumbnail : post.get('a.file')
+                });
+            }
         }
-        
+
         return next(this.data);
     }
 }
