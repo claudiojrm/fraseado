@@ -42,7 +42,7 @@ export default class Loading extends Component {
             left: 0,
             position: 'fixed',
             top: 0,
-            transition: 'height 1s',
+            transition: 'opacity .7s, width .7s .7s',
             width: '100%',
             zIndex: 1
         };
