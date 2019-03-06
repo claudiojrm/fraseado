@@ -35,14 +35,15 @@ export default class Article {
     async _dispatch({next, tools}) {
         // start o banco de dados
         const Neo4j = new tools.Neo4j();
-        
-        // busca os dados da categoria
-        const {records:[record]} = await Neo4j.run('MATCH (p:Post {slug:$props.post})-[:CATEGORY {slug:$props.sub}]-()-[:CATEGORY {slug: $props.cat}]->(d) RETURN p.title, p.content LIMIT 1', {
-            ...this.data.params
+        const params = this.data.params;
+
+        // busca os dados da categoria        
+        const {records:[record]} = await Neo4j.run('MATCH (p:Post {slug:$props.post})-[:CATEGORY]-(c)-[:CATEGORY]->(d) RETURN p.title, p.content, c.slug, d.slug ORDER BY c.id LIMIT 1', {
+            ...params
         });
 
         // define as informações da categoria
-        if(record) {
+        if(record && (record.get('c.slug') == params.cat && record.get('d.slug') == params.sub)) {
             Object.assign(this.data.post, {
                 title : record.get('p.title'),
                 content : record.get('p.content')
