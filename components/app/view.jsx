@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 
+/**
+ * @class App
+ * @description Classe de Inicialização da view do componente App
+ */
 export default class App extends Component {
+    /**
+     * @memberof App
+     * @method render
+     * @returns {HTML}
+     */
     render() {
         return this.props.main ? (
             <html>
