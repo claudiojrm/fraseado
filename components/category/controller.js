@@ -45,7 +45,7 @@ export default class Category {
             });
 
             // lista de posts
-            const {records:posts} = await Neo4j.run('MATCH b=(c:Category {slug:$props.sub})-[]-(p:Post) OPTIONAL MATCH (p)-[:ATTACHMENT]-(a:Attachment) RETURN p.content, p.slug, a.file LIMIT 5', {
+            const {records:posts} = await Neo4j.run('MATCH b=(c:Category {slug:$props.sub})-[]-(p:Post) OPTIONAL MATCH (p)-[:ATTACHMENT]-(a:Attachment) RETURN p.content, p.slug, a.file', {
                 ...params
             });
 
@@ -53,7 +53,7 @@ export default class Category {
                 this.data.posts.push({
                     link : ['', ...Object.values(params), post.get('p.slug'), ''].join('/'),
                     content : post.get('p.content'),
-                    thumbnail : post.get('a.file').replace(/.jpg$/, '-300x225$&')
+                    thumbnail : (post.get('a.file') || '').replace(/.jpg$/, '-300x225$&')
                 });
             }
         }

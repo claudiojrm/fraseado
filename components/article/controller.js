@@ -44,7 +44,7 @@ export default class Article {
         // define as informações do post
         if(record && (record.get('c.slug') == params.cat && record.get('s.slug') == params.sub)) {
             Object.assign(this.data.post, {
-                thumbnail : record.get('a.file').replace(/.jpg$/, '-768x576$&'),
+                thumbnail : (record.get('a.file') || '').replace(/.jpg$/, '-768x576$&'),
                 title : record.get('p.title'),
                 content : record.get('p.content'),
                 category : {
