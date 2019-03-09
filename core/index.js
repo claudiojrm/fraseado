@@ -58,15 +58,19 @@ export default class Core {
                     let data = {};
                     let name = routes[route];
 
-                    // carrega um outro componente conforme o parâmetro "name", altera também o "data" do componente conforme o parâmetro data
+                    // carrega um outro componente conforme o parâmetro "name"
                     if(request.query.name) {
+                        name = request.query.name;
+                    }
+
+                    // altera o "data" do componente conforme o parâmetro data
+                    if('json' in tools.request.query) {
                         try {
                             data = request.query.data && JSON.parse(request.query.data);
-                            name = request.query.name;
                         } catch(e) {}
                     }
 
-                    return await this.instance({ response, name, data });
+                    return await this.getComponent({ response, name, data });
                 }
             });
         }
@@ -91,6 +95,16 @@ export default class Core {
             return response.send(this.error(error));
         }
 
+        // redirect
+        if('redirect' in data) {
+            return response.redirect(...data.redirect);
+        }
+
+        // 404
+        if('notfound' in data) {
+            response.status(404);
+        }
+
         // dados do componente
         const componentData = {...data};
 
@@ -101,10 +115,19 @@ export default class Core {
 
         // identifica se o retorno da página deve ter o formato json
         if('json' in tools.request.query) {
-            return response.send({
-                data : componentData,
-                body : 'body' in tools.request.query ? App : ''
-            });
+            const send = {};
+
+            // retorna os dados do componente
+            if(Object.keys(componentData || {}).length) {
+                send.data = componentData;
+            }
+
+            // retorna o markup renderizado do componente
+            if('body' in tools.request.query) {
+                send.body = App;
+            }
+
+            return response.send(send);
         } else {
             return response.send(App);
         }
@@ -119,11 +142,17 @@ export default class Core {
      * @returns {Object}
      */
     getAppData(data, name) {
+        // dados de página não encontrada
+        const {notfound} = data;
+
         return {
             App : {
-                STARKData : JSON.stringify(data),
-                components : JSON.stringify(Object.keys(manifest).filter(cp => [name, 'app'].includes(cp.split(/-(script|style)/)[0]))),
-                main : manifest['main.js']
+                STARKData : JSON.stringify(Object.assign(data, {
+                    App : { notfound }
+                })),
+                components : JSON.stringify(Object.keys(manifest).filter(cp => [notfound ? 'notfound' : name, 'app'].includes(cp.split(/-(script|style)/)[0]))),
+                main : manifest['main.js'],
+                notfound
             }
         };
     }
@@ -152,13 +181,13 @@ export default class Core {
     async update(name, data, options) {
         // set data componente
         this.data[(options || {}).alias || name] = data;
-        return await this.instance({ name, data, options });
+        return await this.getComponent({ name, data, options });
     }
 
     /**
      * @memberof Core
-     * @method instance
-     * @description Método que configura a instância (controller) do componente e renderiza o componente principal, além de aplicar regras de merges de data
+     * @method getComponent
+     * @description Método que configura o componente (controller, view, merges), após o retorno de toda estrutura renderiza o componente principal.
      * @params {Object} response Informações de resposta da página (express object)
      * @params {String} name Nome do componente
      * @params {Object} data Dados do componentes
@@ -166,7 +195,7 @@ export default class Core {
      * @params {String} options.alias Alias do componente
      * @returns {Void}
      */
-    async instance({response, name, data, options}) {
+    async getComponent({response, name, data, options}) {
         try {
             // view do componente
             const View = require(`../components/${name}/view`).default;
@@ -187,8 +216,8 @@ export default class Core {
             // método para atualizar os dados do componente
             Controller.update = this.update;
 
-            // instancia do componente
-            Controller.instance = this.instance;
+            // método que configura o componente
+            Controller.getComponent = this.getComponent;
 
             // dispara _dispatch do component
             if(Controller._dispatch) {
@@ -206,7 +235,9 @@ export default class Core {
                     }
                 });
             } else {
-                this.render({ response, name, data : Controller.data, View });
+                if(response) {
+                    this.render({ response, name, data : Controller.data, View });
+                }
             }
         } catch(e) {
             console.log(e);

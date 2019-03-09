@@ -12,9 +12,7 @@ export default class Category {
     constructor({tools}) {
         this.default = {
             params : tools.request.params,
-            category : {
-                name : 'não tem'
-            },
+            category : {},
             posts : []
         };
     }
@@ -56,6 +54,10 @@ export default class Category {
                     thumbnail : (post.get('a.file') || '').replace(/.jpg$/, '-300x225$&')
                 });
             }
+        } else {
+            this.update('notfound', {
+                title : 'ihu'
+            });
         }
 
         return next(this.data);

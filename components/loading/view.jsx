@@ -48,7 +48,7 @@ export default class Loading extends Component {
         };
 
         return(
-            <div className={'loading ' + (this.state.loaded ? 'hide' : '')} style={loading} />            
+            <div className={'loading ' + (this.state.loaded ? 'hide' : '')} style={loading} />
         );
     }
 }

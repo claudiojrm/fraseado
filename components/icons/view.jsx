@@ -1,9 +1,25 @@
 import React from 'react';
-import {Icon} from 'react-icons-kit';
-import {home} from 'react-icons-kit/ikons/home';
-import {magnifying_glass} from 'react-icons-kit/ikons/magnifying_glass';
-import {heart} from 'react-icons-kit/ikons/heart';
-import {list} from 'react-icons-kit/ikons/list';
+import { home, magnifying_glass, heart, list } from 'react-icons-kit/ikons';
+
+/**
+ * @var icons
+ * @description Ícones que serão carregados e slug do ícone
+ */
+const icons = {
+    'busca' : magnifying_glass,
+    'favorito' : heart,
+    'home' : home,
+    'menu' : list
+};
+
+/**
+ * @var getPath
+ * @description Retorna o path do svg
+ * @param {String} name Nome da propriedade svg
+ * @param {Object} prop Propriedades do svg
+ * @returns {String}
+ */
+const getPath = ({name, children:[prop]}) => name == 'path' ? prop.attribs.d : getPath(prop);
 
 /**
  * @var Icons
@@ -11,12 +27,15 @@ import {list} from 'react-icons-kit/ikons/list';
  */
 const Icons = () => {
     return (
-        <>
-            <Icon size={24} icon={home} />
-            <Icon size={24} icon={magnifying_glass} />
-            <Icon size={24} icon={heart} />
-            <Icon size={24} icon={list} />
-        </>
+        <svg>
+            {
+                Object.entries(icons).map(([name, svg]) => (
+                    <symbol key={name} id={name} viewBox={svg.viewBox}>
+                        <path d={getPath(svg)}></path>
+                    </symbol>
+                ))
+            }
+        </svg>
     );
 };
 
