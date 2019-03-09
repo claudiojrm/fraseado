@@ -92,6 +92,7 @@ export default class Core {
     render({response, name, data, View}, error) {
         // captura os erros do componente
         if(error) {
+            response.status(500);
             return response.send(this.error(error));
         }
 

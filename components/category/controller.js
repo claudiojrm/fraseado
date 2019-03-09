@@ -56,7 +56,7 @@ export default class Category {
             }
         } else {
             this.update('notfound', {
-                title : 'ihu'
+                title : '404 categoria'
             });
         }
 

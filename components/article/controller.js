@@ -13,12 +13,7 @@ export default class Article {
         this.default = {
             params : tools.request.params,
             post : {
-                title : 'não tem',
-                content : 'não tem mesmo',
-                thumbnail : 'uploads/natal.jpg',
-                category : {
-                    name : 'não tem categoria'
-                }
+                category : {}
             }
         };
     }
@@ -51,6 +46,10 @@ export default class Article {
                     name : record.get('s.name'),
                     link : ['', ...Object.values(params).slice(0, -1), ''].join('/')
                 }
+            });
+        } else {
+            this.update('notfound', {
+                title : '404 post'
             });
         }
 
