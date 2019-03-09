@@ -51,12 +51,22 @@ export default class Core {
             data.push({
                 key : route,
                 value : async (request, response) => {
-                    // adiciona o request, axios ao objeto de tools 
+                    // adiciona o request, axios ao objeto de tools
                     tools.request = request;
                     tools.axios = axios;
 
-                    const {name, Component} = routes[route];
-                    return await this.instance({ response, name, Component });
+                    let data = {};
+                    let name = routes[route];
+
+                    // carrega um outro componente conforme o parâmetro "name", altera também o "data" do componente conforme o parâmetro data
+                    if(request.query.name) {
+                        try {
+                            data = request.query.data && JSON.parse(request.query.data);
+                            name = request.query.name;
+                        } catch(e) {}
+                    }
+
+                    return await this.instance({ response, name, data });
                 }
             });
         }
@@ -71,20 +81,33 @@ export default class Core {
      * @param {Object} response Contêm informações de resposta da página
      * @param {Object} name Nome do componente
      * @param {Object} data Dados de configurações do componente
-     * @params {React} Component View react do componente
+     * @params {React} View View react do componente
      * @param {Object} error Retorna os erros da página
      * @returns {String}
      */
-    render({response, name, data, Component}, error) {
+    render({response, name, data, View}, error) {
+        // captura os erros do componente
         if(error) {
             return response.send(this.error(error));
         }
 
-        return response.send(
-            renderToString(
-                <Component {...Object.assign(data, this.getAppData(data, name))} />
-            )
+        // dados do componente
+        const componentData = {...data};
+
+        // render view componente
+        const App = renderToString(
+            <View {...Object.assign(data, this.getAppData(data, name))} />
         );
+
+        // identifica se o retorno da página deve ter o formato json
+        if('json' in tools.request.query) {
+            return response.send({
+                data : componentData,
+                body : 'body' in tools.request.query ? App : ''
+            });
+        } else {
+            return response.send(App);
+        }
     }
 
     /**
@@ -141,11 +164,13 @@ export default class Core {
      * @params {Object} data Dados do componentes
      * @params {Object} options
      * @params {String} options.alias Alias do componente
-     * @params {React} Component View react do componente
      * @returns {Void}
      */
-    async instance({response, name, data, options, Component}) {
+    async instance({response, name, data, options}) {
         try {
+            // view do componente
+            const View = require(`../components/${name}/view`).default;
+
             // nova instância da controller do componente
             const Controller = new (require(`../components/${name}/controller`).default)({
                 config,
@@ -173,7 +198,7 @@ export default class Core {
                     next: (dt) => {
                         // render template
                         if(response) {
-                            this.render({ response, name, data : extend(Controller.data, dt), Component });
+                            this.render({ response, name, data : extend(Controller.data, dt), View });
                         } else {
                             const alias = (options || {}).alias || name;
                             this.data[alias] = extend(this.data[alias], dt);
@@ -181,7 +206,7 @@ export default class Core {
                     }
                 });
             } else {
-                this.render({ response, name, data : Controller.data, Component });
+                this.render({ response, name, data : Controller.data, View });
             }
         } catch(e) {
             console.log(e);
