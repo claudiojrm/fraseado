@@ -101,7 +101,7 @@ export default class Core {
         }
 
         // 404
-        if('notfound' in data) {
+        if('notfound' in data || name == 'notfound') {
             response.status(404);
         }
 
