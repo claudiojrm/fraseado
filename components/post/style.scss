@@ -68,8 +68,28 @@
         a {
             color: #212529;
             display: inline-block;
+
             &:hover {
                 color: #D33569;
+
+                .more {
+                    color: #212529;
+
+                    svg {
+                        fill: #212529;
+                    }
+                }
+            }
+        }
+
+        .more {
+            color: #D33569;
+            margin-top: 5px;
+
+            svg {
+                width: 14px;
+                height: 14px;
+                fill: #D33569;
             }
         }
 

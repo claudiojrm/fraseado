@@ -66,15 +66,17 @@ export default class Category {
                 Object.assign(this.data.category, {
                     name : record.get('c.name'),
                     description : record.get('c.description'),
-                    link : total > skip + limit ? ['', params.cat, params.sub, 'page', (+page + 1)].join('/') : ''
+                    link : total > skip + limit ? (`/${params.cat}/${params.sub}/page/${+page + 1}/`) : ''
                 });
 
                 for(const post of posts) {
-                    this.data.posts.push({
-                        link : ['', params.cat, params.sub, post.get('p.slug'), ''].join('/'),
+                    this.update('post', {
+                        link : `/${params.cat}/${params.sub}/${post.get('p.slug')}/`,
                         content : post.get('p.content'),
-                        thumbnail : (post.get('a.file') || '').replace(/.jpg$/, '-300x225$&')
+                        thumbnail : post.get('a.file') || ''
                     });
+
+                    this.data.posts.push(this.data.post);
                 }
             } else {
                 this.update('notfound', {

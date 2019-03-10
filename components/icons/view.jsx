@@ -1,5 +1,5 @@
 import React from 'react';
-import { home, magnifying_glass, heart, list } from 'react-icons-kit/ikons';
+import { home, magnifying_glass, heart, list, arrow_right } from 'react-icons-kit/ikons';
 
 /**
  * @var icons
@@ -9,7 +9,8 @@ const icons = {
     'busca' : magnifying_glass,
     'favorito' : heart,
     'home' : home,
-    'menu' : list
+    'menu' : list,
+    'right' : arrow_right
 };
 
 /**
