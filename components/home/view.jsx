@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import App from '../app/view';
 import Loading from '../loading/view';
 import Header from '../header/view';
 import Menu from '../menu/view';
@@ -17,7 +16,7 @@ export default class Home extends Component {
      */
     render() {
         return (
-            <App {...this.props.App}>
+            <>
                 <Loading />
                 <Header />
                 <Menu />
@@ -30,7 +29,7 @@ export default class Home extends Component {
                         })
                     }
                 </main>
-            </App>
+            </>
         );
     }
 }

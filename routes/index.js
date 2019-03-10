@@ -5,6 +5,7 @@
 export const routes = {
     '/' : 'home',
     '/:cat/:sub' : 'category',
+    '/:cat/:sub/page/:page' : 'category',
     '/:cat/:sub/:post' : 'article',
     '/crawler' : 'crawler',
     '*' : 'notfound'

@@ -27,7 +27,7 @@ const getPath = ({name, children:[prop]}) => name == 'path' ? prop.attribs.d : g
  */
 const Icons = () => {
     return (
-        <svg>
+        <svg className="icons">
             {
                 Object.entries(icons).map(([name, svg]) => (
                     <symbol key={name} id={name} viewBox={svg.viewBox}>

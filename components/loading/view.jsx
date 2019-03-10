@@ -5,10 +5,6 @@ import React, { Component } from 'react';
  * @description Classe de Inicialização da view do componente Loading
  */
 export default class Loading extends Component {
-    /**
-     * @memberof Loading
-     * @type {Object}
-     */
     state = {
         loaded : false
     }
@@ -17,14 +13,13 @@ export default class Loading extends Component {
      * @description Altera o estado de exibição do loading ao carregar a página
      * @memberof Loading
      * @method componentDidMount
-     * @returns {HTML}
      */
     componentDidMount() {
-        window.addEventListener('load', () => {
+        window.addEventListener('load', () =>
             this.setState({
                 loaded : true
-            });
-        });
+            })
+        );
     }
 
     /**

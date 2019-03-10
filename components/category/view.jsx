@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import App from '../app/view';
+import axios from 'axios';
 import Loading from '../loading/view';
 import Header from '../header/view';
 import Menu from '../menu/view';
@@ -11,16 +11,53 @@ import Button from 'react-bootstrap/Button';
  * @description Classe de Inicialização da view do componente Category
  */
 export default class Category extends Component {
+
+    /**
+     * @memberof Category
+     * @method constructor
+     * @description Define as props como states
+     */
+    constructor(props) {
+        super(props);
+        const {posts, category} = this.props;
+
+        this.loadPosts = this.loadPosts.bind(this);
+
+        this.state = {
+            posts,
+            category
+        };
+    }
+
+    /**
+     * @memberof Category
+     * @method loadPosts
+     * @description Carrega os próximos posts da categoria
+     * @returns {void}
+     */
+    loadPosts = async e => {
+        e.preventDefault();
+
+        const {data:{data}} = await axios.get(e.target.href + '?json');
+
+        this.setState({
+            posts : [...this.state.posts, ...data.posts],
+            category : {
+                link : data.category.link
+            }
+        });
+    }
+
     /**
      * @memberof Category
      * @method render
      * @returns {HTML}
      */
     render() {
-        const {posts, category} = this.props;
+        const {posts, category} = this.state;
 
         return (
-            <App {...this.props.App}>
+            <>
                 <Loading />
                 <Header />
                 <Menu />
@@ -45,11 +82,11 @@ export default class Category extends Component {
 
                     {
                         category.link ? (
-                            <Button variant="p1" href={category.link + 'page/1'} size="md" block>Carregar mais frases</Button>
+                            <Button variant="p1" href={category.link} onClick={this.loadPosts} size="md" block>Carregar mais frases</Button>
                         ) : null
                     }
                 </main>
-            </App>
+            </>
         );
     }
 }

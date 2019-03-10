@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import NotFound from '../notfound/view';
 
 /**
  * @class App
@@ -24,10 +23,7 @@ export default class App extends Component {
      * @returns {HTML}
      */
     render() {
-        const Body = () =>
-            this.props.notfound ? <NotFound {...this.props.notfound} /> : this.props.children;
-
-        return this.props.main ? (
+        return <>
             <html>
                 <head>
                     <meta name="charset" content="utf-8" />
@@ -36,13 +32,13 @@ export default class App extends Component {
                 </head>
                 <body>
                     <div id="App">
-                        <Body />
+                        {this.props.children}
                     </div>
                     <script src={this.props.main}></script>
                     <script dangerouslySetInnerHTML={{__html : `window.Loader(${this.props.components});`}} />
                     <script dangerouslySetInnerHTML={{__html : `window.STARKData = ${this.props.STARKData};`}} />
                 </body>
             </html>
-        ) : <Body />;
+        </>;
     }
 }

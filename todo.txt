@@ -1,31 +1,34 @@
-- admin para deletar posts/imagens/categorias
+mvp
 - adsense
 - analytics
 - amp
-- definição de período para uma categoria
+- disponibilizar apenas fields que serão utilizados no js
 - favoritar
 - favoritos
 - home
+- home (definição de período para uma categoria)
 - imagem categoria
 - imagens posts (definição exata de crop)
 - layout web?
 - limitar caracter da descrição na categoria
 - menu
 - metatags ogs
-- notificações push
 - otimizar servidor (gzip, http2, service worker)
 - otimizar configurações development/production
 - página de busca
 - paginação categoria
 - página 404
 - quantidade de posts para a categoria
-- redirect
 - redirect (robots, sitemap, imagens)
 - relacionados post
 - seo (estruturar melhor html, metatags)
 - seguir
 - share
 - teste de carga
+
+pós deploy
+- admin para deletar posts/imagens/categorias
+- notificações push
 - teste unitário (tanto para controller / quanto pra view)
 - transformar em app
 - typescript

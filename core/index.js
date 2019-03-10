@@ -6,6 +6,7 @@ import extend from 'extend';
 import axios from 'axios';
 
 // import arquivos do projeto
+import App from '../components/app/view';
 import config from '../config';
 import { routes } from '../routes';
 import { tools } from './tools';
@@ -106,12 +107,11 @@ export default class Core {
             response.status(404);
         }
 
-        // dados do componente
-        const componentData = {...data};
-
         // render view componente
-        const App = renderToString(
-            <View {...Object.assign(data, this.getAppData(data, name))} />
+        const app = renderToString(
+            <App {...this.getAppData(data, name)}>
+                <View {...data} />
+            </App>
         );
 
         // identifica se o retorno da página deve ter o formato json
@@ -119,18 +119,18 @@ export default class Core {
             const send = {};
 
             // retorna os dados do componente
-            if(Object.keys(componentData || {}).length) {
-                send.data = componentData;
+            if(Object.keys(data || {}).length) {
+                send.data = data;
             }
 
             // retorna o markup renderizado do componente
             if('body' in tools.request.query) {
-                send.body = App;
+                send.body = app;
             }
 
             return response.send(send);
         } else {
-            return response.send(App);
+            return response.send(app);
         }
     }
 
@@ -147,14 +147,10 @@ export default class Core {
         const {notfound} = data;
 
         return {
-            App : {
-                STARKData : JSON.stringify(Object.assign(data, {
-                    App : { notfound }
-                })),
-                components : JSON.stringify(Object.keys(manifest).filter(cp => [notfound ? 'notfound' : name, 'app'].includes(cp.split(/-(script|style)/)[0]))),
-                main : manifest['main.js'],
-                notfound
-            }
+            STARKData : JSON.stringify(notfound || data),
+            components : JSON.stringify(Object.keys(manifest).filter(cp => [notfound ? 'notfound' : name, 'app'].includes(cp.split(/-(script|style)/)[0]))),
+            main : manifest['main.js'],
+            notfound
         };
     }
 

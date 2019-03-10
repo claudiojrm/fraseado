@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import App from '../app/view';
 import Loading from '../loading/view';
 import Header from '../header/view';
 import Menu from '../menu/view';
@@ -15,7 +14,7 @@ export default class NotFound extends Component {
      * @returns {HTML}
      */
     render() {
-        const Body = () =>
+        return (
             <>
                 <Loading />
                 <Header />
@@ -23,10 +22,7 @@ export default class NotFound extends Component {
                 <main className="container">
                     Nenhum item encontrado: {this.props.title}
                 </main>
-            </>;
-
-        return (
-            this.props.App ? <App {...this.props.App}><Body /></App> : <Body />
+            </>
         );
     }
 }

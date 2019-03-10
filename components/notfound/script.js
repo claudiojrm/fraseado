@@ -1,8 +1,8 @@
 import React from 'react';
-import { hydrate } from 'react-dom';
+import { render } from 'react-dom';
 import NotFound from './view';
 
-hydrate(
+render(
     <NotFound {...window.STARKData} />,
     document.querySelector('#App')
 );

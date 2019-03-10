@@ -1,4 +1,5 @@
 @import 'bootstrap/scss/bootstrap.scss';
+@import '../icons/style';
 
 body {
     background-color: #FAFAFA;
@@ -7,10 +8,6 @@ body {
 
 a {
     transition: color .15s ease-in-out, background-color .15s ease-in-out;
-}
-
-svg {
-    transition: fill .15s ease-in-out;
 }
 
 a:hover {

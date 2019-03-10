@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import App from '../app/view';
 
 /**
  * @class Crawler
@@ -13,11 +12,11 @@ export default class Crawler extends Component {
      */
     render() {
         return (
-            <App {...this.props.App}>
+            <>
                 <main className="container">
                     Crawler...
                 </main>
-            </App>
+            </>
         );
     }
 }

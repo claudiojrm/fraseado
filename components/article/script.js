@@ -1,8 +1,8 @@
 import React from 'react';
-import { hydrate } from 'react-dom';
+import { render } from 'react-dom';
 import Article from './view';
 
-hydrate(
+render(
     <Article {...window.STARKData} />,
     document.querySelector('#App')
 );

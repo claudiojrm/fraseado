@@ -12,6 +12,7 @@ export default class Category {
     constructor({tools}) {
         this.default = {
             params : tools.request.params,
+            limit : 1,
             category : {},
             posts : []
         };
@@ -36,22 +37,47 @@ export default class Category {
         });
 
         // define as informações da categoria
-        if(record && (record.get('c.slug') == params.sub && record.get('pc.slug') == params.cat)) {
-            Object.assign(this.data.category, {
-                name : record.get('c.name'),
-                description : record.get('c.description')
-            });
+        if(record && (record.get('pc.slug') == params.cat && record.get('c.slug') == params.sub)) {
+            // paginação do post
+            const {limit} = this.data;
+            const page = params.page || 1;
+            const skip = (page - 1) * limit;
 
-            // lista de posts
-            const {records:posts} = await Neo4j.run('MATCH b=(c:Category {slug:$props.sub})-[]-(p:Post) OPTIONAL MATCH (p)-[:ATTACHMENT]-(a:Attachment) RETURN p.content, p.slug, a.file', {
+            // query para o total de posts
+            let {records:[total]} = await Neo4j.run('MATCH b=(c:Category {slug:$props.sub})-[]-(p:Post) RETURN COUNT(p) as total', {
                 ...params
             });
 
-            for(const post of posts) {
-                this.data.posts.push({
-                    link : ['', ...Object.values(params), post.get('p.slug'), ''].join('/'),
-                    content : post.get('p.content'),
-                    thumbnail : (post.get('a.file') || '').replace(/.jpg$/, '-300x225$&')
+            // número total de posts
+            total = total.get('total').low;
+
+            // lista de posts
+            const {records:posts} = await Neo4j.run('MATCH b=(c:Category {slug:$props.sub})-[]-(p:Post) OPTIONAL MATCH (p)-[:ATTACHMENT]-(a:Attachment) RETURN p.content, p.slug, a.file SKIP $props.skip LIMIT $props.limit', {
+                ...params,
+                skip,
+                page,
+                limit
+            });
+
+            // limite total de posts
+            if(total > skip) {
+                // configuração da categoria
+                Object.assign(this.data.category, {
+                    name : record.get('c.name'),
+                    description : record.get('c.description'),
+                    link : total > skip + limit ? ['', params.cat, params.sub, 'page', (+page + 1)].join('/') : ''
+                });
+
+                for(const post of posts) {
+                    this.data.posts.push({
+                        link : ['', ...Object.values(params), post.get('p.slug'), ''].join('/'),
+                        content : post.get('p.content'),
+                        thumbnail : (post.get('a.file') || '').replace(/.jpg$/, '-300x225$&')
+                    });
+                }
+            } else {
+                this.update('notfound', {
+                    title : '404 categoria - página'
                 });
             }
         } else {
