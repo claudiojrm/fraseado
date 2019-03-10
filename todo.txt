@@ -1,4 +1,4 @@
-mvp
+front
 - adsense
 - analytics
 - amp
@@ -6,19 +6,20 @@ mvp
 - imagem categoria
 - imagens posts (definição exata de crop)
 - layout web?
-- limitar caracter da descrição na categoria
 - menu
 - metatags ogs
-- otimizar servidor (gzip, http2, service worker)
-- otimizar configurações development/production
 - página de busca
 - página de favoritos
 - página 404
 - quantidade de posts para a categoria
-- redirect (robots, sitemap, imagens)
 - relacionados post
 - seo (estruturar melhor html, metatags)
 - share (+ favoritos)
+
+server
+- otimizar servidor (gzip, http2, service worker)
+- otimizar configurações development/production
+- redirect (robots, sitemap, imagens)
 - teste de carga
 
 pós deploy

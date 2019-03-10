@@ -62,9 +62,7 @@ export default class Category extends Component {
             this.setState({
                 loading : false,
                 posts : [...this.state.posts, ...data.posts],
-                category : {
-                    link : data.category.link
-                }
+                category : data.category
             });
         }
     }

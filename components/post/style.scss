@@ -1,3 +1,5 @@
+@import '../share/style';
+
 .category-info {
     .category-name {
         align-items: center;
@@ -65,7 +67,7 @@
             margin-right: -30px;
         }
 
-        a {
+        > a {
             color: #212529;
             display: inline-block;
 
@@ -99,7 +101,7 @@
     }
 
     h2 {
-        font-size: 24px;
+        font-size: 22px;
         font-weight: normal;
         margin-bottom: 5px;
         color: #D33569;

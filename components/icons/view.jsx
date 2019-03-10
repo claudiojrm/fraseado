@@ -1,16 +1,21 @@
 import React from 'react';
 import { home, magnifying_glass, heart, list, arrow_right } from 'react-icons-kit/ikons';
+import { facebook, whatsapp, twitter, pinterest2 } from 'react-icons-kit/icomoon';
 
 /**
  * @var icons
  * @description Ícones que serão carregados e slug do ícone
  */
 const icons = {
-    'busca' : magnifying_glass,
-    'favorito' : heart,
-    'home' : home,
-    'menu' : list,
-    'right' : arrow_right
+    busca : magnifying_glass,
+    favorito : heart,
+    facebook,
+    home,
+    menu : list,
+    pinterest2,
+    right : arrow_right,
+    twitter,
+    whatsapp
 };
 
 /**
@@ -20,7 +25,7 @@ const icons = {
  * @param {Object} prop Propriedades do svg
  * @returns {String}
  */
-const getPath = ({name, children:[prop]}) => name == 'path' ? prop.attribs.d : getPath(prop);
+const getPath = ({name, children:[prop]}) => name == 'path' || prop.name == 'path' ? prop.attribs.d : getPath(prop);
 
 /**
  * @var Icons

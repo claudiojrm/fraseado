@@ -1,0 +1,57 @@
+.share {
+    display: flex;
+    margin: -15px -15px 0;
+    padding: 15px;
+    justify-content: center;
+
+    &.hasshadow {
+        box-shadow: 0 1px 3px #f0f0f0;
+        margin-bottom: 15px;
+    }
+
+    a {
+        &:not(:last-child) {
+            margin-right: 15px;
+        }
+
+        &:hover {
+            svg {
+                opacity: .8;
+            }
+        }
+    }
+
+    svg {
+        transition: opacity .15s;
+        height: 22px;
+        width: 22px;
+    }
+
+    .wts svg {
+        fill: #52C539;
+    }
+
+    .fav {
+        svg {
+            fill: #999;
+        }
+    }
+
+    .fb {
+        svg {
+            fill: #4E71A8;
+        }
+    }
+
+    .pin {
+        svg {
+            fill: #cb1f26;
+        }
+    }
+
+    .tw {
+        svg {
+            fill: #1CB7EB;
+        }
+    }
+}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Share from '../share/view';
 
 /**
  * @class Post
@@ -15,6 +16,8 @@ export default class Post extends Component {
 
         return(
             <article className="post">
+                <Share noshadow={!post.category && post.thumbnail} />
+
                 {
                     post.category ? (<div className="category-info">
                         <a href={post.category.link} className="category-name">
@@ -36,13 +39,13 @@ export default class Post extends Component {
                     {
                         post.link ? (
                             <a href={post.link}>
-                                <div dangerouslySetInnerHTML={{__html : post.excerpt }} />
+                                <p dangerouslySetInnerHTML={{__html : post.excerpt }} />
                                 <div className="more">continuar lendo<svg><use xlinkHref="#right" /></svg></div>
                             </a>
                         ) : (
                             <div>
                                 <h2 dangerouslySetInnerHTML={{__html : post.title}} />
-                                <div dangerouslySetInnerHTML={{__html : post.content}} />
+                                <p dangerouslySetInnerHTML={{__html : post.content}} />
                             </div>
                         )
                     }
