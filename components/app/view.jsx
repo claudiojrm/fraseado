@@ -33,7 +33,7 @@ const App = (props) => {
      * @method render
      * @returns {HTML}
      */
-    return <>
+    return ('name' in props.query || 'json' in props.query) ? props.children : <>
         <html>
             <head>
                 <meta name="charset" content="utf-8" />

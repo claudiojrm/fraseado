@@ -108,7 +108,7 @@ export default class Core {
 
         // render view componente
         const app = renderToString(
-            <App {...data} name={name}>
+            <App {...data} name={name} query={tools.request.query}>
                 <View {...data} />
             </App>
         );
