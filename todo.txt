@@ -2,7 +2,6 @@ mvp
 - adsense
 - analytics
 - amp
-- disponibilizar apenas fields que serão utilizados no js
 - favoritar
 - favoritos
 - home

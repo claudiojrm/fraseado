@@ -11,8 +11,9 @@ export default class Category {
      */
     constructor({tools}) {
         this.default = {
+            props : ['category', 'posts'],
             params : tools.request.params,
-            limit : 1,
+            limit : 10,
             category : {},
             posts : []
         };
