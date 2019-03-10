@@ -71,7 +71,7 @@ export default class Category {
 
                 for(const post of posts) {
                     this.data.posts.push({
-                        link : ['', ...Object.values(params), post.get('p.slug'), ''].join('/'),
+                        link : ['', params.cat, params.sub, post.get('p.slug'), ''].join('/'),
                         content : post.get('p.content'),
                         thumbnail : (post.get('a.file') || '').replace(/.jpg$/, '-300x225$&')
                     });

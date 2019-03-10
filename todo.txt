@@ -15,7 +15,7 @@ mvp
 - otimizar servidor (gzip, http2, service worker)
 - otimizar configurações development/production
 - página de busca
-- paginação categoria
+- paginação categoria (push state, bloquear + de 1 clique)
 - página 404
 - quantidade de posts para a categoria
 - redirect (robots, sitemap, imagens)

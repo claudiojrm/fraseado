@@ -10,7 +10,6 @@ import App from '../components/app/view';
 import config from '../config';
 import { routes } from '../routes';
 import { tools } from './tools';
-import manifest from '../public/dist/bundle/manifest.json';
 
 /**
  * @class Core
@@ -109,7 +108,7 @@ export default class Core {
 
         // render view componente
         const app = renderToString(
-            <App {...this.getAppData(data, name)}>
+            <App {...data} name={name}>
                 <View {...data} />
             </App>
         );
@@ -131,40 +130,6 @@ export default class Core {
             return response.send(send);
         } else {
             return response.send(app);
-        }
-    }
-
-    /**
-     * @memberof Core
-     * @method getAppData
-     * @description Método responsável por retornar os dados iniciais da view da aplicação
-     * @param {Object} name Nome do componente
-     * @param {Object} data Dados de configurações do componente
-     * @returns {Object}
-     */
-    getAppData(data, name) {
-        return {
-            STARKData : JSON.stringify(this.getPropsData(data)),
-            components : JSON.stringify(Object.keys(manifest).filter(cp => [data.notfound ? 'notfound' : name, 'app'].includes(cp.split(/-(script|style)/)[0]))),
-            main : manifest['main.js'],
-            notfound : data.notfound
-        };
-    }
-
-    /**
-     * @memberof Core
-     * @method getPropsData
-     * @description Método responsável por retornar os dados das props via js
-     * @param {Object} data Dados de configurações do componente
-     * @returns {Object}
-     */
-    getPropsData(data) {
-        if('notfound' in data) {
-            return data.notfound;
-        } else if('props' in data) {
-            return (data.props || []).reduce((obj, props) => ({...obj, [props] : data[props]}), {});
-        } else {
-            return data;
         }
     }
 
