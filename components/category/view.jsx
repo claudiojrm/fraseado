@@ -25,7 +25,8 @@ export default class Category extends Component {
 
         this.state = {
             posts,
-            category
+            category,
+            loading : false
         };
     }
 
@@ -38,14 +39,34 @@ export default class Category extends Component {
     loadPosts = async e => {
         e.preventDefault();
 
-        const {data:{data}} = await axios.get(e.target.href + '?json');
+        // botão
+        const btn = e.target;
 
-        this.setState({
-            posts : [...this.state.posts, ...data.posts],
-            category : {
-                link : data.category.link
-            }
-        });
+        // identifica se o botão já não foi clicado
+        if(!this.state.loading) {
+            // link da próxima página
+            const link = btn.href;
+
+            // flag para indicar que está carregando mais contéudo
+            this.setState({
+                loading : true
+            });
+
+            // request com os dados da próxima página
+            const {data:{data}} = await axios.get(link + '?json');
+
+            // altera a url de navegação
+            history.pushState(null, null, link);
+
+            // atualiza os dados dos posts e link da categoria
+            this.setState({
+                loading : false,
+                posts : [...this.state.posts, ...data.posts],
+                category : {
+                    link : data.category.link
+                }
+            });
+        }
     }
 
     /**
@@ -82,7 +103,7 @@ export default class Category extends Component {
 
                     {
                         category.link ? (
-                            <Button variant="p1" href={category.link} onClick={this.loadPosts} size="md" block>Carregar mais frases</Button>
+                            <Button className={this.state.loading ? 'disabled' : ''} variant="p1" href={category.link} onClick={this.loadPosts} size="md" block>{this.state.loading ? 'Carregando...' : 'Carregar mais frases'}</Button>
                         ) : null
                     }
                 </main>

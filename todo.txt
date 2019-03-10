@@ -2,9 +2,6 @@ mvp
 - adsense
 - analytics
 - amp
-- favoritar
-- favoritos
-- home
 - home (definição de período para uma categoria)
 - imagem categoria
 - imagens posts (definição exata de crop)
@@ -15,19 +12,20 @@ mvp
 - otimizar servidor (gzip, http2, service worker)
 - otimizar configurações development/production
 - página de busca
-- paginação categoria (push state, bloquear + de 1 clique)
+- página de favoritos
 - página 404
 - quantidade de posts para a categoria
 - redirect (robots, sitemap, imagens)
 - relacionados post
 - seo (estruturar melhor html, metatags)
-- seguir
-- share
+- share (+ favoritos)
 - teste de carga
 
 pós deploy
 - admin para deletar posts/imagens/categorias
 - notificações push
+- seguir
 - teste unitário (tanto para controller / quanto pra view)
 - transformar em app
 - typescript
+- vscode debug

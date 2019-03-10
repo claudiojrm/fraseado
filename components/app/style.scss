@@ -46,8 +46,13 @@ main {
     box-shadow: 0 0 5px #eaeaea;
     color: #fff;
     text-transform: lowercase;
+
     &:hover {
-        background-color: #fff;
-        color: #D33569;
+        background-color: rgba(#D33569, .85);
+        color: #fff;
+    }
+
+    &:focus {
+        box-shadow: 0 0 5px #eaeaea;
     }
 }

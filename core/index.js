@@ -106,10 +106,13 @@ export default class Core {
             response.status(404);
         }
 
+        // dados que serão utilizados pelos componentes
+        const props = this.getPropsData(data);
+
         // render view componente
         const app = renderToString(
-            <App {...data} name={name} query={tools.request.query}>
-                <View {...data} />
+            <App data={props} name={name} query={tools.request.query}>
+                <View {...props} />
             </App>
         );
 
@@ -118,8 +121,8 @@ export default class Core {
             const send = {};
 
             // retorna os dados do componente
-            if(Object.keys(data || {}).length) {
-                send.data = data;
+            if(Object.keys(props || {}).length) {
+                send.data = props;
             }
 
             // retorna o markup renderizado do componente
@@ -130,6 +133,23 @@ export default class Core {
             return response.send(send);
         } else {
             return response.send(app);
+        }
+    }
+
+    /**
+     * @memberof Core
+     * @method getPropsData
+     * @description Método responsável por retornar os dados das props que serão utilizadas pelo componente
+     * @param {Object} data Dados de configurações do componente
+     * @returns {Object}
+     */
+    getPropsData(data) {
+        if('notfound' in data) {
+            return data.notfound;
+        } else if('props' in data) {
+            return (data.props || []).reduce((obj, props) => ({...obj, [props] : data[props]}), {});
+        } else {
+            return data;
         }
     }
 
