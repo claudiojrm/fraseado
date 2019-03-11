@@ -1,5 +1,5 @@
 .info {
-    .name {
+    .info-wrapper {
         align-items: center;
         display: flex;
         flex-wrap: wrap;
@@ -11,7 +11,7 @@
         }
     }
 
-    h6 {
+    .info-name {
         color: #D33569;
         font-size: 14px;
         text-transform: lowercase;
@@ -23,7 +23,7 @@
         margin-bottom: 0;
         width: 40px;
 
-        + h6 {
+        + .info-name {
             margin-left: 10px;
         }
 
@@ -41,7 +41,7 @@
         margin-bottom: 15px;
         padding: 15px;
 
-        h6 {
+        .info-name {
             font-size: 24px;
             text-transform: none;
             margin-bottom: 5px;
@@ -51,7 +51,7 @@
             width: 60px;
             height: 60px;
 
-            + h6 {
+            + .info-name {
                 margin-bottom: 0;
             }
         }

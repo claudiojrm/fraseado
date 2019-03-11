@@ -14,7 +14,7 @@ const Name = ({link, className, children}) =>
 const Info = ({name, description, image, card, link}) => {
     return (
         <div className={'info ' + (card ? 'card' : '')}>
-            <Name link={link} className="name">
+            <Name link={link} className="info-wrapper">
                 {
                     image ? (
                         <figure>
@@ -23,10 +23,21 @@ const Info = ({name, description, image, card, link}) => {
                     ) : null
                 }
 
-                <h6>{name}</h6>
+                {
+                    card ? (
+                        <h2 className="info-name">{name}</h2>
+                    ) : (
+                        <h6 className="info-name">{name}</h6>
+                    )
+                }
+
             </Name>
 
-            <p>{description}</p>
+            {
+                description ? (
+                    <p>{description}</p>
+                ) : null
+            }
         </div>
     );
 };

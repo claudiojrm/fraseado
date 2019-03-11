@@ -47,7 +47,8 @@ export default class Favorite {
                     link : `${config.base}/${post.get('slug')}/${post.get('p.slug')}/`,
                     category : {
                         name : post.get('c.name'),
-                        link : `${config.base}/${post.get('slug')}/`
+                        link : `${config.base}/${post.get('slug')}/`,
+                        image : 'https://fraseado.com.br/wp-content/uploads/2014/11/frases-de-amizade-80x60.jpg'
                     }
                 });
 

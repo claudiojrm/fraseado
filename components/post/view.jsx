@@ -79,7 +79,7 @@ export default class Post extends Component {
                             </a>
                         ) : (
                             <div>
-                                <h2 dangerouslySetInnerHTML={{__html : post.title}} />
+                                <h1 dangerouslySetInnerHTML={{__html : post.title}} />
                                 <p dangerouslySetInnerHTML={{__html : post.content}} />
                             </div>
                         )
