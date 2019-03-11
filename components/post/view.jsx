@@ -60,7 +60,7 @@ export default class Post extends Component {
 
         return(
             <article className="post">
-                <Share isFavorite={isFavorite} favorite={this.favorite} noshadow={!post.category && post.thumbnail} />
+                <Share {...post} isFavorite={isFavorite} favorite={this.favorite} noshadow={!post.category && post.thumbnail} />
 
                 {
                     post.category ? (<div className="category-info">
@@ -76,7 +76,7 @@ export default class Post extends Component {
                 <div className="post-content">
                     {
                         post.thumbnail ? (
-                            <figure onDoubleClick={this.favorite}><img src={'/public/uploads/' + post.thumbnail} width="100%" alt={post.excerpt} /></figure>
+                            <figure onDoubleClick={this.favorite}><img src={post.thumbnail} width="100%" alt={post.excerpt} /></figure>
                         ) : null
                     }
 

@@ -74,7 +74,7 @@ export default class Category {
                         id : post.get('p.id'),
                         link : `/${params.cat}/${params.sub}/${post.get('p.slug')}/`,
                         content : post.get('p.content'),
-                        thumbnail : post.get('a.file') || ''
+                        thumbnail : post.get('a.file')
                     });
 
                     this.data.posts.push(this.data.post);

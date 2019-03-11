@@ -13,7 +13,7 @@ front
 - quantidade de posts para a categoria
 - relacionados post
 - seo (estruturar melhor html, metatags)
-- share (+ favoritos)
+- share
 
 server
 - otimizar servidor (gzip, http2, service worker)
