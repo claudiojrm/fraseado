@@ -25,9 +25,10 @@ export default class Category {
      * @description Método para tratamento de dados do componente, antes da renderização da view
      * @param {Function} next Callback dispatch
      * @param {Object} tools Tools do projeto
+     * @param {Object} config Dados do config
      * @returns {Function}
      */
-    async _dispatch({next, tools}) {
+    async _dispatch({next, config, tools}) {
         // start o banco de dados
         const Neo4j = new tools.Neo4j();
         const {params} = this.data;
@@ -66,7 +67,8 @@ export default class Category {
                 Object.assign(this.data.category, {
                     name : record.get('c.name'),
                     description : record.get('c.description'),
-                    link : total > skip + limit ? (`/${params.cat}/${params.sub}/page/${+page + 1}/`) : ''
+                    image : 'https://fraseado.com.br/wp-content/uploads/2014/11/frases-de-amizade-80x60.jpg',
+                    link : total > skip + limit ? (`${config.base}/${params.cat}/${params.sub}/page/${+page + 1}/`) : ''
                 });
 
                 for(const post of posts) {

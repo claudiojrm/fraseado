@@ -21,7 +21,7 @@ const Menu = () => {
                     </a>
                 </li>
                 <li>
-                    <a href="#" title="Favoritos">
+                    <a href="/meus-favoritos/" title="Favoritos">
                         <svg><use xlinkHref="#favorito" /></svg>
                         <span>Favoritos</span>
                     </a>

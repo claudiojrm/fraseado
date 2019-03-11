@@ -13,9 +13,12 @@ export default class Post {
      * @returns {Function}
      */
     async _dispatch({next, tools, config}) {
-        this.data.link = config.base + this.data.link;
         this.data.excerpt = tools.String.stripTags(this.data.content);
         this.data.excerpt = tools.String.limitWords(this.data.excerpt);
+
+        if(this.data.link) {
+            this.data.link = config.base + this.data.link;
+        }
 
         if(this.data.thumbnail) {
             this.data.thumbnail = config.uploads + (this.data.thumbnail || '').replace(/.jpg$/, '-360x270$&');

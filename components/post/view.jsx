@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Share from '../share/view';
+import Info from '../info/view';
 
 /**
  * @class Post
@@ -61,17 +62,7 @@ export default class Post extends Component {
         return(
             <article className="post">
                 <Share {...post} isFavorite={isFavorite} favorite={this.favorite} noshadow={!post.category && post.thumbnail} />
-
-                {
-                    post.category ? (<div className="category-info">
-                        <a href={post.category.link} className="category-name">
-                            <figure>
-                                <img src="https://fraseado.com.br/wp-content/uploads/2014/11/frases-de-amizade-80x60.jpg" />
-                            </figure>
-                            <h6>{post.category.name}</h6>
-                        </a>
-                    </div>) : null
-                }
+                <Info {...post.category} />
 
                 <div className="post-content">
                     {
@@ -93,7 +84,6 @@ export default class Post extends Component {
                             </div>
                         )
                     }
-
                 </div>
             </article>
         );

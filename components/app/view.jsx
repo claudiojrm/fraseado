@@ -1,7 +1,6 @@
 import React from 'react';
 import manifest from '../../public/dist/bundle/manifest.json';
 
-
 /**
  * @var getFiles
  * @description Método responsável por retornar os arquivos que serão carregados via webpack

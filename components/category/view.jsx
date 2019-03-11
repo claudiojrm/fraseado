@@ -4,6 +4,7 @@ import Loading from '../loading/view';
 import Header from '../header/view';
 import Menu from '../menu/view';
 import Post from '../post/view';
+import Info from '../info/view';
 import Button from 'react-bootstrap/Button';
 
 /**
@@ -11,23 +12,10 @@ import Button from 'react-bootstrap/Button';
  * @description Classe de Inicialização da view do componente Category
  */
 export default class Category extends Component {
-
-    /**
-     * @memberof Category
-     * @method constructor
-     * @description Define as props como states
-     */
-    constructor(props) {
-        super(props);
-        const {posts, category} = this.props;
-
-        this.loadPosts = this.loadPosts.bind(this);
-
-        this.state = {
-            posts,
-            category,
-            loading : false
-        };
+    state = {
+        posts : this.props.posts,
+        category : this.props.category,
+        loading : false
     }
 
     /**
@@ -81,16 +69,8 @@ export default class Category extends Component {
                 <Header />
                 <Menu />
                 <main className="container">
-                    <div className="category-info category-card">
-                        <div className="category-name">
-                            <figure>
-                                <img src="https://fraseado.com.br/wp-content/uploads/2014/11/frases-de-amizade-80x60.jpg" />
-                            </figure>
-                            <h6>{category.name}</h6>
-                        </div>
+                    <Info {...category} card="true" />
 
-                        <p>{category.description}</p>
-                    </div>
                     {
                         posts.map((post, idx) => {
                             return(

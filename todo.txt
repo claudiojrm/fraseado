@@ -2,7 +2,7 @@ front
 - adsense
 - analytics
 - amp
-- home (definição de período para uma categoria)
+- home
 - imagem categoria
 - layout web?
 - menu
@@ -13,7 +13,6 @@ front
 - quantidade de posts para a categoria
 - relacionados post
 - seo (estruturar melhor html, metatags)
-- share
 
 server
 - otimizar servidor (gzip, http2, service worker)
@@ -23,6 +22,7 @@ server
 
 pós deploy
 - admin para deletar posts/imagens/categorias
+- home (definição de período para uma categoria)
 - notificações push
 - seguir
 - teste unitário (tanto para controller / quanto pra view)

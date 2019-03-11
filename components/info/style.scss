@@ -1,0 +1,63 @@
+.info {
+    .name {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 10px;
+        border-radius: 15px 5px 5px 15px;
+
+        &[href]:hover {
+            background-color: #f9f9f9;
+        }
+    }
+
+    h6 {
+        color: #D33569;
+        font-size: 14px;
+        text-transform: lowercase;
+        flex: 1;
+    }
+
+    figure {
+        height: 40px;
+        margin-bottom: 0;
+        width: 40px;
+
+        + h6 {
+            margin-left: 10px;
+        }
+
+        img {
+            border-radius: 50%;
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    &.card {
+        background: #fff;
+        box-shadow: 0 0 5px #eaeaea;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        padding: 15px;
+
+        h6 {
+            font-size: 24px;
+            text-transform: none;
+            margin-bottom: 5px;
+        }
+
+        figure {
+            width: 60px;
+            height: 60px;
+
+            + h6 {
+                margin-bottom: 0;
+            }
+        }
+
+        p {
+            font-size: 16px;
+        }
+    }
+}
