@@ -21,6 +21,10 @@
         }
     }
 
+    span {
+        display: none;
+    }
+
     svg {
         transition: opacity .15s;
         height: 22px;
@@ -34,6 +38,12 @@
     .fav {
         svg {
             fill: #999;
+        }
+
+        &.active {
+            svg {
+                fill: #D33569;
+            }
         }
     }
 

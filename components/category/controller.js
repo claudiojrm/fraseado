@@ -53,7 +53,7 @@ export default class Category {
             total = total.get('total').low;
 
             // lista de posts
-            const {records:posts} = await Neo4j.run('MATCH b=(c:Category {slug:$props.sub})-[]-(p:Post) OPTIONAL MATCH (p)-[:ATTACHMENT]-(a:Attachment) RETURN p.content, p.slug, a.file SKIP $props.skip LIMIT $props.limit', {
+            const {records:posts} = await Neo4j.run('MATCH b=(c:Category {slug:$props.sub})-[]-(p:Post) OPTIONAL MATCH (p)-[:ATTACHMENT]-(a:Attachment) RETURN p.content, p.slug, p.id, a.file SKIP $props.skip LIMIT $props.limit', {
                 ...params,
                 skip,
                 page,
@@ -71,6 +71,7 @@ export default class Category {
 
                 for(const post of posts) {
                     this.update('post', {
+                        id : post.get('p.id'),
                         link : `/${params.cat}/${params.sub}/${post.get('p.slug')}/`,
                         content : post.get('p.content'),
                         thumbnail : post.get('a.file') || ''

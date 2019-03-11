@@ -16,7 +16,7 @@ export default class Post extends Component {
 
         return(
             <article className="post">
-                <Share noshadow={!post.category && post.thumbnail} />
+                <Share id={post.id} noshadow={!post.category && post.thumbnail} />
 
                 {
                     post.category ? (<div className="category-info">

@@ -32,13 +32,14 @@ export default class Article {
         const params = this.data.params;
 
         // busca os dados do post
-        const {records:[record]} = await Neo4j.run('MATCH (p:Post {slug:$props.post})-[]-(s:Category)-[]-(c:Category) OPTIONAL MATCH (p)-[:ATTACHMENT]-(a:Attachment) RETURN p.title, p.content, s.slug, s.name, c.slug, a.file ORDER BY s.id LIMIT 1', {
+        const {records:[record]} = await Neo4j.run('MATCH (p:Post {slug:$props.post})-[]-(s:Category)-[]-(c:Category) OPTIONAL MATCH (p)-[:ATTACHMENT]-(a:Attachment) RETURN p.title, p.content, p.id, s.slug, s.name, c.slug, a.file ORDER BY s.id LIMIT 1', {
             ...params
         });
 
         // define as informações do post
         if(record && (record.get('c.slug') == params.cat && record.get('s.slug') == params.sub)) {
             Object.assign(this.data.post, {
+                id : record.get('p.id'),
                 thumbnail : (record.get('a.file') || '').replace(/.jpg$/, '-768x576$&'),
                 title : record.get('p.title'),
                 content : record.get('p.content'),
