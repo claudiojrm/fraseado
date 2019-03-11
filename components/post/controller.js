@@ -12,7 +12,7 @@ export default class Post {
      * @returns {Function}
      */
     async _dispatch({next, tools}) {
-        this.data.thumbnail = this.data.thumbnail.replace(/.jpg$/, '-300x225$&');
+        this.data.thumbnail = this.data.thumbnail.replace(/.jpg$/, '-360x270$&');
         this.data.excerpt = tools.String.stripTags(this.data.content);
         this.data.excerpt = tools.String.limitWords(this.data.excerpt);
 

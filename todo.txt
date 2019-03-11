@@ -4,7 +4,6 @@ front
 - amp
 - home (definição de período para uma categoria)
 - imagem categoria
-- imagens posts (definição exata de crop)
 - layout web?
 - menu
 - metatags ogs
