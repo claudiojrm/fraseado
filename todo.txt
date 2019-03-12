@@ -8,7 +8,6 @@ front
 - menu
 - metatags ogs
 - página de busca
-- página de favoritos
 - página 404
 - quantidade de posts para a categoria
 - relacionados post
