@@ -47,7 +47,7 @@ export default class Favorite {
                     id : post.get('p.id'),
                     content : post.get('p.content'),
                     thumbnail : post.get('a.file'),
-                    link : `${config.base}/${post.get('slug')}/${post.get('p.slug')}/`,
+                    link : `/${post.get('slug')}/${post.get('p.slug')}/`,
                     category : {
                         name : post.get('c.name'),
                         link : `${config.base}/${post.get('slug')}/`,
