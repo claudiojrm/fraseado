@@ -30,7 +30,6 @@ const Info = ({name, description, image, card, link}) => {
                         <h6 className="info-name">{name}</h6>
                     )
                 }
-
             </Name>
 
             {
