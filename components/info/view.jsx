@@ -13,24 +13,28 @@ const Name = ({link, className, children}) =>
  */
 const Info = ({name, description, image, card, link}) => {
     return (
-        <div className={'info ' + (card ? 'card' : '')}>
-            <Name link={link} className="info-wrapper">
-                {
-                    image ? (
-                        <figure>
-                            <img src={image} width="80" height="80" />
-                        </figure>
-                    ) : null
-                }
+        <div className={'info ' + (card ? 'info-card' : '')}>
+            {
+                name ? (
+                    <Name link={link} className="info-wrapper">
+                        {
+                            image ? (
+                                <figure>
+                                    <img src={image} width="80" height="80" />
+                                </figure>
+                            ) : null
+                        }
 
-                {
-                    card ? (
-                        <h2 className="info-name">{name}</h2>
-                    ) : (
-                        <h6 className="info-name">{name}</h6>
-                    )
-                }
-            </Name>
+                        {
+                            card ? (
+                                <h2 className="info-name">{name}</h2>
+                            ) : (
+                                <h6 className="info-name">{name}</h6>
+                            )
+                        }
+                    </Name>
+                ) : null
+            }
 
             {
                 description ? (
