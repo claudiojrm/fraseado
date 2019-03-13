@@ -46,7 +46,11 @@ const Info = ({name, description, image, card, link, stat}) => {
                 stat ? (
                     <div className="info-stat">
                         <span>Frases <b>{stat.total}</b></span>
-                        <span>Página <b>{stat.offset}/{stat.page}</b></span>
+                        {
+                            !isNaN(stat.offset) ? (
+                                <span>Página <b>{stat.offset}/{stat.page}</b></span>
+                            ) : null
+                        }
                     </div>
                 ) : null
             }

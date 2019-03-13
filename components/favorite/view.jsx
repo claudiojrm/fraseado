@@ -15,8 +15,8 @@ import Button from 'react-bootstrap/Button';
 export default class Favorite extends Component {
     state = {
         posts : [],
-        init : 0,
-        page : 10,
+        skip : 0,
+        limit : 10,
         next : false,
         loading : false
     }
@@ -41,7 +41,7 @@ export default class Favorite extends Component {
             const favorites = (JSON.parse(localStorage.getItem('favoritos')) || []).reverse();
 
             if(favorites.length) {
-                const ids = JSON.stringify(favorites.slice(this.state.init, this.state.page));
+                const ids = JSON.stringify(favorites.slice(this.state.skip, this.state.limit));
 
                 // states iniciais
                 this.setState({
@@ -49,22 +49,20 @@ export default class Favorite extends Component {
                     loading : true
                 });
 
-                setTimeout(async () => {
-                    // itens favoritados
-                    const {data:{data}} = await axios.get(`${this.props.config.base}/meus-favoritos/?ids=${ids}&json`);
+                // itens favoritados
+                const {data:{data}} = await axios.get(`${this.props.config.base}/meus-favoritos/?ids=${ids}&json`);
 
-                    // states
-                    const {init, page, posts} = this.state;
+                // states
+                const {skip, limit, posts} = this.state;
 
-                    // define os posts que serão exibidos
-                    this.setState({
-                        posts : [...posts, ...data.posts],
-                        init : page,
-                        page : page + (page - init),
-                        next : favorites.length > page,
-                        loading : false
-                    });
-                }, 3000)
+                // define os posts que serão exibidos
+                this.setState({
+                    posts : [...posts, ...data.posts],
+                    skip : limit,
+                    limit : limit + (limit - skip),
+                    next : favorites.length > limit,
+                    loading : false
+                });
             }
         }
     }
@@ -75,13 +73,26 @@ export default class Favorite extends Component {
      * @returns {HTML}
      */
     render() {
+        const {favorites, limit, skip} = this.state;
+        const page = (limit - skip);
+        const info = {
+            name : 'Meus favoritos',
+            description : 'Aqui você encontra as melhores frases que você encontrou e favoritou!',
+            card : true,
+            stat : {
+                total : favorites,
+                page : Math.ceil(favorites / page),
+                offset : Math.ceil(favorites / page) - Math.ceil((favorites - limit) / page) - 1
+            }
+        };
+
         return (
             <>
                 <Loading />
                 <Header />
                 <Menu />
                 <main className="container">
-                    <Info name="Meus favoritos" description="Aqui você encontra as melhores frases que você encontrou e favoritou!" card="true" />
+                    <Info {...info} />
                     {
                         this.state.posts.length ?
                             this.state.posts.map((post, idx) =>
