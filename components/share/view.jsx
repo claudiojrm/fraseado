@@ -4,9 +4,9 @@ import React from 'react';
  * @var Share
  * @description Variável de Inicialização da view do componente Share
  */
-const Share = ({link, excerpt, thumbnail, isFavorite, favorite, noshadow}) => {
+const Share = ({link, excerpt, thumbnail, isFavorite, favorite, noflap}) => {
     return (
-        <div className={'share ' + (!noshadow ? 'hasshadow' : '')}>
+        <div className={'share ' + (!noflap ? 'flap' : '')}>
             <a href={`whatsapp://send?text=${excerpt} ${link}%3Futm_source%3Dwhatsapp%26utm_medium%3Dreferral%26utm_campaign%3Dshare`} className="wts" target="_blank" rel="noopener noreferrer">
                 <span>Compartilhar no Whatsapp</span>
                 <svg><use xlinkHref="#whatsapp" /></svg>

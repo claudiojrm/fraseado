@@ -11,7 +11,7 @@ const Name = ({link, className, children}) =>
  * @var Info
  * @description Variável de Inicialização da view do componente Info
  */
-const Info = ({name, description, image, card, link}) => {
+const Info = ({name, description, image, card, link, stat}) => {
     return (
         <div className={'info ' + (card ? 'info-card' : '')}>
             {
@@ -39,6 +39,15 @@ const Info = ({name, description, image, card, link}) => {
             {
                 description ? (
                     <p>{description}</p>
+                ) : null
+            }
+
+            {
+                stat ? (
+                    <div className="info-stat">
+                        <span>Frases <b>{stat.total}</b></span>
+                        <span>Página <b>{stat.offset}/{stat.page}</b></span>
+                    </div>
                 ) : null
             }
         </div>

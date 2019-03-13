@@ -60,4 +60,28 @@
             font-size: 16px;
         }
     }
+
+    .info-stat {
+        background: #fff;
+        border-radius: 0 0 5px 5px;
+        border-top: 1px solid #eaeaea;
+        color: #D33569;
+        display: flex;
+        justify-content: space-evenly;
+        margin: 15px -15px -15px;
+        padding: 10px;
+
+        b {
+            display: block;
+            font-size: 16px;
+            letter-spacing: 0;
+        }
+
+        span {
+            font-size: 14px;
+            letter-spacing: 1;
+            text-align: center;
+            text-transform: uppercase;
+        }
+    }
 }

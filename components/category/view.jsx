@@ -62,6 +62,7 @@ export default class Category extends Component {
      */
     render() {
         const {posts, category} = this.state;
+        const info = (({link, ...rest}) => rest)(category);
 
         return (
             <>
@@ -69,7 +70,7 @@ export default class Category extends Component {
                 <Header />
                 <Menu />
                 <main className="container">
-                    <Info {...category} card="true" />
+                    <Info {...info} card="true" />
 
                     {
                         posts.map((post, idx) => {

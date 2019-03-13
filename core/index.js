@@ -7,6 +7,7 @@ import axios from 'axios';
 
 // import arquivos do projeto
 import App from '../components/app/view';
+import NotFound from '../components/notfound/view';
 import config from '../config';
 import { routes } from '../routes';
 import { tools } from './tools';
@@ -103,6 +104,7 @@ export default class Core {
 
         // 404
         if('notfound' in data || name == 'notfound') {
+            View = NotFound;
             response.status(404);
         }
 
@@ -146,7 +148,7 @@ export default class Core {
      */
     getPropsData(data) {
         if('notfound' in data) {
-            return data.notfound;
+            return {...data.notfound, notfound: true };
         } else if('props' in data) {
             return (data.props || []).reduce((obj, props) => ({...obj, [props] : data[props]}), {});
         } else {

@@ -34,27 +34,22 @@ export default class Category {
         const {params} = this.data;
 
         // busca os dados da categoria
-        const {records: [record]} = await Neo4j.run('MATCH a=(c:Category {slug: $props.sub})-[]-(pc:Category) RETURN c.slug, c.name, c.description, pc.slug', {
+        const {records: [record]} = await Neo4j.run('MATCH (c:Category {slug: $props.sub})--(p:Post) WITH COUNT(p) AS total MATCH (c:Category {slug: $props.sub})--(pc:Category) RETURN c.name, c.description, pc.slug + "/" + c.slug AS slug, total', {
             ...params
         });
 
         // define as informações da categoria
-        if(record && (record.get('pc.slug') == params.cat && record.get('c.slug') == params.sub)) {
+        if(record && (record.get('slug') == params.cat + '/' + params.sub)) {
             // paginação do post
             const {limit} = this.data;
             const page = params.page || 1;
             const skip = (page - 1) * limit;
 
-            // query para o total de posts
-            let {records:[total]} = await Neo4j.run('MATCH b=(c:Category {slug:$props.sub})-[]-(p:Post) RETURN COUNT(p) as total', {
-                ...params
-            });
-
             // número total de posts
-            total = total.get('total').low;
+            const total = record.get('total').low;
 
             // lista de posts
-            const {records:posts} = await Neo4j.run('MATCH b=(c:Category {slug:$props.sub})-[]-(p:Post) OPTIONAL MATCH (p)-[:ATTACHMENT]-(a:Attachment) RETURN p.content, p.slug, p.id, a.file SKIP $props.skip LIMIT $props.limit', {
+            const {records:posts} = await Neo4j.run('MATCH (c:Category {slug:$props.sub})--(p:Post) OPTIONAL MATCH (p)-[:ATTACHMENT]-(a:Attachment) RETURN p.content, p.slug, p.id, a.file SKIP $props.skip LIMIT $props.limit', {
                 ...params,
                 skip,
                 page,
@@ -68,11 +63,16 @@ export default class Category {
                     name : record.get('c.name'),
                     description : record.get('c.description'),
                     image : 'https://fraseado.com.br/wp-content/uploads/2014/11/frases-de-amizade-80x60.jpg',
-                    link : total > skip + limit ? (`${config.base}/${params.cat}/${params.sub}/page/${+page + 1}/`) : ''
+                    link : (total > skip + limit ? (`${config.base}/${params.cat}/${params.sub}/page/${+page + 1}/`) : ''),
+                    stat : {
+                        total,
+                        offset : page,
+                        page : Math.ceil(total / limit)
+                    }
                 });
 
                 for(const post of posts) {
-                    this.update('post', {
+                    await this.update('post', {
                         id : post.get('p.id'),
                         link : `/${params.cat}/${params.sub}/${post.get('p.slug')}/`,
                         content : post.get('p.content'),
@@ -82,12 +82,12 @@ export default class Category {
                     this.data.posts.push(this.data.post);
                 }
             } else {
-                this.update('notfound', {
+                await this.update('notfound', {
                     title : '404 categoria - página'
                 });
             }
         } else {
-            this.update('notfound', {
+            await this.update('notfound', {
                 title : '404 categoria'
             });
         }
