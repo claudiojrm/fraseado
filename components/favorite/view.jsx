@@ -92,25 +92,27 @@ export default class Favorite extends Component {
                 <Header />
                 <Menu />
                 <main className="container">
-                    <Info {...info} />
-                    {
-                        this.state.posts.length ?
-                            this.state.posts.map((post, idx) =>
-                                <Post key={idx} post={post} />
-                            ) : (
-                                <Alert variant="danger">
-                                    {
-                                        this.state.favorites ? 'Estamos carregando seus favoritos...' : 'Você ainda não tem favoritos!'
-                                    }
-                                </Alert>
-                            )
-                    }
+                    <section>
+                        <Info {...info} />
+                        {
+                            this.state.posts.length ?
+                                this.state.posts.map((post, idx) =>
+                                    <Post key={idx} post={post} />
+                                ) : (
+                                    <Alert variant="danger">
+                                        {
+                                            this.state.favorites ? 'Estamos carregando seus favoritos...' : 'Você ainda não tem favoritos!'
+                                        }
+                                    </Alert>
+                                )
+                        }
 
-                    {
-                        this.state.next ? (
-                            <Button className={this.state.loading ? 'disabled' : ''} variant="p1" onClick={() => this.loadPosts()} size="md" block>{this.state.loading ? 'Carregando...' : 'Carregar mais frases'}</Button>
-                        ) : null
-                    }
+                        {
+                            this.state.next ? (
+                                <Button className={this.state.loading ? 'disabled' : ''} variant="p1" onClick={() => this.loadPosts()} size="md" block>{this.state.loading ? 'Carregando...' : 'Carregar mais frases'}</Button>
+                            ) : null
+                        }
+                    </section>
                 </main>
             </>
         );

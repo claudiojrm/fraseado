@@ -25,6 +25,8 @@ export default class Crawler {
      */
     async _dispatch({next, tools}) {
         const xml = fs.readFileSync(__dirname + '/frases.xml');
+        const {crawler} = tools.request.params;
+        const {ids} = tools.request.query;
 
         (new Parser()).parseString(xml, async (err, result) => {
             const Neo4j = new tools.Neo4j();
@@ -32,15 +34,56 @@ export default class Crawler {
             const terms = channel['wp:term'];
             const posts = channel.item;
 
-            await this.attachment(Neo4j, posts.filter(post => post['wp:post_type'].includes('attachment')));
-            await this.category(Neo4j, terms.filter(term => term['wp:term_taxonomy'].includes('category')));
-            await this.post(Neo4j, posts.filter(post => post['wp:post_type'].includes('post')));
+            if(this[crawler]) {
+                if(crawler == 'category') {
+                    await this[crawler](Neo4j, terms.filter(term => term['wp:term_taxonomy'].includes(crawler)));
+                } else if(crawler == 'featured') {
+                    await this[crawler](Neo4j, ids);
+                } else {
+                    await this[crawler](Neo4j, posts.filter(post => post['wp:post_type'].includes(crawler)));
+                }
+            } else {
+                await this.attachment(Neo4j, posts.filter(post => post['wp:post_type'].includes('attachment')));
+                await this.category(Neo4j, terms.filter(term => term['wp:term_taxonomy'].includes('category')));
+                await this.post(Neo4j, posts.filter(post => post['wp:post_type'].includes('post')));
+            }
         });
 
         // configurações de metatags
-        this.update('metatags', {});
+        this.update('metatags', {
+            metas : [
+                { name : 'robots', content : 'noindex, nofollow' }
+            ]
+        });
 
         return next(this.data);
+    }
+
+    /**
+     * @memberof Crawler
+     * @method featured
+     * @description Método de cadastro de destaques da home
+     * @param {Function} Neo4j Tool para o banco de dados
+     * @param {String} ids Lista de ids das categorias
+     * @returns {void}
+     */
+    async featured(Neo4j, ids) {
+        // verifica se existe algum id
+        if(ids) {
+            // transforma os ids em numericos
+            ids = (ids || '').split(',').map(Number);
+
+            // remove todos os destaques
+            await Neo4j.run('MATCH (h:Home)-[i:HOME]-() DELETE h,i');
+            await Neo4j.run('CREATE (h:Home {name:"Home"}) RETURN h');
+
+            // cria uma relação (categoria)-[:HOME]-(home)
+            for(const id of ids) {
+                await Neo4j.run('MATCH (c:Category {id:$props.id}), (h:Home) MERGE (h)<-[:HOME {id:$props.id}]-(c) RETURN h', {
+                    id
+                });
+            }
+        }
     }
 
     /**

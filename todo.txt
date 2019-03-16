@@ -2,6 +2,7 @@ front
 - adsense
 - analytics
 - amp
+- footer
 - home
 - layout web?
 - menu
@@ -9,6 +10,7 @@ front
 - página de busca
 - página 404
 - relacionados post
+- termos de uso, gerador de frases
 - seo (estruturar melhor html, metatags)
 
 server

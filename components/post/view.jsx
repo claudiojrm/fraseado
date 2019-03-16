@@ -62,7 +62,7 @@ export default class Post extends Component {
         return(
             <article className="post">
                 <Share {...post} isFavorite={isFavorite} favorite={this.favorite} noflap={!post.category && post.thumbnail} />
-                <Info {...post.category} />
+                {post.category ? (<Info {...post.category} />) : null}
 
                 <div className="post-content">
                     {

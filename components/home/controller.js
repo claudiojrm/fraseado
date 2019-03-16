@@ -1,3 +1,5 @@
+import Category from "../category/controller";
+
 /**
  * @class Home
  * @description Classe de Inicialização do componente Home
@@ -10,7 +12,7 @@ export default class Home {
      */
     constructor() {
         this.default = {
-            posts : []
+            posts : {}
         };
     }
 
@@ -28,16 +30,34 @@ export default class Home {
         const Neo4j = new tools.Neo4j();
 
         // busca os dados da categoria
-        const {records} = await Neo4j.run('MATCH (c:Category)--(p:Category) OPTIONAL MATCH (c)--(a:Attachment) RETURN c.name, c.slug, p.slug, a.file');
+        const {records:categories} = await Neo4j.run('MATCH (:Home)-[h:HOME]-(c:Category)-->(pc:Category) OPTIONAL MATCH (c)-[:ATTACHMENT]-(a:Attachment) RETURN c.id, c.name, a.file, pc.slug + "/" + c.slug AS slug');
 
-        for(const record of records) {
-            this.data.posts.push({
-                category : {
-                    name : record.get('c.name'),
-                    link : record.get('p.slug') + '/' + record.get('c.slug') + '/',
-                    thumbnail : record.get('a.file') ? config.uploads + record.get('a.file').replace(/.jpg$/, '-80x60$&') : '',
-                }
+        for(const category of categories) {
+            // lista de posts para cada categoria
+            const {records:posts} = await Neo4j.run('MATCH (c:Category {id:$props.id})--(p:Post), (c)--(s:Category) OPTIONAL MATCH (p)-[:ATTACHMENT]-(a:Attachment) RETURN p.id, p.title, p.content, a.file, s.slug + "/" + c.slug + "/" + p.slug + "/" AS slug LIMIT 4', {
+                id : category.get('c.id')
             });
+
+            // posts por categoria
+            this.data.posts[category.get('slug')] = {
+                posts : [],
+                category : {
+                    name : category.get('c.name'),
+                    link : category.get('slug'),
+                    thumbnail : category.get('a.file') ? config.uploads + category.get('a.file').replace(/.jpg$/, '-80x60$&') : ''
+                }
+            };
+
+            for(const post of posts) {
+                await this.update('post', {
+                    id : post.get('p.id'),
+                    link : post.get('slug'),
+                    content : post.get('p.content'),
+                    thumbnail : post.get('a.file')
+                });
+
+                this.data.posts[category.get('slug')].posts.push(this.data.post);
+            }
         }
 
         // configurações de metatags

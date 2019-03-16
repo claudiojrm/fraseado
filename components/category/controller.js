@@ -48,16 +48,16 @@ export default class Category {
             // número total de posts
             const total = record.get('total').low;
 
-            // lista de posts
-            const {records:posts} = await Neo4j.run('MATCH (c:Category {slug:$props.sub})--(p:Post) OPTIONAL MATCH (p)-[:ATTACHMENT]-(a:Attachment) RETURN p.content, p.slug, p.id, a.file SKIP $props.skip LIMIT $props.limit', {
-                ...params,
-                skip,
-                page,
-                limit
-            });
-
             // limite total de posts
             if(total > skip) {
+                // lista de posts
+                const {records:posts} = await Neo4j.run('MATCH (c:Category {slug:$props.sub})--(p:Post) OPTIONAL MATCH (p)-[:ATTACHMENT]-(a:Attachment) RETURN p.content, p.slug, p.id, a.file SKIP $props.skip LIMIT $props.limit', {
+                    ...params,
+                    skip,
+                    page,
+                    limit
+                });
+
                 // link da categoria
                 const link = `${config.base}${params.cat}/${params.sub}/` + (params.page ? `page/${page}/` : '');
                 const next = (total > skip + limit) ? link.replace(/page\/\d+?\/$/, '') + `page/${+page+1}/` : '';
@@ -101,17 +101,12 @@ export default class Category {
                         { name : 'description', content : this.data.category.description }
                     ]
                 });
-            } else {
-                await this.update('metatags', {});
-                await this.update('notfound', {
-                    title : '404 categoria - página'
-                });
             }
-        } else {
-            await this.update('metatags', {});
-            await this.update('notfound', {
-                title : '404 categoria'
-            });
+        }
+
+        // nenhum item para a categoria
+        if(!this.data.posts.length) {
+            this.data.redirect = [301, config.base];
         }
 
         return next(this.data);

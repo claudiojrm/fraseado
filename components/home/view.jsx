@@ -3,6 +3,7 @@ import Loading from '../loading/view';
 import Header from '../header/view';
 import Menu from '../menu/view';
 import Post from '../post/view';
+import Info from '../info/view';
 
 /**
  * @class Home
@@ -22,11 +23,16 @@ export default class Home extends Component {
                 <Menu />
                 <main className="container">
                     {
-                        this.props.posts.map((post, idx) => {
-                            return(
-                                <Post key={idx} post={post} />
-                            );
-                        })
+                        Object.values(this.props.posts).map(({posts, category}, idx) =>
+                            <section key={idx}>
+                                <Info {...category} card="true" />
+                                {
+                                    posts.map((post, idy) =>
+                                        <Post post={post} key={idy} />
+                                    )
+                                }
+                            </section>
+                        )
                     }
                 </main>
             </>

@@ -70,21 +70,23 @@ export default class Category extends Component {
                 <Header />
                 <Menu />
                 <main className="container">
-                    <Info {...info} card="true" />
+                    <section>
+                        <Info {...info} card="true" />
 
-                    {
-                        posts.map((post, idx) => {
-                            return(
-                                <Post key={idx} post={post} />
-                            );
-                        })
-                    }
+                        {
+                            posts.map((post, idx) => {
+                                return(
+                                    <Post key={idx} post={post} />
+                                );
+                            })
+                        }
 
-                    {
-                        category.link ? (
-                            <Button className={this.state.loading ? 'disabled' : ''} variant="p1" href={category.link} onClick={this.loadPosts} size="md" block>{this.state.loading ? 'Carregando...' : 'Carregar mais frases'}</Button>
-                        ) : null
-                    }
+                        {
+                            category.link ? (
+                                <Button className={this.state.loading ? 'disabled' : ''} variant="p1" href={category.link} onClick={this.loadPosts} size="md" block>{this.state.loading ? 'Carregando...' : 'Carregar mais frases'}</Button>
+                            ) : null
+                        }
+                    </section>
                 </main>
             </>
         );

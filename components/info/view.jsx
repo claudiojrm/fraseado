@@ -13,7 +13,7 @@ const Name = ({link, className, children}) =>
  */
 const Info = ({name, description, thumbnail, card, link, stat}) => {
     return (
-        <div className={'info ' + (card ? 'info-card' : '')}>
+        <header className={'info ' + (card ? 'info-card' : '')}>
             {
                 name ? (
                     <Name link={link} className="info-wrapper">
@@ -54,7 +54,7 @@ const Info = ({name, description, thumbnail, card, link, stat}) => {
                     </div>
                 ) : null
             }
-        </div>
+        </header>
     );
 };
 

@@ -4,10 +4,10 @@
  */
 export const routes = {
     '/' : 'home',
+    '/crawler(/:crawler)?' : 'crawler',
+    '/meus-favoritos' : 'favorite',
     '/:cat/:sub' : 'category',
     '/:cat/:sub/page/:page' : 'category',
     '/:cat/:sub/:post' : 'article',
-    '/meus-favoritos' : 'favorite',
-    '/crawler' : 'crawler',
     '*' : 'notfound'
 };
