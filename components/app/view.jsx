@@ -26,8 +26,8 @@ const App = ({query, children, data, name, metatags:{title, base, metas, links}}
                         <>
                             <title>{title}</title>
                             <base href={base} />
-                            {metas.map(({...meta}, idx) => <meta {...meta} key={idx} />)}
-                            {links.map(({...link}, idx) => <link {...link} key={idx} />)}
+                            {metas.map(({disabled, ...meta}, idx) => !disabled ? <meta {...meta} key={idx} /> : null)}
+                            {links.map(({disabled, ...link}, idx) => !disabled ? <link {...link} key={idx} /> : null)}
                         </>
                     ) : null
                 }

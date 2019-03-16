@@ -59,14 +59,15 @@ export default class Category {
             // limite total de posts
             if(total > skip) {
                 // link da categoria
-                const link = `${config.base}/${params.cat}/${params.sub}/` + (page > 1 ? `page/${page}/` : '');
+                const link = `${config.base}/${params.cat}/${params.sub}/` + (params.page ? `page/${page}/` : '');
+                const next = (total > skip + limit) ? link.replace(/page\/\d+?\/$/, '') + `page/${+page+1}/` : '';
 
                 // configuração da categoria
                 Object.assign(this.data.category, {
                     name : record.get('c.name'),
                     description : record.get('c.description'),
                     image : 'https://fraseado.com.br/wp-content/uploads/2014/11/frases-de-amizade-80x60.jpg',
-                    link : link.replace(/\d+\/$/, (total > skip + limit) ? (+page + 1) + '/' : '$&'),
+                    link : next,
                     stat : {
                         total,
                         offset : page,
@@ -89,10 +90,11 @@ export default class Category {
 
                 // configurações de metatags
                 await this.update('metatags', {
-                    title : this.data.category.name + (page > 1 ? ` - Página ${page}` : ''),
+                    title : this.data.category.name + (params.page ? ` - Página ${page}` : ''),
                     links : [
                         { rel : 'canonical', href : link },
-                        { rel : 'amphtml', href : link + '?amp' }
+                        { rel : 'amphtml', href : link + '?amp' },
+                        { rel : 'next', href : next, disabled : !next }
                     ],
                     metas : [
                         { name : 'description', content : this.data.category.description }
