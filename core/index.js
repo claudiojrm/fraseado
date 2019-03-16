@@ -13,19 +13,6 @@ import { routes } from '../routes';
 import { tools } from './tools';
 
 /**
- * @var arrayMerge
- * @description Função para concatenar o array no mergeWith
- * @param {Object} dest Objeto de destino
- * @param {Object} src Objeto para merge
- * @returns {Array}
- */
-const arrayMerge = (dest, src) => {
-    if(isArray(dest)) {
-        return dest.concat(src);
-    }
-};
-
-/**
  * @class Core
  * @description Classe de Inicialização do projeto
  */
@@ -165,7 +152,7 @@ export default class Core {
         } else if('props' in data) {
             return (data.props || []).reduce((obj, props) => ({...obj, [props] : data[props]}), {});
         } else {
-            return data;
+            return (({metatags, ...rest}) => rest)(data);
         }
     }
 
@@ -227,7 +214,24 @@ export default class Core {
                 (Controller.default || {}),
                 (data || {}),
                 (((config || {}).components || {})[name] || {}),
-                arrayMerge
+                (dest, src) => {
+                    if(isArray(dest)) {
+                        src.forEach((item) => {
+                            // identifica o índice baseado na prop name em relação ao objeto de destino
+                            const index = dest.findIndex(({name}) => name == item.name);
+
+                            // sobrescreve o objeto no array de destino
+                            if(item.override && index != -1) {
+                                dest[index] = (({override, ...rest}) => rest)(item);
+                            } else {
+                                // adiciona o objeto ao array de destino
+                                dest.push(item);
+                            }
+                        });
+
+                        return dest;
+                    }
+                }
             );
 
             // método para atualizar os dados do componente

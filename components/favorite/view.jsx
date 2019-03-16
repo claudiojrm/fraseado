@@ -98,12 +98,12 @@ export default class Favorite extends Component {
                             this.state.posts.map((post, idx) =>
                                 <Post key={idx} post={post} />
                             ) : (
-                            <Alert variant="danger">
-                                {
-                                    this.state.favorites ? 'Estamos carregando seus favoritos...' : 'Você ainda não tem favoritos!'
-                                }
-                            </Alert>
-                        )
+                                <Alert variant="danger">
+                                    {
+                                        this.state.favorites ? 'Estamos carregando seus favoritos...' : 'Você ainda não tem favoritos!'
+                                    }
+                                </Alert>
+                            )
                     }
 
                     {

@@ -98,7 +98,7 @@ export default class Category {
                         { rel: 'image_src', href : config.uploads + record.get('a.file').replace(/.jpg$/, '-1024x768$&'), disabled: !record.get('a.file') }
                     ],
                     metas : [
-                        { name : 'description', content : this.data.category.description }
+                        { name : 'description', content : this.data.category.description, override : true }
                     ]
                 });
             } else {
