@@ -114,7 +114,7 @@ export default class Core {
 
         // render view componente
         const app = renderToString(
-            <App data={props} name={name} query={tools.request.query}>
+            <App data={props} metatags={data.metatags || {}} name={name} query={tools.request.query}>
                 <View {...props} />
             </App>
         );
@@ -195,10 +195,13 @@ export default class Core {
      * @returns {Void}
      */
     async getComponent({response, name, data, options}) {
+        // view do componente
+        let View;
         try {
-            // view do componente
-            const View = require(`../components/${name}/view`).default;
+            View = require(`../components/${name}/view`).default;
+        } catch(e) {}
 
+        try {
             // nova instância da controller do componente
             const Controller = new (require(`../components/${name}/controller`).default)({
                 config,
@@ -206,7 +209,7 @@ export default class Core {
             });
 
             // merge da configuração default do componente + config
-            Controller.data = extend(
+            Controller.data = extend(true,
                 (Controller.default || {}),
                 (data || {}),
                 (((config || {}).components || {})[name] || {})

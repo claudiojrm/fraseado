@@ -56,6 +56,9 @@ export default class Article {
             });
         }
 
+        // configurações de metatags
+        this.update('metatags', {});
+
         return next(this.data);
     }
 }

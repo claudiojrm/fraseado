@@ -62,6 +62,9 @@ export default class Favorite {
             this.data.posts = this.data.posts.sort((a, b) => ids.findIndex(id => id == a.id) > ids.findIndex(id => id == b.id));
         }
 
+        // configurações de metatags
+        this.update('metatags', {});
+
         return next(this.data);
     }
 }

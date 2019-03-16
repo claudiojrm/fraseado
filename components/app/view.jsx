@@ -12,18 +12,25 @@ const getFiles = ({notfound}, name) =>
  * @class App
  * @description Classe de Inicialização da view do componente App
  */
-const App = ({query, children, data, name}) => {
+const App = ({query, children, data, name, metatags:{title, base, metas, links}}) => {
     /**
      * @memberof App
      * @method render
      * @returns {HTML}
      */
     return ('name' in query || 'json' in query) ? children : <>
-        <html>
+        <html lang="pt-br">
             <head>
-                <meta name="charset" content="utf-8" />
-                <meta name="viewport" content="width=device-width" />
-                <title>Título</title>
+                {
+                    title ? (
+                        <>
+                            <title>{title}</title>
+                            <base href={base} />
+                            {metas.map(({...meta}, idx) => <meta {...meta} key={idx} />)}
+                            {links.map(({...link}, idx) => <link {...link} key={idx} />)}
+                        </>
+                    ) : null
+                }
             </head>
             <body>
                 <div id="App">{children}</div>

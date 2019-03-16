@@ -38,6 +38,9 @@ export default class Home {
             });
         }
 
+        // configurações de metatags
+        this.update('metatags', {});
+
         return next(this.data);
     }
 }

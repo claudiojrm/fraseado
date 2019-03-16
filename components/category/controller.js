@@ -58,12 +58,15 @@ export default class Category {
 
             // limite total de posts
             if(total > skip) {
+                // link da categoria
+                const link = `${config.base}/${params.cat}/${params.sub}/` + (page > 1 ? `page/${page}/` : '');
+
                 // configuração da categoria
                 Object.assign(this.data.category, {
                     name : record.get('c.name'),
                     description : record.get('c.description'),
                     image : 'https://fraseado.com.br/wp-content/uploads/2014/11/frases-de-amizade-80x60.jpg',
-                    link : (total > skip + limit ? (`${config.base}/${params.cat}/${params.sub}/page/${+page + 1}/`) : ''),
+                    link : link.replace(/\d+\/$/, (total > skip + limit) ? (+page + 1) + '/' : '$&'),
                     stat : {
                         total,
                         offset : page,
@@ -71,6 +74,7 @@ export default class Category {
                     }
                 });
 
+                // configurações dos posts
                 for(const post of posts) {
                     await this.update('post', {
                         id : post.get('p.id'),
@@ -79,14 +83,29 @@ export default class Category {
                         thumbnail : post.get('a.file')
                     });
 
+                    // lista de posts
                     this.data.posts.push(this.data.post);
                 }
+
+                // configurações de metatags
+                await this.update('metatags', {
+                    title : this.data.category.name + (page > 1 ? ` - Página ${page}` : ''),
+                    links : [
+                        { rel : 'canonical', href : link },
+                        { rel : 'amphtml', href : link + '?amp' }
+                    ],
+                    metas : [
+                        { name : 'description', content : this.data.category.description }
+                    ]
+                });
             } else {
+                await this.update('metatags', {});
                 await this.update('notfound', {
                     title : '404 categoria - página'
                 });
             }
         } else {
+            await this.update('metatags', {});
             await this.update('notfound', {
                 title : '404 categoria'
             });
