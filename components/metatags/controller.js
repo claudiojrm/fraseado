@@ -14,7 +14,7 @@ export default class Metatags {
             title : 'Frases e mensagens de amor, motivação e reflexão para você compartilhar',
             base : config.base,
             metas : [
-                { name : 'description', content : 'Frases de amor, amizade, aniversário e datas especiais. Compartilhe imagens, poemas de importantes autores e mensagens de amor, mensagens de motivação e muito mais.' },
+                { name : 'description', content : 'Frases de amor, amizade, aniversário e datas especiais. Compartilhe imagens, poemas de importantes autores e mensagens de amor, mensagens de motivação e muito mais.', override : true },
                 { 'httpEquiv' : 'X-UA-Compatible', content : 'IE=edge,chrome=1' },
                 { name : 'charset', content : 'utf-8' },
                 { name : 'viewport', content : 'width=device-width' },
@@ -26,7 +26,8 @@ export default class Metatags {
             links : [
                 { rel : 'dns-prefetch', href : 'https://pagead2.googlesyndication.com' },
                 { rel : 'dns-prefetch', href : 'https://www.google-analytics.com' },
-                { rel : 'shortcut icon', href : config.pub + 'favicon.ico' }
+                { rel : 'shortcut icon', href : config.pub + 'favicon.ico' },
+                { rel : 'image_src', href : config.pub + 'logo-share.png', override : true }
             ]
         };
     }

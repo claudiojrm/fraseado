@@ -217,12 +217,12 @@ export default class Core {
                 (dest, src) => {
                     if(isArray(dest)) {
                         src.forEach((item) => {
-                            // identifica o índice baseado na prop name em relação ao objeto de destino
-                            const index = dest.findIndex(({name}) => name == item.name);
+                            // identifica o índice baseado na prop name, override
+                            const index = dest.findIndex(({name, override}) => item.name == name && override);
 
-                            // sobrescreve o objeto no array de destino
-                            if(item.override && index != -1) {
-                                dest[index] = (({override, ...rest}) => rest)(item);
+                            if(index != -1) {
+                                // sobrescreve o objeto no array de destino
+                                dest[index] = item;
                             } else {
                                 // adiciona o objeto ao array de destino
                                 dest.push(item);
