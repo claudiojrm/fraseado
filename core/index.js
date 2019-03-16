@@ -2,8 +2,8 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import compression from 'compression';
-import extend from 'extend';
 import axios from 'axios';
+import { isArray, mergeWith } from 'lodash';
 
 // import arquivos do projeto
 import App from '../components/app/view';
@@ -11,6 +11,19 @@ import NotFound from '../components/notfound/view';
 import config from '../config';
 import { routes } from '../routes';
 import { tools } from './tools';
+
+/**
+ * @var arrayMerge
+ * @description Função para concatenar o array no mergeWith
+ * @param {Object} dest Objeto de destino
+ * @param {Object} src Objeto para merge
+ * @returns {Array}
+ */
+const arrayMerge = (dest, src) => {
+    if(isArray(dest)) {
+        return dest.concat(src);
+    }
+};
 
 /**
  * @class Core
@@ -209,10 +222,12 @@ export default class Core {
             });
 
             // merge da configuração default do componente + config
-            Controller.data = extend(true,
+            Controller.data = mergeWith(
+                {},
                 (Controller.default || {}),
                 (data || {}),
-                (((config || {}).components || {})[name] || {})
+                (((config || {}).components || {})[name] || {}),
+                arrayMerge
             );
 
             // método para atualizar os dados do componente
@@ -229,10 +244,9 @@ export default class Core {
                     next: (dt) => {
                         // render template
                         if(response) {
-                            this.render({ response, name, data : extend(Controller.data, dt), View });
+                            this.render({ response, name, data : dt, View });
                         } else {
-                            const alias = (options || {}).alias || name;
-                            this.data[alias] = extend(this.data[alias], dt);
+                            this.data[(options || {}).alias || name] = dt;
                         }
                     }
                 });

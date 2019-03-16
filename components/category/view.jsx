@@ -81,7 +81,7 @@ export default class Category extends Component {
                     }
 
                     {
-                        (category.link || '').includes('page') ? (
+                        category.link ? (
                             <Button className={this.state.loading ? 'disabled' : ''} variant="p1" href={category.link} onClick={this.loadPosts} size="md" block>{this.state.loading ? 'Carregando...' : 'Carregar mais frases'}</Button>
                         ) : null
                     }

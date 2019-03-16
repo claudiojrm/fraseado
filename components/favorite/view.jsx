@@ -50,7 +50,7 @@ export default class Favorite extends Component {
                 });
 
                 // itens favoritados
-                const {data:{data}} = await axios.get(`${this.props.config.base}/meus-favoritos/?ids=${ids}&json`);
+                const {data:{data}} = await axios.get(`${this.props.config.base}meus-favoritos/?ids=${ids}&json`);
 
                 // states
                 const {skip, limit, posts} = this.state;
@@ -77,7 +77,7 @@ export default class Favorite extends Component {
         const page = (limit - skip);
         const info = {
             name : 'Meus favoritos',
-            description : 'Aqui você encontra as melhores frases que você encontrou e favoritou!',
+            description : 'Aqui você encontra as melhores frases do Fraseado que você favoritou!',
             card : true,
             stat : {
                 total : favorites,

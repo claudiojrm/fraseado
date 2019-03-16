@@ -3,13 +3,11 @@ front
 - analytics
 - amp
 - home
-- imagem categoria
 - layout web?
 - menu
 - metatags ogs
 - página de busca
 - página 404
-- quantidade de posts para a categoria
 - relacionados post
 - seo (estruturar melhor html, metatags)
 

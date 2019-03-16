@@ -34,7 +34,7 @@ export default class Category {
         const {params} = this.data;
 
         // busca os dados da categoria
-        const {records: [record]} = await Neo4j.run('MATCH (c:Category {slug: $props.sub})--(p:Post) WITH COUNT(p) AS total MATCH (c:Category {slug: $props.sub})--(pc:Category) RETURN c.name, c.description, pc.slug + "/" + c.slug AS slug, total', {
+        const {records: [record]} = await Neo4j.run('MATCH (c:Category {slug: $props.sub})--(p:Post) WITH COUNT(p) AS total MATCH (c:Category {slug: $props.sub})--(pc:Category) OPTIONAL MATCH (c)-[:ATTACHMENT]-(a:Attachment) RETURN c.name, c.description, a.file, pc.slug + "/" + c.slug AS slug, total', {
             ...params
         });
 
@@ -59,14 +59,14 @@ export default class Category {
             // limite total de posts
             if(total > skip) {
                 // link da categoria
-                const link = `${config.base}/${params.cat}/${params.sub}/` + (params.page ? `page/${page}/` : '');
+                const link = `${config.base}${params.cat}/${params.sub}/` + (params.page ? `page/${page}/` : '');
                 const next = (total > skip + limit) ? link.replace(/page\/\d+?\/$/, '') + `page/${+page+1}/` : '';
 
                 // configuração da categoria
                 Object.assign(this.data.category, {
                     name : record.get('c.name'),
                     description : record.get('c.description'),
-                    image : 'https://fraseado.com.br/wp-content/uploads/2014/11/frases-de-amizade-80x60.jpg',
+                    thumbnail : record.get('a.file') ? config.uploads + record.get('a.file').replace(/.jpg$/, '-80x60$&') : '',
                     link : next,
                     stat : {
                         total,
@@ -79,7 +79,7 @@ export default class Category {
                 for(const post of posts) {
                     await this.update('post', {
                         id : post.get('p.id'),
-                        link : `/${params.cat}/${params.sub}/${post.get('p.slug')}/`,
+                        link : `${params.cat}/${params.sub}/${post.get('p.slug')}/`,
                         content : post.get('p.content'),
                         thumbnail : post.get('a.file')
                     });
@@ -94,7 +94,8 @@ export default class Category {
                     links : [
                         { rel : 'canonical', href : link },
                         { rel : 'amphtml', href : link + '?amp' },
-                        { rel : 'next', href : next, disabled : !next }
+                        { rel : 'next', href : next, disabled : !next },
+                        { rel: 'image_src', href : config.uploads + record.get('a.file').replace(/.jpg$/, '-1024x768$&'), disabled: !record.get('a.file') }
                     ],
                     metas : [
                         { name : 'description', content : this.data.category.description }

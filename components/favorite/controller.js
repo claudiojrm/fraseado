@@ -38,7 +38,7 @@ export default class Favorite {
 
         // busca os dados do post
         if((ids || []).length) {
-            const {records:posts} = await Neo4j.run('MATCH (p:Post)--(c:Category) WHERE p.id IN $props.ids WITH p, min(c.id) as id MATCH (p)--(c:Category)--(s:Category) WHERE c.id = id OPTIONAL MATCH (p)-[:ATTACHMENT]-(a:Attachment) RETURN DISTINCT s.slug + "/" + c.slug as slug,c.name, p.id, p.content, p.slug, a.file', {
+            const {records:posts} = await Neo4j.run('MATCH (p:Post)--(c:Category) WHERE p.id IN $props.ids WITH p, min(c.id) as id MATCH (p)--(c:Category)--(s:Category) WHERE c.id = id OPTIONAL MATCH (p)-[:ATTACHMENT]-(a:Attachment) OPTIONAL MATCH (c)-[:ATTACHMENT]-(ac:Attachment) RETURN DISTINCT s.slug + "/" + c.slug as slug,c.name, p.id, p.content, p.slug, a.file, ac.file', {
                 ids
             });
 
@@ -47,11 +47,11 @@ export default class Favorite {
                     id : post.get('p.id'),
                     content : post.get('p.content'),
                     thumbnail : post.get('a.file'),
-                    link : `/${post.get('slug')}/${post.get('p.slug')}/`,
+                    link : `${post.get('slug')}/${post.get('p.slug')}/`,
                     category : {
                         name : post.get('c.name'),
-                        link : `${config.base}/${post.get('slug')}/`,
-                        image : 'https://fraseado.com.br/wp-content/uploads/2014/11/frases-de-amizade-80x60.jpg'
+                        link : `${config.base}${post.get('slug')}/`,
+                        thumbnail : post.get('ac.file') ? config.uploads + post.get('ac.file').replace(/.jpg$/, '-80x60$&') : '',
                     }
                 });
 

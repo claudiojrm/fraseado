@@ -19,8 +19,13 @@
     }
 
     figure {
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         height: 40px;
         margin-bottom: 0;
+        overflow: hidden;
         width: 40px;
 
         + .info-name {
@@ -28,9 +33,7 @@
         }
 
         img {
-            border-radius: 50%;
-            height: 100%;
-            width: 100%;
+            max-width: inherit;
         }
     }
 

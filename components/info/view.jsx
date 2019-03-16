@@ -11,16 +11,16 @@ const Name = ({link, className, children}) =>
  * @var Info
  * @description Variável de Inicialização da view do componente Info
  */
-const Info = ({name, description, image, card, link, stat}) => {
+const Info = ({name, description, thumbnail, card, link, stat}) => {
     return (
         <div className={'info ' + (card ? 'info-card' : '')}>
             {
                 name ? (
                     <Name link={link} className="info-wrapper">
                         {
-                            image ? (
+                            thumbnail ? (
                                 <figure>
-                                    <img src={image} width="80" height="80" />
+                                    <img src={thumbnail} width="80" height="60" />
                                 </figure>
                             ) : null
                         }
@@ -45,7 +45,7 @@ const Info = ({name, description, image, card, link, stat}) => {
             {
                 stat ? (
                     <div className="info-stat">
-                        <span>Frases <b>{stat.total}</b></span>
+                        <span>Frases <b>{stat.total || 0}</b></span>
                         {
                             !isNaN(stat.offset) ? (
                                 <span>Página <b>{stat.offset}/{stat.page}</b></span>

@@ -33,7 +33,7 @@ export default class Article {
         const params = this.data.params;
 
         // busca os dados do post
-        const {records:[record]} = await Neo4j.run('MATCH (p:Post {slug:$props.post})-[]-(s:Category)-[]-(c:Category) OPTIONAL MATCH (p)-[:ATTACHMENT]-(a:Attachment) RETURN p.title, p.content, p.id, s.name, c.slug + "/" + s.slug AS slug, a.file ORDER BY s.id LIMIT 1', {
+        const {records:[record]} = await Neo4j.run('MATCH (p:Post {slug:$props.post})-[]-(s:Category)-[]-(c:Category) OPTIONAL MATCH (s)--(ac:Attachment) OPTIONAL MATCH (p)-[:ATTACHMENT]-(a:Attachment) RETURN p.title, p.content, p.id, s.name, c.slug + "/" + s.slug AS slug, ac.file, a.file ORDER BY s.id LIMIT 1', {
             ...params
         });
 
@@ -46,8 +46,8 @@ export default class Article {
                 content : record.get('p.content'),
                 category : {
                     name : record.get('s.name'),
-                    link : `${config.base}/${record.get('slug')}/`,
-                    image : 'https://fraseado.com.br/wp-content/uploads/2014/11/frases-de-amizade-80x60.jpg'
+                    link : `${config.base}${record.get('slug')}/`,
+                    thumbnail : record.get('ac.file') ? config.uploads + record.get('ac.file').replace(/.jpg$/, '-80x60$&') : ''
                 }
             });
         } else {
