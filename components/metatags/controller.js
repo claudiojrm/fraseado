@@ -28,7 +28,9 @@ export default class Metatags {
                 { rel : 'dns-prefetch', href : 'https://pagead2.googlesyndication.com' },
                 { rel : 'dns-prefetch', href : 'https://www.google-analytics.com' },
                 { rel : 'shortcut icon', href : config.pub + 'favicon.ico' },
-                { rel : 'image_src', href : config.pub + 'logo-share.png', override : true }
+                { rel : 'image_src', href : config.pub + 'logo-share.png', override : true },
+                { rel : 'canonical', href : config.base, override : true },
+                { rel : 'amphtml', href : config.base + '?amp', override : true },
             ]
         };
     }
@@ -41,7 +43,7 @@ export default class Metatags {
      * @returns {Function}
      */
     async _dispatch({next}) {
-        this.data.title += ' | Fraseado, frases e mensagens para compartilhar';
+        this.data.title += ' | Fraseado' + (this.data.type != 'home' ? ', frases e mensagens para compartilhar' : '');
         next(this.data);
     }
 }

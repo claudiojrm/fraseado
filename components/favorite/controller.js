@@ -10,9 +10,10 @@ export default class Favorite {
      */
     constructor() {
         this.default = {
-            props : ['posts', 'menu'],
             ids : [],
-            posts : []
+            posts : [],
+            name : 'Meus favoritos',
+            description : 'Aqui você encontra as melhores frases do Fraseado que você favoritou!'
         };
     }
 
@@ -66,7 +67,17 @@ export default class Favorite {
         }
 
         // configurações de metatags
-        this.update('metatags', {});
+        const link = config.base + 'meus-favoritos/';
+        this.update('metatags', {
+            title : this.data.name,
+            metas : [
+                { name : 'description', content : this.data.description }
+            ],
+            links : [
+                { rel : 'canonical', href : link },
+                { rel : 'amphtml', href : link + '?amp' }
+            ]
+        });
 
         return next(this.data);
     }

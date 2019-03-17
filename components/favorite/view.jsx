@@ -77,10 +77,11 @@ export default class Favorite extends Component {
      */
     render() {
         const {favorites, limit, skip} = this.state;
+        const {name, description} = this.props;
         const page = (limit - skip);
         const info = {
-            name : 'Meus favoritos',
-            description : 'Aqui você encontra as melhores frases do Fraseado que você favoritou!',
+            name,
+            description,
             card : true,
             stat : {
                 total : favorites,

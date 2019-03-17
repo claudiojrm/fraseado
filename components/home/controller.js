@@ -62,7 +62,9 @@ export default class Home {
         }
 
         // configurações de metatags
-        this.update('metatags', {});
+        this.update('metatags', {
+            type : 'home'
+        });
 
         return next(this.data);
     }
