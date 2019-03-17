@@ -4,7 +4,6 @@ front
 - amp
 - footer
 - layout web?
-- menu
 - metatags ogs
 - página de busca
 - relacionados post

@@ -47,6 +47,10 @@ main {
     color: #fff;
     text-transform: lowercase;
 
+    &:hover {
+        color: #fff;
+    }
+
     &:focus {
         box-shadow: 0 0 5px #eaeaea;
     }
@@ -55,6 +59,5 @@ main {
 @media(hover: hover) {
     .btn-p1:hover {
         background-color: rgba(#D33569, .85);
-        color: #fff;
     }
 }
