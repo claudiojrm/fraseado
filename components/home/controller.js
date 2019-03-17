@@ -35,7 +35,7 @@ export default class Home {
 
         for(const category of categories) {
             // lista de posts para cada categoria
-            const {records:posts} = await Neo4j.run('MATCH (c:Category {id:$props.id})--(p:Post), (c)--(s:Category) OPTIONAL MATCH (p)-[:ATTACHMENT]-(a:Attachment) RETURN p.id, p.title, p.content, a.file, s.slug + "/" + c.slug + "/" + p.slug + "/" AS slug LIMIT 4', {
+            const {records:posts} = await Neo4j.run('MATCH (c:Category {id:$props.id})--(p:Post), (c)--(s:Category) OPTIONAL MATCH (p)-[:ATTACHMENT]-(a:Attachment) RETURN p.id, p.title, p.content, a.file, s.slug + "/" + c.slug + "/" + p.slug + "/" AS slug, rand() AS number ORDER BY number LIMIT 4', {
                 id : category.get('c.id')
             });
 

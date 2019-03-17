@@ -32,7 +32,7 @@ export default class Menu {
 
         for(const menu of menus) {
             this.data.submenu.push({
-                name : menu.get('c.name').replace(/Frases (d[aeo]\s|em\s)?/g, ''),
+                name : menu.get('c.name'),
                 href : config.base + menu.get('slug')
             });
         }
