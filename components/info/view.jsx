@@ -11,9 +11,9 @@ const Name = ({link, className, children}) =>
  * @var Info
  * @description Variável de Inicialização da view do componente Info
  */
-const Info = ({name, description, thumbnail, card, link, stat}) => {
+const Info = ({name, description, thumbnail, separator, card, link, stat}) => {
     return (
-        <header className={'info ' + (card ? 'info-card' : '')}>
+        <header className={'info ' + (separator ? ' info-separator' : '') + (card ? ' info-card' : '')}>
             {
                 name ? (
                     <Name link={link} className="info-wrapper">

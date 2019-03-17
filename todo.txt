@@ -3,12 +3,10 @@ front
 - analytics
 - amp
 - footer
-- home
 - layout web?
 - menu
 - metatags ogs
 - página de busca
-- página 404
 - relacionados post
 - termos de uso, gerador de frases
 - seo (estruturar melhor html, metatags)
@@ -23,6 +21,7 @@ pós deploy
 - admin para deletar posts/imagens/categorias
 - home (definição de período para uma categoria)
 - notificações push
+- página 404
 - seguir
 - teste unitário (tanto para controller / quanto pra view)
 - transformar em app

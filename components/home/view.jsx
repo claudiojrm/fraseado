@@ -25,7 +25,7 @@ export default class Home extends Component {
                     {
                         Object.values(this.props.posts).map(({posts, category}, idx) =>
                             <section key={idx}>
-                                <Info {...category} card="true" />
+                                <Info {...category} separator="true" card="true" />
                                 {
                                     posts.map((post, idy) =>
                                         <Post post={post} key={idy} />

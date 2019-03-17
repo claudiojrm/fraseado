@@ -39,7 +39,7 @@ export default class Article {
 
         // define as informações do post
         if(record && (record.get('slug') == params.cat + '/' + params.sub)) {
-            this.update('post', {
+            await this.update('post', {
                 id : record.get('p.id'),
                 thumbnail : record.get('a.file'),
                 title : record.get('p.title'),
@@ -50,14 +50,12 @@ export default class Article {
                     thumbnail : record.get('ac.file') ? config.uploads + record.get('ac.file').replace(/.jpg$/, '-80x60$&') : ''
                 }
             });
-        } else {
-            this.update('notfound', {
-                title : '404 post'
-            });
-        }
 
-        // configurações de metatags
-        this.update('metatags', {});
+            // configurações de metatags
+            await this.update('metatags', {});
+        } else {
+            this.data.redirect = [301, config.base];
+        }
 
         return next(this.data);
     }
