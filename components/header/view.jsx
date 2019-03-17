@@ -7,7 +7,7 @@ import React from 'react';
 const Header = () => {
     return (
         <header className="header">
-            <h1><a href="/">Fraseado</a></h1>
+            <h1><a href="/" data-ga="logo">Fraseado</a></h1>
         </header>
     );
 };

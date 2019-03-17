@@ -4,7 +4,6 @@ front
 - amp
 - footer
 - layout web?
-- metatags ogs
 - página de busca
 - relacionados post
 - termos de uso, gerador de frases

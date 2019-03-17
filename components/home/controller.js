@@ -31,7 +31,7 @@ export default class Home {
         const Neo4j = new tools.Neo4j();
 
         // busca os dados da categoria
-        const {records:categories} = await Neo4j.run('MATCH (:Home)-[h:HOME]-(c:Category)-->(pc:Category) OPTIONAL MATCH (c)-[:ATTACHMENT]-(a:Attachment) RETURN c.id, c.name, a.file, pc.slug + "/" + c.slug AS slug');
+        const {records:categories} = await Neo4j.run('MATCH (:Home)-[h:HOME]-(c:Category)-->(pc:Category) OPTIONAL MATCH (c)-[:ATTACHMENT]-(a:Attachment) RETURN c.id, c.name, a.file, pc.slug + "/" + c.slug + "/" AS slug');
 
         for(const category of categories) {
             // lista de posts para cada categoria
@@ -44,7 +44,7 @@ export default class Home {
                 posts : [],
                 category : {
                     name : category.get('c.name'),
-                    link : category.get('slug'),
+                    link : config.base + category.get('slug'),
                     thumbnail : category.get('a.file') ? config.uploads + category.get('a.file').replace(/.jpg$/, '-80x60$&') : ''
                 }
             };

@@ -33,7 +33,7 @@ export default class Menu {
         for(const menu of menus) {
             this.data.submenu.push({
                 name : menu.get('c.name'),
-                href : config.base + menu.get('slug')
+                href : config.base + menu.get('slug') + '/'
             });
         }
 

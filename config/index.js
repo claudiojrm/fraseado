@@ -10,5 +10,6 @@ export default {
     base,
     pub,
     uploads,
+    ga : 'UA-55713936-1',
     dist : 'public/dist/bundle'
 };

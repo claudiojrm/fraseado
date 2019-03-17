@@ -5,7 +5,7 @@ import React from 'react';
  * @description Variável de Inicialização da view do componente Name
  */
 const Name = ({link, className, children}) =>
-    link ? <a href={link} className={className}>{children}</a> : <div className={className}>{children}</div>;
+    link ? <a href={link} className={className} data-ga={'category|' + link.split('/').slice(-2)[0]}>{children}</a> : <div className={className}>{children}</div>;
 
 /**
  * @var Info

@@ -73,7 +73,7 @@ export default class Post extends Component {
 
                     {
                         post.link ? (
-                            <a href={post.link}>
+                            <a href={post.link} data-ga={'continuar-lendo|' + post.link.split('/').slice(-2)[0]}>
                                 <p dangerouslySetInnerHTML={{__html : post.excerpt }} />
                                 <div className="more">continuar lendo<svg><use xlinkHref="#right" /></svg></div>
                             </a>

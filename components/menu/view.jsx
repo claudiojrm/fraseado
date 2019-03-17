@@ -33,25 +33,25 @@ export default class Menu extends Component {
                     <div className="menu">
                         <ul>
                             <li>
-                                <a href="/" title="Home">
+                                <a href="/" title="Home" data-ga="menu|home">
                                     <svg><use xlinkHref="#home" /></svg>
                                     <span>Home</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" title="Buscar">
+                                <a href="#" title="Buscar" data-ga="menu|buscar">
                                     <svg><use xlinkHref="#busca" /></svg>
                                     <span>Buscar</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="/meus-favoritos/" title="Favoritos">
+                                <a href="/meus-favoritos/" title="Favoritos" data-ga="menu|favorito">
                                     <svg><use xlinkHref="#favorito" /></svg>
                                     <span>Favoritos</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" className={(this.state.submenu ? 'active' : '')} title="Menu" onClick={this.menu}>
+                                <a href="#" className={(this.state.submenu ? 'active' : '')} title="Menu" onClick={this.menu} data-ga="menu|abrir-menu">
                                     <svg><use xlinkHref="#menu" /></svg>
                                     <span>Menu</span>
                                 </a>
@@ -60,7 +60,7 @@ export default class Menu extends Component {
                                         <ul className="submenu">
                                             {
                                                 this.props.submenu.map(({name, href}, idx) =>
-                                                    <li key={idx}><a href={href}>{name}</a></li>
+                                                    <li key={idx}><a href={href} data-ga={'submenu|' + href.split('/').slice(-2)[0]}>{name}</a></li>
                                                 )
                                             }
                                         </ul>
