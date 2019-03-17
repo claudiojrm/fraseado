@@ -6,12 +6,14 @@ import axios from 'axios';
     document.body.insertAdjacentHTML('beforeend', icons.data);
 })();
 
-// cliques ga
-window.addEventListener('load', () => {
-    document.querySelectorAll('a[data-ga]').forEach(link => {
-        link.addEventListener('click', function() {
-            const [event, action] = this.getAttribute('data-ga').split('|');
-            window.ga('send', 'event', event, action || 'click');
-        });
+// hit audience
+window.hitGA = () => {
+    document.querySelectorAll('[data-ga]:not(.ga)').forEach(audience => {
+        audience.classList.add('ga');
+        const [event, action, listener='click'] = audience.getAttribute('data-ga').split('|');
+        audience.addEventListener(listener, () => window.ga('send', 'event', event, action));
     });
-});
+};
+
+// cliques ga
+window.addEventListener('load', window.hitGA);

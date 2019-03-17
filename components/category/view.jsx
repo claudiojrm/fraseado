@@ -53,6 +53,9 @@ export default class Category extends Component {
                 category : data.category
             });
         }
+
+        // contabilização de audiência
+        window.hitGA();
     }
 
     /**
@@ -83,7 +86,7 @@ export default class Category extends Component {
 
                         {
                             category.link ? (
-                                <Button className={this.state.loading ? 'disabled' : ''} variant="p1" href={category.link} onClick={this.loadPosts} size="md" block>{this.state.loading ? 'Carregando...' : 'Carregar mais frases'}</Button>
+                                <Button className={this.state.loading ? 'disabled' : ''} variant="p1" href={category.link} onClick={this.loadPosts} size="md" block data-ga="categoria|mais-frases">{this.state.loading ? 'Carregando...' : 'Carregar mais frases'}</Button>
                             ) : null
                         }
                     </section>

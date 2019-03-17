@@ -65,6 +65,9 @@ export default class Favorite extends Component {
                 });
             }
         }
+
+        // contabilização de audiência
+        window.hitGA();
     }
 
     /**
@@ -109,7 +112,7 @@ export default class Favorite extends Component {
 
                         {
                             this.state.next ? (
-                                <Button className={this.state.loading ? 'disabled' : ''} variant="p1" onClick={() => this.loadPosts()} size="md" block>{this.state.loading ? 'Carregando...' : 'Carregar mais frases'}</Button>
+                                <Button className={this.state.loading ? 'disabled' : ''} variant="p1" onClick={() => this.loadPosts()} size="md" block data-ga="favorito|mais-frases">{this.state.loading ? 'Carregando...' : 'Carregar mais frases'}</Button>
                             ) : null
                         }
                     </section>

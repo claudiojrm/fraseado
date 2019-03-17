@@ -67,7 +67,7 @@ export default class Post extends Component {
                 <div className="post-content">
                     {
                         post.thumbnail ? (
-                            <figure onDoubleClick={this.favorite}><img src={post.thumbnail} width="100%" alt={post.excerpt} /></figure>
+                            <figure data-ga="imagem|favorito|dblclick" onDoubleClick={this.favorite}><img src={post.thumbnail} width="100%" alt={post.excerpt} /></figure>
                         ) : null
                     }
 

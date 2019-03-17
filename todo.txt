@@ -1,6 +1,5 @@
 front
 - adsense
-- analytics
 - amp
 - footer
 - layout web?
@@ -20,6 +19,7 @@ pós deploy
 - home (definição de período para uma categoria)
 - notificações push
 - página 404
+- redux
 - seguir
 - teste unitário (tanto para controller / quanto pra view)
 - transformar em app
