@@ -90,7 +90,7 @@ export default class Favorite extends Component {
             <>
                 <Loading />
                 <Header />
-                <Menu />
+                <Menu {...this.props.menu} />
                 <main className="container">
                     <section>
                         <Info {...info} />

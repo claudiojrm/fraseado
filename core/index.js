@@ -149,8 +149,9 @@ export default class Core {
     getPropsData(data) {
         if('notfound' in data) {
             return {...data.notfound, notfound: true };
-        } else if('props' in data) {
-            return (data.props || []).reduce((obj, props) => ({...obj, [props] : data[props]}), {});
+        } else if('props' in data || 'json' in tools.request.query && 'propsJson' in data) {
+            const props = 'json' in tools.request.query && data.propsJson || data.props;
+            return (props || []).reduce((obj, prop) => ({...obj, [prop] : data[prop]}), {});
         } else {
             return (({metatags, ...rest}) => rest)(data);
         }
@@ -240,24 +241,27 @@ export default class Core {
             // método que configura o componente
             Controller.getComponent = this.getComponent;
 
+            // método que configura o objeto de props
+            Controller.getPropsData = this.getPropsData;
+
+            // dados para componente que são renderizados a partir do componente principal
+            const slot = d => {
+                const props = this.getPropsData(d);
+
+                if((Object.keys(props) || []).length) {
+                    this.data[(options || {}).alias || name] = props;
+                }
+            };
+
             // dispara _dispatch do component
             if(Controller._dispatch) {
                 await Controller._dispatch({
                     tools,
                     config,
-                    next: (dt) => {
-                        // render template
-                        if(response) {
-                            this.render({ response, name, data : dt, View });
-                        } else {
-                            this.data[(options || {}).alias || name] = dt;
-                        }
-                    }
+                    next: (dt) => (response ? this.render({ response, name, data : dt, View }) : slot(dt))
                 });
             } else {
-                if(response) {
-                    this.render({ response, name, data : Controller.data, View });
-                }
+                response ? this.render({ response, name, data : Controller.data, View }) : slot(Controller.data);
             }
         } catch(e) {
             console.log(e);

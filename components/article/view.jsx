@@ -19,7 +19,7 @@ export default class Article extends Component {
             <>
                 <Loading />
                 <Header />
-                <Menu />
+                <Menu {...this.props.menu} />
                 <main className="container">
                     <Post post={this.props.post} />
                 </main>

@@ -6,7 +6,7 @@
     margin-bottom: 15px;
     position: sticky;
     width: 100%;
-    z-index: 1;
+    z-index: 2;
 
     ul {
         display: flex;
@@ -20,9 +20,9 @@
 
     a {
         display: block;
-        font-size: 12px;
-        letter-spacing: 1px;
-        padding: 15px;
+        font-size: 14px;
+        letter-spacing: 2px;
+        padding: 20px;
         text-transform: uppercase;
 
         span {
@@ -35,12 +35,50 @@
             fill: #D33569;
         }
 
-        &:hover {
+        &:hover,
+        &.active {
             background-color: #D33569;
 
             svg {
                 fill: #fff;
             }
         }
+
+        &.active {
+            + .submenu {
+                display: flex;
+            }
+        }
     }
+
+    .submenu {
+        background: #fff;
+        box-shadow: 0 0 2px #ccc;
+        display: none;
+        left: 0;
+        justify-content: flex-start;
+        overflow: auto;
+        position: absolute;
+        right: 0;
+
+        a {
+            border-right: 1px solid #eaeaea;
+            color: #D33569;
+            white-space: nowrap;
+
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
+}
+
+.layer {
+    background-color: rgba(#000, .5);
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1;
 }

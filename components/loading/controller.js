@@ -1,5 +1,5 @@
 /**
- * @class Header
- * @description Classe de Inicialização do componente Header
+ * @class Loading
+ * @description Classe de Inicialização do componente Loading
  */
-export default class Header {}
+export default class Loading {}

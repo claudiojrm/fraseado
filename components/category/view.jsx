@@ -68,7 +68,7 @@ export default class Category extends Component {
             <>
                 <Loading />
                 <Header />
-                <Menu />
+                <Menu {...this.props.menu} />
                 <main className="container">
                     <section>
                         <Info {...info} card="true" />

@@ -20,7 +20,7 @@ export default class Home extends Component {
             <>
                 <Loading />
                 <Header />
-                <Menu />
+                <Menu {...this.props.menu} />
                 <main className="container">
                     {
                         Object.values(this.props.posts).map(({posts, category}, idx) =>

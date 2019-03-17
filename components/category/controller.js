@@ -11,7 +11,7 @@ export default class Category {
      */
     constructor({tools}) {
         this.default = {
-            props : ['category', 'posts'],
+            props : ['category', 'posts', 'menu'],
             params : tools.request.params,
             limit : 10,
             category : {},
@@ -29,6 +29,9 @@ export default class Category {
      * @returns {Function}
      */
     async _dispatch({next, config, tools}) {
+        // carrega os dados do menu
+        await this.update('menu');
+
         // start o banco de dados
         const Neo4j = new tools.Neo4j();
         const {params} = this.data;

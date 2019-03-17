@@ -10,7 +10,7 @@ export default class Favorite {
      */
     constructor() {
         this.default = {
-            props : ['posts'],
+            props : ['posts', 'menu'],
             ids : [],
             posts : []
         };
@@ -26,6 +26,9 @@ export default class Favorite {
      * @returns {Function}
      */
     async _dispatch({next, config, tools}) {
+        // carrega os dados do menu
+        await this.update('menu');
+
         // start o banco de dados
         const Neo4j = new tools.Neo4j();
 
