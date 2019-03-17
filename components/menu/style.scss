@@ -35,16 +35,13 @@
             fill: #D33569;
         }
 
-        &:hover,
         &.active {
             background-color: #D33569;
 
             svg {
                 fill: #fff;
             }
-        }
 
-        &.active {
             + .submenu {
                 display: flex;
             }
@@ -64,11 +61,8 @@
         a {
             border-right: 1px solid #eaeaea;
             color: #D33569;
+            padding: 25px 20px;
             white-space: nowrap;
-
-            &:hover {
-                color: #fff;
-            }
         }
     }
 }
@@ -81,4 +75,22 @@
     top: 0;
     right: 0;
     z-index: 1;
+}
+
+@media(hover: hover) {
+    .navigation {
+        a:hover {
+            background-color: #D33569;
+
+            svg {
+                fill: #fff;
+            }
+        }
+
+        .submenu {
+            a:hover {
+                color: #fff;
+            }
+        }
+    }
 }

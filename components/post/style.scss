@@ -17,10 +17,6 @@
         > a {
             color: #212529;
             display: inline-block;
-
-            &:hover {
-                color: #D33569;
-            }
         }
 
         .more {
@@ -44,5 +40,15 @@
         font-weight: normal;
         margin-bottom: 5px;
         color: #D33569;
+    }
+}
+
+@media(hover: hover) {
+    .post {
+        .post-content {
+            > a:hover {
+                color: #D33569;
+            }
+        }
     }
 }
