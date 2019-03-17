@@ -36,12 +36,14 @@ export default class Article {
         const params = this.data.params;
 
         // busca os dados do post
-        const {records:[record]} = await Neo4j.run('MATCH (p:Post {slug:$props.post})--(s:Category)--(c:Category) OPTIONAL MATCH (s)--(ac:Attachment) OPTIONAL MATCH (p)--(a:Attachment) RETURN p.title, p.content, p.slug, p.id, s.name, c.slug + "/" + s.slug AS slug, ac.file, a.file ORDER BY s.id LIMIT 1', {
+        const {records:[record]} = await Neo4j.run('MATCH (p:Post {slug:$props.post})--(s:Category)--(c:Category) OPTIONAL MATCH (s)--(ac:Attachment) OPTIONAL MATCH (p)--(a:Attachment) RETURN p.title, p.content, p.excerpt, p.slug, p.id, s.name, s.description, c.slug + "/" + s.slug AS slug, ac.file, a.file ORDER BY s.id LIMIT 1', {
             ...params
         });
 
         // define as informações do post
         if(record) {
+            const link = `${config.base}${record.get('slug')}/${record.get('p.slug')}/`;
+
             if(record.get('slug') == params.cat + '/' + params.sub) {
                 await this.update('post', {
                     id : record.get('p.id'),
@@ -55,10 +57,23 @@ export default class Article {
                     }
                 });
 
+                // dados do post
+                const post = this.data.post;
+
                 // configurações de metatags
-                await this.update('metatags', {});
+                await this.update('metatags', {
+                    title : post.category.name + ': ' + post.title,
+                    metas : [
+                        { name : 'description', content : post.excerpt + ' ' + record.get('s.description') }
+                    ],
+                    links : [
+                        { rel : 'canonical', href : link },
+                        { rel : 'amphtml', href : link + '?amp' },
+                        { rel: 'image_src', href : config.uploads + record.get('a.file').replace(/.jpg$/, '-1024x768$&'), disabled: !record.get('a.file') }
+                    ]
+                });
             } else {
-                this.data.redirect = [301, `${config.base}${record.get('slug')}/${record.get('p.slug')}/`];
+                this.data.redirect = [301, link];
             }
         } else {
             this.data.redirect = [301, config.base];
