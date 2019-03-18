@@ -110,7 +110,8 @@ export default class Core {
 
         // dados que serão utilizados pelos componentes
         const props = this.getPropsData(data);
-        props.config = (({base, pub, uploads, ga}) => ({base, pub, uploads, ga}))(config);
+        // props.config = (({base, pub, uploads, bundle, ga}) => ({base, pub, uploads, bundle, ga}))(config);
+        props.config = {...config};
 
         // render view componente
         const app = renderToString(

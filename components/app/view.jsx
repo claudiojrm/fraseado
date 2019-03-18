@@ -1,5 +1,12 @@
 import React from 'react';
 import manifest from '../../public/dist/bundle/manifest.json';
+// import fs from 'fs';
+{/* <style key={idx}>
+    {
+        fs.readFileSync(path.resolve(data.config.bundle, manifest[file].replace(data.config.dist, '')), 'utf-8')
+    }
+</style> */}
+
 
 /**
  * @var getFiles
