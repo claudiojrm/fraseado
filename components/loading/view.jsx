@@ -28,22 +28,8 @@ export default class Loading extends Component {
      * @returns {HTML}
      */
     render() {
-        const loading = {
-            alignItems: 'center',
-            background: '#D33569 url(/public/logo.png) no-repeat center',
-            display: 'flex',
-            height: '100%',
-            justifyContent: 'center',
-            left: 0,
-            position: 'fixed',
-            top: 0,
-            transition: 'opacity .7s, width .7s .7s, height .7s .7s',
-            width: '100%',
-            zIndex: 3
-        };
-
         return(
-            <div className={'loading ' + (this.state.loaded ? 'hide' : '')} style={loading} />
+            <div className={'loading ' + (this.state.loaded ? 'hide' : '')} />
         );
     }
 }

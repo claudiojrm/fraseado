@@ -23,16 +23,16 @@ const App = ({query, children, data, name, metatags:{title, base, metas, links}}
         <html lang="pt-br">
             <head>
                 {
-                    getFiles(data, name, 'style-scss.css').map(file => {
-                        links.push({ rel : 'stylesheet', href : manifest[file] });
-                    })
-                }
-                {
                     title ? (
                         <>
                             <title>{title}</title>
                             <base href={base} />
                             {metas.map(({disabled, override, ...meta}, idx) => !disabled ? <meta {...meta} key={idx} /> : null)}
+                            {
+                                getFiles(data, name, 'style-scss.css').map(file => {
+                                    links.push({ rel : 'stylesheet', href : manifest[file] });
+                                })
+                            }
                             {links.map(({disabled, override, ...link}, idx) => !disabled ? <link {...link} key={idx} /> : null)}
                         </>
                     ) : null

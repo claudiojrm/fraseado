@@ -30,7 +30,7 @@ export default {
             {
                 test : /\.s?css$/,
                 exclude: [/node_modules/],
-                use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
             }
         ]
     },
@@ -43,7 +43,7 @@ export default {
             new UglifyJsPlugin({
                 cache: true,
                 parallel: true,
-                sourceMap: true
+                sourceMap: false
             }),
             new OptimizeCSSAssetsPlugin({})
         ],
