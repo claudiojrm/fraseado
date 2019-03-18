@@ -39,12 +39,6 @@ export default class Menu extends Component {
                                 </a>
                             </li>
                             <li>
-                                <a href="#" title="Buscar" data-ga="menu|buscar">
-                                    <svg><use xlinkHref="#busca" /></svg>
-                                    <span>Buscar</span>
-                                </a>
-                            </li>
-                            <li>
                                 <a href="/meus-favoritos/" title="Favoritos" data-ga="menu|favorito">
                                     <svg><use xlinkHref="#favorito" /></svg>
                                     <span>Favoritos</span>

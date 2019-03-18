@@ -4,12 +4,12 @@
  */
 const base = 'https://localhost:3002/';
 const pub = base + 'public/';
-const uploads = pub + 'uploads/';
 
 export default {
+    ga : 'UA-55713936-1',
     base,
     pub,
-    uploads,
-    ga : 'UA-55713936-1',
-    dist : 'public/dist/bundle'
+    uploads : pub + 'uploads/',
+    dist : pub + 'dist/bundle/',
+    bundle : 'public/dist/bundle'
 };

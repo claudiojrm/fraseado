@@ -1,9 +1,9 @@
 front
 - adsense
 - amp
+- categoria principal
 - footer
 - layout web?
-- página de busca
 - relacionados post
 - termos de uso, gerador de frases
 - seo (estruturar melhor html, metatags)
@@ -19,6 +19,7 @@ pós deploy
 - home (definição de período para uma categoria)
 - notificações push
 - página 404
+- página de busca
 - redux
 - seguir
 - teste unitário (tanto para controller / quanto pra view)

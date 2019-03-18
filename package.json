@@ -4,7 +4,8 @@
     "description": "Fraseado, projeto que organiza frases de todos os gostos de uma maneira mais fácil de encontrar.",
     "main": "index.js",
     "scripts": {
-        "start": "webpack && babel-node index",
+        "start": "babel-node index",
+        "dev": "webpack && babel-node index",
         "build": "webpack"
     },
     "author": "claudiojrm@gmail.com",
@@ -58,9 +59,12 @@
         "eslint": "^5.13.0",
         "eslint-plugin-react": "^7.12.4",
         "lodash": "^4.17.11",
+        "mini-css-extract-plugin": "^0.5.0",
         "node-sass": "^4.11.0",
+        "optimize-css-assets-webpack-plugin": "^5.0.1",
         "sass-loader": "^7.1.0",
         "style-loader": "^0.23.1",
+        "uglifyjs-webpack-plugin": "^2.1.2",
         "webpack": "^4.29.3",
         "webpack-cli": "^3.2.3",
         "webpack-manifest-plugin": "^2.0.4",

@@ -29,7 +29,7 @@ export default class Core {
             use : [
                 { key : compression },
                 { key : '/public', value : stc('public') },
-                { key : '/service-worker.js', value : stc(`${config.dist}/service-worker.js`) }
+                { key : '/service-worker.js', value : stc(`${config.bundle}/service-worker.js`) }
             ],
             get : this.routes(),
             set : [

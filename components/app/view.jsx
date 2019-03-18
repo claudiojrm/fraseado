@@ -5,8 +5,9 @@ import manifest from '../../public/dist/bundle/manifest.json';
  * @var getFiles
  * @description Método responsável por retornar os arquivos que serão carregados via webpack
  */
-const getFiles = ({notfound}, name) =>
-    Object.keys(manifest).filter(cp => [notfound ? 'notfound' : name, 'app'].includes(cp.split(/-(script|style)/)[0]));
+const getFiles = ({notfound}, name, file) => {
+    return Object.keys(manifest).filter(cp => [notfound ? 'notfound' : name, 'app'].includes(cp.split(new RegExp(`-(${file})`, 'g'))[0]));
+};
 
 /**
  * @class App
@@ -22,6 +23,11 @@ const App = ({query, children, data, name, metatags:{title, base, metas, links}}
         <html lang="pt-br">
             <head>
                 {
+                    getFiles(data, name, 'style-scss.css').map(file => {
+                        links.push({ rel : 'stylesheet', href : manifest[file] });
+                    })
+                }
+                {
                     title ? (
                         <>
                             <title>{title}</title>
@@ -35,7 +41,7 @@ const App = ({query, children, data, name, metatags:{title, base, metas, links}}
             <body>
                 <div id="App">{children}</div>
                 <script src={manifest['main.js']}></script>
-                <script dangerouslySetInnerHTML={{__html : `window.Loader(${JSON.stringify(getFiles(data, name))});`}} />
+                <script dangerouslySetInnerHTML={{__html : `window.Loader(${JSON.stringify(getFiles(data, name, 'script'))});`}} />
                 <script dangerouslySetInnerHTML={{__html : `window.STARKData = ${JSON.stringify(data)};`}} />
                 {
                     data.config.ga ? (
