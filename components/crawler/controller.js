@@ -46,6 +46,7 @@ export default class Crawler {
                 await this.attachment(Neo4j, posts.filter(post => post['wp:post_type'].includes('attachment')));
                 await this.category(Neo4j, terms.filter(term => term['wp:term_taxonomy'].includes('category')));
                 await this.post(Neo4j, posts.filter(post => post['wp:post_type'].includes('post')));
+                await this.featured(Neo4j, ids);
             }
         });
 

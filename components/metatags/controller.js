@@ -14,7 +14,7 @@ export default class Metatags {
             title : 'Frases e mensagens de amor, motivação e reflexão para você compartilhar',
             base : config.base,
             metas : [
-                { 'charset' : 'utf-8' },
+                { 'charSet' : 'utf-8' },
                 { 'httpEquiv' : 'X-UA-Compatible', content : 'IE=edge,chrome=1' },
                 { name : 'robots', content : 'index, follow, noodp', override : true },
                 { name : 'description', content : 'Frases de amor, amizade, aniversário e datas especiais. Compartilhe imagens, poemas de importantes autores e mensagens de amor, mensagens de motivação e muito mais.', override : true },
