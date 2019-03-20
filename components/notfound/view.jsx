@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Loading from '../loading/view';
 import Header from '../header/view';
 import Menu from '../menu/view';
+import Footer from '../footer/view';
 
 /**
  * @class NotFound
@@ -22,6 +23,7 @@ export default class NotFound extends Component {
                 <main className="container">
                     Nenhum item encontrado: {this.props.title}
                 </main>
+                <Footer />
             </>
         );
     }
