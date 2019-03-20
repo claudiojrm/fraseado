@@ -2,7 +2,6 @@ front
 - adsense
 - amp
 - categoria principal
-- footer
 - layout web?
 - relacionados post
 - termos de uso, gerador de frases

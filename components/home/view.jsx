@@ -4,6 +4,7 @@ import Header from '../header/view';
 import Menu from '../menu/view';
 import Post from '../post/view';
 import Info from '../info/view';
+import Footer from '../footer/view';
 
 /**
  * @class Home
@@ -35,6 +36,7 @@ export default class Home extends Component {
                         )
                     }
                 </main>
+                <Footer />
             </>
         );
     }

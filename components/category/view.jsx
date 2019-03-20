@@ -5,6 +5,7 @@ import Header from '../header/view';
 import Menu from '../menu/view';
 import Post from '../post/view';
 import Info from '../info/view';
+import Footer from '../footer/view';
 import Button from 'react-bootstrap/Button';
 
 /**
@@ -91,6 +92,7 @@ export default class Category extends Component {
                         }
                     </section>
                 </main>
+                <Footer />
             </>
         );
     }

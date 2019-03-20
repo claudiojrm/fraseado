@@ -1,6 +1,6 @@
 import React from 'react';
 import { home, magnifying_glass, heart, list, arrow_right } from 'react-icons-kit/ikons';
-import { facebook, whatsapp, twitter, pinterest2 } from 'react-icons-kit/icomoon';
+import { facebook, whatsapp, twitter, pinterest2, instagram } from 'react-icons-kit/icomoon';
 
 /**
  * @var icons
@@ -11,6 +11,7 @@ const icons = {
     favorito : heart,
     facebook,
     home,
+    instagram,
     menu : list,
     pinterest2,
     right : arrow_right,

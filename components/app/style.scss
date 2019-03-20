@@ -10,7 +10,7 @@ body {
 }
 
 a {
-    transition: color .15s ease-in-out, background-color .15s ease-in-out;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, opacity .15s ease-in-out;
 }
 
 a:hover {

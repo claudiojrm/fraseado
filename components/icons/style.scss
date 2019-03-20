@@ -1,5 +1,5 @@
 svg {
-    transition: fill .15s ease-in-out;
+    transition: fill .15s ease-in-out, opacity .15s ease-in-out;
 
     &.icons {
         display: none;

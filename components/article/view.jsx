@@ -3,6 +3,7 @@ import Loading from '../loading/view';
 import Header from '../header/view';
 import Menu from '../menu/view';
 import Post from '../post/view';
+import Footer from '../footer/view';
 
 /**
  * @class Article
@@ -23,6 +24,7 @@ export default class Article extends Component {
                 <main className="container">
                     <Post post={this.props.post} />
                 </main>
+                <Footer />
             </>
         );
     }
