@@ -32,10 +32,10 @@
 			<div class="banner pub">
 				<div class="adpost">
 					<amp-fx-flying-carpet height="400">
-						<amp-ad width="300" height="600" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="<?php echo $GLOBALS['AMP'] ? '8680126423' : '2722821220'; ?>"></amp-ad>
+						<amp-ad width="300" height="600" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="<?php echo $GLOBALS['AMP'] ? '8680126423' : '1074951221'; ?>"></amp-ad>
 					</amp-fx-flying-carpet>
 				</div>
-				
+
 				<div class="adsgoogle adssinglepost"></div>
 			</div>
 		</div>

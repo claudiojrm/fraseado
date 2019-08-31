@@ -80,35 +80,10 @@ amp-img {
  * header
  */
  .header {
-	position: sticky;
-	position: -webkit-sticky;
-	position: -moz-sticky;
-	position: -ms-sticky;
-	position: -o-sticky;
     background: #c7202f;
     width: 100%;
     z-index: 1;
     top: 0;
-}
-
-.header .banner {
-	background: #eaeaea;
-	height: 100px;
-	margin-bottom: 0;
-}
-
-.header .adstop {
-	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.header ins { 
-	min-width: 320px;
-	max-width: 970px;
-	width: 100%;
-	height: 100px;
 }
 
 .logo a {
@@ -131,7 +106,7 @@ amp-img {
 
 .wrapper-menu li a {
     display: block;
-    padding: 15px;
+    padding: 20px 15px;
     white-space: nowrap;
     text-transform: uppercase;
     font-size: 12px;
@@ -146,7 +121,7 @@ amp-img {
 
 .wrapper-form {
 	align-items: center;
-    padding: 10px;
+    padding: 15px 10px;
     display: flex;
     max-width: 1000px;
     margin: 0 auto;
@@ -184,9 +159,9 @@ amp-img {
  * title
  **/
  .title {
-	padding: 15px 10px;
+	padding: 20px 10px;
 	border-bottom: 1px solid #eaeaea;
-	margin-bottom: 25px;
+	margin-bottom: 30px;
 	position: relative;
 }
 
@@ -364,7 +339,7 @@ amp-img {
 /**
  * post
  */
-.template-post .adpost {
+.template-post .adssinglepost {
 	display: none;
 }
 
@@ -400,13 +375,13 @@ amp-img {
 }
 
 .entry-content {
-	margin-bottom: 15px;
+	margin-bottom: 20px;
 }
 
 .post .entry-content p {
 	position: relative;
 	padding-left: 32px;
-	font-size: 16px;
+	font-size: 17px;
 }
 
 .post .entry-content p:first-child:before {
@@ -559,5 +534,13 @@ amp-img {
 	.veja-tambem li:nth-child(3),
 	.veja-tambem li:nth-child(4) {
 		padding-top: 0;
+	}
+
+	.template-post .adpost {
+		display: none;
+	}
+
+	.template-post .adssinglepost {
+		display: block;
 	}
 }
