@@ -1,0 +1,30 @@
+front
+- adsense
+- analytics
+- amp
+- home
+- imagem categoria
+- layout web?
+- menu
+- metatags ogs
+- página de busca
+- página 404
+- quantidade de posts para a categoria
+- relacionados post
+- seo (estruturar melhor html, metatags)
+
+server
+- otimizar servidor (gzip, http2, service worker)
+- otimizar configurações development/production
+- redirect (robots, sitemap, imagens)
+- teste de carga
+
+pós deploy
+- admin para deletar posts/imagens/categorias
+- home (definição de período para uma categoria)
+- notificações push
+- seguir
+- teste unitário (tanto para controller / quanto pra view)
+- transformar em app
+- typescript
+- vscode debug

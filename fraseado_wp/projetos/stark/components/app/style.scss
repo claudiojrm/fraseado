@@ -1,0 +1,66 @@
+@import 'bootstrap/scss/bootstrap-reboot.scss';
+@import 'bootstrap/scss/_grid.scss';
+@import 'bootstrap/scss/_alert.scss';
+@import 'bootstrap/scss/_buttons.scss';
+@import '../icons/style';
+
+body {
+    background-color: #FAFAFA;
+    font-size: 16px;
+}
+
+a {
+    transition: color .15s ease-in-out, background-color .15s ease-in-out;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+p, ul, li, h1, h2, h3, h4, h5, h6, form {
+    margin: 0;
+    padding: 0;
+}
+
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    padding-bottom: 20px;
+}
+
+.container,
+.navigation ul {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.btn-p1 {
+    background-color: #D33569;
+    border-color: transparent;
+    box-shadow: 0 0 5px #eaeaea;
+    color: #fff;
+    text-transform: lowercase;
+
+    &:hover {
+        color: #fff;
+    }
+
+    &:focus {
+        box-shadow: 0 0 5px #eaeaea;
+    }
+}
+
+@media(hover: hover) {
+    .btn-p1:hover {
+        background-color: rgba(#D33569, .85);
+    }
+}

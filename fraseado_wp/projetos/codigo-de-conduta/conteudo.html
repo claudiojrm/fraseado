@@ -1,0 +1,41 @@
+<aside role="complementary" class="sidebar hidden" data-style="left:0" data-template id="tpl-complementar">
+	<div class="info">
+		<div class="category {{classe}} {{classe | replace 'bg', 'c'}} {%if catchapeu == '' %}valign{% endif %}">
+			<h3>{{catchapeu}}</h3>
+			<h4>{%if catchapeu == '' %}{{pnome}}{%else%}{{cattitulo}}{%endif%}<span class="f-source">{{catsubtitulo}}</span></h4>
+		</div>
+		<ul class="btns f-source">
+			<li><a href="mailto:?subject={{sidebar.nome}} - {%if catchapeu == '' %}{{pnome}}{%else%}{{cattitulo}}{%endif%} ({{titulo}})&body={{sidebar.texto}}" target="_blank">{{sidebar.email}}</a></li>
+			<li><a href="#" class="print">{{sidebar.imprimir}}</a></li>
+		</ul>
+	</div>
+	<a href="categoria.html" rel="{{pslug}}" class="voltar ir hidden" data-style="left:20">Voltar</a>
+</aside>
+
+<section class="content clearfix">
+	<article class="hidden" data-style="margin-left:20%" data-style-big="12.5%">
+		<div data-template id="tpl-info" class="tpl-{{tpl}} {{classe | replace 'bg','font-c'}}">
+			<img src="img/1x1.png" data-src="{{catimg}}" width="90">
+			<h2 class="{{classe | replace 'bg', 'c'}}">{{titulo}}</h2>
+			
+			<div class="tpl vscroll">
+				<div data-template-for="descricao" class="cols item-{{_tempo.index}}">{{.}}</div>
+			</div>
+			<div class="paginav"></div>
+		</div>
+	</article>
+
+	<div>
+		<ul id="tpl-conteudo" class="itens integra right hscroll" data-template>
+			<li data-template-for="itens" class="{{classe}}">
+				<a href="conteudo.html" rel="{{pslug}}/{{slug}}">
+					{% if hasimg %}
+						<img src="img/1x1.png" data-src="{{catimg}}" width="104">
+					{% endif %}
+					<h3>{{titulo}}</h3>
+					<p>{{sinopse}}</p>
+				</a>
+			</li>
+		</ul>
+	</div>
+</section>

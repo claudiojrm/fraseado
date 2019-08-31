@@ -1,0 +1,19 @@
+.loading {
+    align-items: center;
+    background: #D33569 url(/public/logo.png) no-repeat center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    top: 0;
+    transition: opacity .7s, width .7s .7s, height .7s .7s;
+    width: 100%;
+    z-index: 3;
+
+    &.hide {
+        opacity: 0!important;
+        width: 0 !important;
+        height: 0 !important;
+    }
+}

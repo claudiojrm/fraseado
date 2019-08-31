@@ -1,0 +1,21 @@
+.header {
+    background: #D33569;
+    padding-top: 10px;
+    padding-bottom: 14px;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+
+    h1 {
+        background: no-repeat url(/public/logo.png);
+        height: 23px;
+        margin: 0 auto;
+        text-indent: -9999px;
+        width: 119px;
+
+        a {
+            display: block;
+            height: 100%;
+        }
+    }
+}

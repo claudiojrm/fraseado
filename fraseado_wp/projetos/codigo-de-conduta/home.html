@@ -1,0 +1,25 @@
+<ul id="tpl-conteudo" class="itens home" data-template>
+	<li data-template-for="itens" class="{{newclasse}}">
+		<a href="conteudo.html" rel="{{pslug}}/{{slug}}">
+			{% if hasimg && !destaque %}
+				<img src="img/1x1.png" data-src="{{catimg}}?v1" width="104">
+			{%else%}
+				<img src="img/1x1.png" data-src="{{destaque}}" width="720" height="480" class="destaque">
+			{% endif %}
+			<div>
+				{%if destaque %}
+					<h2>{{chapeu}}</h2>
+					<h3>{{sinopse}}</h3>
+				{%else%}
+					<h6>{{chapeu}}</h6>
+					<h3>{{titulo}}</h3>
+					<p>{{sinopse}}</p>
+				{%endif%}
+			</div>
+
+			{% if chart%}
+				{{chart}}
+			{% endif %}
+		</a>
+	</li>
+</ul>

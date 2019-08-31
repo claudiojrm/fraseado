@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas</title>
+	<meta name="viewport" content="width=device-width">
+	<style>
+		* {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+		}
+	
+		body {
+			margin: 15px;
+		}
+
+		img {
+			vertical-align: middle;
+			max-width: 100%;
+		}
+
+		.canvas {
+			position: relative;
+			overflow: hidden;
+			width: 507px;
+		}
+
+		.canvas img {
+			width: 100%;			
+		}
+
+		.canvas:before {
+			content: '';
+			position: absolute;
+			background: #000;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			opacity: .6;
+		}
+	
+		.generator {
+			overflow: hidden;
+		}
+	
+		.generator .entry {
+			margin-bottom: 5px;
+		}
+
+		.generator textarea,
+		.generator input[type="text"] {
+			padding: 1px;
+			width: 300px;
+			vertical-align: top;
+		}
+		
+		.generator textarea {
+			height: 100px;
+		}
+
+		.canvas .text {
+			font-size: 30px;
+			color: #fff;
+			position: absolute;
+			top: 30px;
+			left: 30px;
+		}
+
+		.canvas .author {
+			display: block;
+			font-size: 14px;
+			margin-top: 20px;
+		}
+
+		.canvas .quote {
+			font-size: 50px;
+			vertical-align: middle;
+			line-height: 0;
+		}
+
+		.image {
+			display: none;
+		}
+
+		label {
+			vertical-align: top;
+		}
+	</style>
+</head>
+<body>
+	<div class="generator">
+		<form action="post">
+			<div class="entry">
+				<input type="text" placeholder="Autor da frase" class="field-author" value="- Mahatma Ghandi"> 
+			</div>
+			<div class="entry">
+				<label>Tamanho da fonte:</label> <input type="range" class="size-author" max="20" min="9" value="16">
+			</div>
+			<div class="entry">
+				<textarea placeholder="Texto da frase">Escreva um texto</textarea>
+			</div>
+			<div class="entry">
+				<label>Tamanho da fonte:</label> <input type="range" class="size-text" max="60" min="12" value="20">
+			</div>
+			<div class="entry">
+				<label>Alinhamento do texto</label>
+				<div>
+					<label><input type="radio" name="align" value="left"> Esquerda</label>
+					<label><input type="radio" name="align" value="center" checked> Centro</label>
+					<label><input type="radio" name="align" value="right"> Direita</label>
+				</div>
+			</div>
+			<div class="entry">
+				<label>Opacidade:</label> <input type="range" class="opacity" max="1" min="0" value="0.7" step="0.1">
+			</div>
+
+			<div class="entry">
+				<label>Cores:</label> 
+				<input type="color" name="color" value="#000000">
+			</div>
+			<div class="entry">
+				<label>Selecione a imagem: <input type="file" name="image"></label>
+			</div>
+		</form>
+	</div>
+	<canvas width="500" height="300" id="canvas"></canvas>
+
+	<script>
+		var canvas = document.getElementById('canvas');
+		var ctx = canvas.getContext('2d');
+
+		[].forEach.call(document.querySelectorAll('input[type="text"], input[type="range"], input[type="radio"], input[type="color"], textarea'), function(item) {
+			item.addEventListener('blur', generator);
+			item.addEventListener('change', generator);
+		});
+
+		document.querySelector('[name="image"]').addEventListener('change', function(e) {
+			var reader = new FileReader();
+			
+			reader.onload = function(event) {
+				var img = new Image();
+				img.src = event.target.result;
+				img.className = 'image';
+				document.body.appendChild(img);
+				generator();
+			}
+
+			reader.readAsDataURL(e.target.files[0]);
+		}, false);
+
+		function generator() {
+			// remove as configurações do canvas
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+			if(document.querySelector('.image:last-of-type')) {
+				ctx.drawImage(document.querySelector('.image:last-of-type'), 0, 0, canvas.width, canvas.height);
+			}
+
+			ctx.rect(0, 0, canvas.width, canvas.height);
+			ctx.globalAlpha = document.querySelector('.opacity').value;
+			ctx.fillStyle = document.querySelector('[name="color"]').value || '#000000';
+			ctx.fill();
+
+			ctx.globalAlpha = 1;
+			var textarea = mountText.call(this, 'textarea', document.querySelector('.size-text').value, 0);
+			mountText.call(this, '.field-author', document.querySelector('.size-author').value, textarea);
+
+			if(document.querySelector('.base-image')) {
+				document.querySelector('.base-image').parentNode.removeChild(document.querySelector('.base-image'));
+			}
+
+			var a = document.createElement('a');
+			a.href = canvas.toDataURL('image/png');
+			a.setAttribute('class', 'base-image')	;
+			a.target = '_blank';
+			a.innerHTML = 'clique aqui';
+			document.body.appendChild(a);
+		}
+
+		function mountText(input, size, qnt) {
+			// define o tamanho da fonte e a fonte que será utilizada
+			ctx.font = size + 'px Museo';
+
+			// define o alinhamento do texto
+			ctx.textAlign = document.querySelector('[name="align"]:checked').value;
+			ctx.fillStyle = '#fff';
+
+			// valor do texto
+			var lines = document.querySelector(input).value.split('\n');
+
+			// escreve a informação do texto no canvas conforme o posicionamento
+			for(var i = 0; i < lines.length; i++) {
+				ctx.fillText(lines[i], canvas.width / 2, canvas.height / 2 + ((i + qnt) * size * 1.3));
+			}
+
+			return lines.length;
+		}
+		generator();
+	</script>
+	<!-- <div class="canvas">
+		<img src="img/foto-1.jpg">
+		<div class="text">
+			<span class="quote">“</span>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, placeat?
+			<span class="quote">”</span>
+
+			<span class="author">- Mahatma Ghandi</span>
+		</div>
+	</div> -->
+</body>
+</html>

@@ -1,0 +1,104 @@
+#canvas {
+	width: 100%; 
+}
+
+.template-generator.template-post {
+    padding: 20px 10px;
+}
+
+.template-generator.template-post .page-title {
+	padding: 0;
+}
+
+.template-generator.template-post .share {
+	display: flex;
+    max-width: 100%;
+    margin-bottom: 20px;
+}
+
+.template-generator.template-post .share a {
+	width: 44px;
+    margin-right: 3px;
+    margin-bottom: 0;
+}
+
+.template-generator.template-post .entry-content {
+	padding: 0;
+	margin: 7px 0;
+
+}
+
+.template-post.template-generator .entry-content p {
+	text-align: left;
+	padding: 0;
+}
+
+.template-post.template-generator .banner {
+	max-width: none;
+	margin: 5px 0 0;
+}
+
+.template-generator .button {
+	margin: 5px 0 0;
+	display: none;
+} 
+
+.generator {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.generator textarea {
+	height: 90px;
+}
+
+.generator label {
+	display: block;
+	margin-bottom: 3px;
+	font-size: 13px;
+}
+
+.generator > div:not(:empty) {
+	margin-bottom: 20px;
+	width: 48%;
+}
+
+.generator div.full {
+	width: 100%;
+}
+
+.generator input,
+.generator select,
+.generator textarea {
+	max-width: 100%;
+}
+
+.generator select,
+.generator input[type="text"],
+.generator input[type="range"],
+.generator textarea {
+	padding: 8px;
+	width: 100%;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.generator input[type="range"] {
+	padding: 0;
+	margin-bottom: 12px;
+}
+
+.canvas-image,
+.canvas-icons {
+	display: none;
+}
+
+.canvas-icons {
+	height: auto;
+	width: 90%;
+}
+
+.template-post.template-generator .entry-content p br {
+	display: none;
+}

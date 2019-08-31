@@ -1,0 +1,30 @@
+User-agent: *
+Disallow: /cgi-bin
+Disallow: /receitas-az
+Disallow: /wp-admin
+Disallow: /wp-includes
+Disallow: /wp-content/plugins
+Disallow: /wp-content/cache
+Disallow: /trackback
+Disallow: /*trackback
+Disallow: /*trackback*
+Disallow: /*/trackback
+Disallow: /*.html/$
+Disallow: /*feed*
+
+User-agent: Mediapartners-Google*
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /wp-content/uploads/
+
+User-agent: Adsbot-Google
+Allow: /
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+Sitemap: http://www.fraseado.com.br/sitemap.xml
+Sitemap: http://www.fraseado.com.br/sitemap-image.xml
+
+# 
