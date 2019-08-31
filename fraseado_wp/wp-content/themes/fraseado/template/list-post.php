@@ -14,7 +14,7 @@
 					</a> 
 				</li>
 				
-				<?php if(!get_query_var('single') && $i == 5) { ?>
+				<?php if(!get_query_var('single') && $i == 7) { ?>
 					<li class="banner full">
 						<div class="adflying">
 							<amp-fx-flying-carpet height="400">
@@ -23,7 +23,7 @@
 						</div>
 
 						<div class="adstatic">
-							<amp-ad width="300" height="600" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="1074951221"></amp-ad>
+							<amp-ad width="728" height="90" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="7121484820"></amp-ad>
 						</div>
 					</li>
 				<?php } ?>
