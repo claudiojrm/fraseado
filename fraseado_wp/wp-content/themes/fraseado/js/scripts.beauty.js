@@ -89,13 +89,4 @@
 			});
 		}
 	}
-	
-	// adsense
-	var script = document.createElement('script');
-	script.src = '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
-	script.async = true;
-	document.body.appendChild(script);
-
-	// adsense new formats
-	(adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-0364553986220758", enable_page_level_ads: true });
 })();
