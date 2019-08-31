@@ -163,9 +163,6 @@
 	// atualiza carregamento das imagens
 	lazy.update(true);
 
-	// adiciona os eventos
-	events.call(this);
-
 	window.addEventListener('scroll', lazy.init);
 	window.addEventListener('gesturechange', lazy.init);
 	window.addEventListener('touchmove', lazy.init);

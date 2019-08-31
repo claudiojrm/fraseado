@@ -78,6 +78,7 @@
 	    <meta property="fb:pages" content="299527070076503">
 
 		<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>	
+		<style <?php echo $GLOBALS['AMP'] ? ' amp-custom' : ''?>><?php include_once('css/style.php'); ?></style>
 		<script async src="https://cdn.ampproject.org/v0.js"></script>
 		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 		<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
@@ -85,10 +86,8 @@
 		<script async custom-element="amp-fx-flying-carpet" src="https://cdn.ampproject.org/v0/amp-fx-flying-carpet-0.1.js"></script>
 		
 		<?php if($GLOBALS['AMP']) { ?>
-			<style amp-custom><?php include_once('css/style.php'); ?></style>
 			<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
 		<?php } else { ?>
-			<link rel="stylesheet" href="<?php echo get_bloginfo('template_url'); ?>/css/style.css<?php echo H5BP_cache_buster(); ?>">
 			<link rel="dns-prefetch" href="//cdn.onesignal.com">
 			<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async></script>
 			<script>
