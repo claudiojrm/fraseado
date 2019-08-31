@@ -6,34 +6,32 @@
 				</ul>
 			</footer>
 		</div>
-
-		<?php if($GLOBALS['AMP']) { ?>
-			<amp-analytics type="googleanalytics" id="analytics1">
-				<script type="application/json">
-					{
-						"vars": {
-							"account": "UA-55713936-1"
+		
+		<amp-analytics type="googleanalytics" id="analytics1">
+			<script type="application/json">
+				{
+					"vars": {
+						"account": "UA-55713936-1"
+					},
+					"triggers": {
+						"trackPageview" : {
+							"on": "visible",
+							"request": "pageview"
 						},
-						"triggers": {
-							"trackPageview" : {
-								"on": "visible",
-								"request": "pageview"
-							},
-							"trackEvent": {
-								"selector": "a",
-								"on": "click",
-								"request": "event",
-								"vars": {
-									"eventCategory": "${category}",
-									"eventAction" : "${action}"
-								}
+						"trackEvent": {
+							"selector": "a",
+							"on": "click",
+							"request": "event",
+							"vars": {
+								"eventCategory": "${category}",
+								"eventAction" : "${action}"
 							}
 						}
 					}
-				</script>
-			</amp-analytics>
-		<?php } else { ?>
-			<?php wp_footer(); ?>
-		<?php } ?>
+				}
+			</script>
+		</amp-analytics>
+
+		<?php wp_footer(); ?>
 	</body>
 </html>

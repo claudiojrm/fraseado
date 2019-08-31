@@ -42,17 +42,6 @@
 		}
 	};
 
-	var events = function() {
-		// dispara os eventos do ga
-		[].forEach.call(document.querySelectorAll('[data-vars-event-category]'), function(el) {
-			el.addEventListener('click', function(e) {
-				if(this.getAttribute('data-vars-event-category') && typeof ga != 'undefined') {
-					ga('send', 'event', this.getAttribute('data-vars-event-category'), this.getAttribute('data-vars-event-action') || 'click');
-				}
-			});
-		});
-	};
-
 	var references = {
 		'adsfirstpost' : [
 			{'ad-slot' : ['2722821220', '8458617229'], 'name' : ['GFP - 1º banner (300x600)', 'GFP - 3º banner post (resp)'], 'show' : ['w', 'm'], 'ad-size' : ['300x600', 'auto'], 'ad-format' : ['', 'auto']}
@@ -222,9 +211,6 @@
 		}
 	}
 	
-	// analytics
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-55713936-1', 'auto'); ga('send', 'pageview');
-
 	// adsense
 	var script = document.createElement('script');
 	script.src = '//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
