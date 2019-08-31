@@ -52,7 +52,7 @@
 			{'ad-slot' : '8319016422', 'name' : 'GFP - 6º banner post (resp)', 'show' : 'm|w', 'ad-size' : 'auto', 'ad-format' : 'auto'}
 		],
 		'adssinglepost' : [
-			{'ad-slot' : ['2722821220', '1074951221'], 'name' : ['GFP - 1º banner (300x600)', 'GFP - 1º banner post (resp)'], 'show' : ['w', 'm'], 'ad-size' : ['300x600', 'auto'], 'ad-format' : ['', 'auto']}
+			{'ad-slot' : ['	', '1074951221'], 'name' : ['GFP - 1º banner (300x600)', 'GFP - 1º banner post (resp)'], 'show' : ['w', 'm'], 'ad-size' : ['300x600', 'auto'], 'ad-format' : ['', 'auto']}
 		],
 		'endpost' : [
 			{'ad-slot' : ['7121484820', '5505150824'], 'name' : ['GFP - 1º banner topo (resp)', 'GFP - 2º banner post (resp)'], 'show' : ['w', 'm'], 'ad-size' : ['auto', 'auto'], 'ad-format' : ['auto', 'auto']}

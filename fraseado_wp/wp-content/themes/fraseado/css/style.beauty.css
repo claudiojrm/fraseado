@@ -44,11 +44,12 @@ amp-img {
 
 .placeholder,
 .placeholder img,
-.placeholder amp-img {
+amp-img {
 	border-radius: 0 10px;
 }
 
-.placeholder {
+.placeholder,
+amp-img {
 	background-color: #eaeaea; 
 	position: relative;
 	overflow: hidden;
@@ -206,6 +207,7 @@ amp-img {
 	font-size: 12px;
 	padding: 10px;
 	text-align: center;
+	margin-top: 40px;
 }
 
 .footer ul {
@@ -254,7 +256,8 @@ amp-img {
 	display: block;
 }
 
-.veja-tambem ul .placeholder {
+.veja-tambem ul .placeholder,
+.veja-tambem ul amp-img {
 	margin-bottom: 7px;
 }
 
@@ -339,7 +342,7 @@ amp-img {
 /**
  * post
  */
-.template-post .adssinglepost {
+.adstatic {
 	display: none;
 }
 
@@ -347,6 +350,10 @@ amp-img {
 	padding: 0 10px;
 }
 		
+.post .template-post-info {
+	text-align: center;
+}
+
 .post .entry-title {
 	font-weight: normal;
 	font-size: 18px;
@@ -518,6 +525,7 @@ amp-img {
 		flex: 1;
 		max-width: 300px;
 		margin-right: 0;
+		text-align: right;
 	}
 
 	.entry-content p {
@@ -536,11 +544,11 @@ amp-img {
 		padding-top: 0;
 	}
 
-	.template-post .adpost {
+	.adflying {
 		display: none;
 	}
 
-	.template-post .adssinglepost {
+	.adstatic {
 		display: block;
 	}
 }

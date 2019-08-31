@@ -13,8 +13,16 @@
 			<?php echo get_the_content(); ?>
 		</div>
 
-		<div class="banner pub">
-			<div class="adsgoogle endpost"></div>
+		<div class="banner pub wrapper">
+			<div class="adflying">
+				<amp-ad width="100vw" height="320" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="8458617229" data-auto-format="rspv" data-full-width>
+					<div overflow></div>
+				</amp-ad>
+			</div>
+
+			<div class="adstatic">
+				<amp-ad width="728" height="90" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="7121484820"></amp-ad>
+			</div>
 		</div>
 	</article>
 </div>

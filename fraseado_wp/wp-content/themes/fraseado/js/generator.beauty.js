@@ -5,7 +5,7 @@ if(document.querySelector('.generator')) {
 	});
 
 	// evento para gerar a informação do canvas
-	[].forEach.call(document.querySelector('.generator').querySelectorAll('input[type="text"], textarea'), function(item) {
+	[].forEach.call(document.querySelector('.generator').querySelectorAll('input[type="text"], textarea, [name="field-image"]'), function(item) {
 		item.addEventListener('blur', generator);
 	});
 
@@ -34,11 +34,6 @@ if(document.querySelector('.generator')) {
 	var proportion = 1.333;
 
 	function generator() {
-		// dispara um evento para cada alteração dos campos
-		if(this.name) {
-			typeof ga != 'undefined' && ga('send', 'event', 'generator-option-' + this.name, this.value || 'click');
-		}
-
 		// seta o elemento canvas
 		var canvas = document.querySelector('canvas');
 
@@ -54,7 +49,7 @@ if(document.querySelector('.generator')) {
 			canvas.addEventListener('click', generator);
 
 			// adiciona o canvas no dom 
-			document.querySelector('.generator').parentNode.insertBefore(canvas, document.querySelector('.generator').nextSibling);
+			document.querySelector('.generator').parentNode.insertBefore(canvas, document.querySelector('.generator').previousSibling);
 		}
 
 		// pegando o context do canvas para as interações

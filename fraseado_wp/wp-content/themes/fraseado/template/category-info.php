@@ -12,16 +12,7 @@
 	<div class="category-info wrapper">
 		<a href="<?php echo get_category_link($term->term_id).($GLOBALS['AMP'] ? '?amp' : ''); ?>" data-vars-event-category="category-info" data-vars-event-action="<?php echo $term->slug; ?>">
 			<?php if(!empty($imagem)) { ?>
-				<div class="placeholder category-info-img">					
-					<?php 
-						if($GLOBALS['AMP']) {
-					?>
-						<amp-img src="<?php echo $imagem[0]; ?>" width="80" height="60" layout="responsive" alt="<?php echo $term->description; ?>" title="<?php echo $term->description; ?>"></amp-img>
-
-					<?php } else { ?>
-						<img src="<?php echo get_bloginfo('template_url'); ?>/images/1x1.jpg" width="<?php echo $imagem[1]; ?>" alt="<?php echo $term->description; ?>" title="<?php echo $term->description; ?>" class="lazy" data-preload="<?php echo $imagem[0]; ?>">
-					<?php } ?>
-				</div>
+				<amp-img class="category-info-img" src="<?php echo $imagem[0]; ?>" width="80" height="60" layout="responsive" alt="<?php echo $term->description; ?>" title="<?php echo $term->description; ?>"></amp-img>
 			<?php } ?>
 
 			<div class="category-info-description">

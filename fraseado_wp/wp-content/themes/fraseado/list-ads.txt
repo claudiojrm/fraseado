@@ -1,0 +1,10 @@
+- post amp: 8680126423 - GFP - 1º banner post (AMP - resp)
+- banner sticky amp: 2760362308 - GFP - 1º banner topo (AMP - resp)
+
+- post web/mobile, page generator: 1074951221 - GFP - 1º banner post (resp)
+- banner sticky web/mobile: 3414613206 - GFP - 2º banner topo (resp)
+
+- category mobile: 5505150824 - GFP - 2º banner post (resp)
+- category amp: 7078240632 - GFP - 2º banner post (AMP - resp)
+- category web, page web: 7121484820 - GFP - 1º banner topo (resp)
+- page mobile: 8458617229 - GFP - 3º banner post (resp)

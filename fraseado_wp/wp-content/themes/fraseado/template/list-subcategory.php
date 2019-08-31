@@ -26,13 +26,7 @@
 				<li>
 					<a href="<?php echo get_category_link($cats->term_id).($GLOBALS['AMP'] ? '?amp' : ''); ?>" data-vars-event-category="list-subcategory" data-vars-event-action="<?php echo $cats->slug; ?>">
 						<?php if(!empty($medium)) { ?>
-							<div class="placeholder">
-								<?php if($GLOBALS['AMP']) { ?>
-									<amp-img src="<?php echo $medium[0]; ?>" width="200" height="160" alt="<?php echo $cats->description; ?>" title="<?php echo $cats->description; ?>" layout="responsive"></amp-img>
-								<?php } else { ?>
-									<img src="<?php echo $medium[0]; ?>" width="<?php echo $medium[1]; ?>" height="<?php echo $medium[2]; ?>" alt="<?php echo $cats->description; ?>" class="lazy loaded" title="<?php echo $cats->description; ?>">
-								<?php } ?>
-							</div>
+							<amp-img src="<?php echo $medium[0]; ?>" width="200" height="160" alt="<?php echo $cats->description; ?>" title="<?php echo $cats->description; ?>" layout="responsive"></amp-img>
 						<?php } ?>
 						<div class="thumbnail-text">
 							<h2><?php echo $cats->name; ?></h2>

@@ -10,19 +10,8 @@
 					?>
 						<li>
 							<a href="<?php echo get_the_permalink().($GLOBALS['AMP'] ? '?amp' : ''); ?>" data-vars-event-category="related-post" data-vars-event-action="<?php echo $post->post_name; ?>">
-								<div class="placeholder">
-									<?php 
-										if($GLOBALS['AMP']) {
-											$image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'medium' );
-									?>
-										<amp-img src="<?php echo $image[0]; ?>" width="200" height="160" layout="responsive"></amp-img>
-
-									<?php 
-										} else {
-											the_post_thumbnail('medium'); 
-										}
-									?>									
-								</div>
+								<?php $image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'medium' ); ?>
+								<amp-img src="<?php echo $image[0]; ?>" width="200" height="160" layout="responsive"></amp-img>
 
 								<div class="thumbnail-text">
 									<?php the_excerpt(); ?>

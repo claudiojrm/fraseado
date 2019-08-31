@@ -93,14 +93,12 @@
 				</div>
 			</div>
 			<div class="template-post-info">
-				<div class="banner pub">
-					<div class="adsgoogle adsfirstpost"></div>
-				</div>
+				<amp-ad width="300" height="600" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="1074951221"></amp-ad>
 			</div>
 		</div>
 	</article>
 </div>
 <?php } ?>
-<link href="<?php echo get_template_directory_uri(); ?>/css/generator.css?v4" rel="stylesheet">
-<script src="<?php echo get_template_directory_uri(); ?>/js/generator.js?v4"></script>
+<link href="<?php echo get_template_directory_uri(); ?>/css/generator.css?v7" rel="stylesheet">
+<script src="<?php echo get_template_directory_uri(); ?>/js/generator.js?v7"></script>
 <?php get_footer(); ?>
