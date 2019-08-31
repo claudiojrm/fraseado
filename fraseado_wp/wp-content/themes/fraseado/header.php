@@ -8,6 +8,7 @@
 <html <?php echo $GLOBALS['AMP'] ? 'amp' : ''; ?> lang="pt-br">
 	<head>
 		<meta charset="<?php bloginfo('charset'); ?>">
+		<meta name="theme-color" content="#c7202f">
 
 		<?php 
 			$title = wp_title( '|', false, 'right' );
