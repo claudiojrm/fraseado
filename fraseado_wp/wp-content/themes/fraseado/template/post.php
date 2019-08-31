@@ -17,14 +17,22 @@
 						<a href="https://twitter.com/intent/tweet?text=<?php echo get_the_excerpt(); ?>&url=<?php echo get_the_permalink().'?utm_source=twitter%26utm_medium=referral%26utm_campaign=share'; ?>&via=fraseado_" data-vars-event-category="share-post-tw" data-vars-event-action="<?php echo $post->post_name; ?>" target="_blank" class="icon-tw"></a>
 					</div>
 
-					<div class="placeholder">
-						<?php if($GLOBALS['AMP']) { ?>
-							<?php $imagem = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'medium' ); ?>
-							<amp-img src="<?php echo $imagem[0]; ?>" width="500" height="400" layout="responsive" alt="<?php echo get_the_excerpt(); ?>"></amp-img>
-						<?php } else { ?>
-							<?php the_post_thumbnail('full'); ?>
-						<?php } ?>
-					</div>
+					<?php 
+						$medium = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'medium' ); 
+					
+						$full = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full' );
+					?>
+					
+					<amp-img 
+						src="<?php echo $medium[0]; ?>" 
+						srcset="<?php echo $medium[0]; ?> 360w, <?php echo $full[0]; ?> 1024w"
+						sizes="(max-width: 768px) 360px, 595px"
+						width="<?php echo $medium[1]; ?>" 
+						height="<?php echo $medium[2]; ?>" 
+						layout="responsive" 
+						alt="<?php echo get_the_excerpt(); ?>">
+					</amp-img>
+
 				</div>
 			<?php } ?>		
 		</div>
@@ -37,7 +45,7 @@
 				</div>
 
 				<div class="adstatic">
-					<amp-ad width="728" height="90" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="7121484820"></amp-ad>
+					<amp-ad width="300" height="600" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="<?php echo $GLOBALS['AMP'] ? '8680126423' : '1074951221'; ?>"></amp-ad>
 				</div>
 			</div>
 		</div>

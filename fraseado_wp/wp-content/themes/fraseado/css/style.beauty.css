@@ -42,34 +42,14 @@ amp-img {
 	vertical-align: middle;
 }
 
-.placeholder,
-.placeholder img,
 amp-img {
 	border-radius: 0 10px;
 }
 
-.placeholder,
 amp-img {
 	background-color: #eaeaea; 
 	position: relative;
 	overflow: hidden;
-}
-
-.placeholder img,
-.placeholder amp-img {
-	height: 100%;
-	left: 0;
-	position: absolute;
-	top: 0;
-	width: 100%;
-}
-
-.placeholder:after {
-	content: '';
-	display: block;
-	height: 0;
-	padding-bottom: 75%;
-	width: 100%;
 }
 
 .wrapper {
@@ -256,7 +236,6 @@ amp-img {
 	display: block;
 }
 
-.veja-tambem ul .placeholder,
 .veja-tambem ul amp-img {
 	margin-bottom: 7px;
 }
@@ -378,7 +357,7 @@ amp-img {
 	margin-right: 10px;
 }
 
-.post .placeholder {
+.post amp-img {
 	flex: 3;
 }
 

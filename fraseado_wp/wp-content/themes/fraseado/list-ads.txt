@@ -1,5 +1,5 @@
 - post amp: 8680126423 - GFP - 1º banner post (AMP - resp)
-- banner sticky amp: 2760362308 - GFP - 1º banner topo (AMP - resp)
+- banner sticky amp: 2760362308 - GFP - 1º topo (AMP - resp)
 
 - post web/mobile, page generator: 1074951221 - GFP - 1º banner post (resp)
 - banner sticky web/mobile: 3414613206 - GFP - 2º banner topo (resp)
