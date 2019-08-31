@@ -17,9 +17,9 @@
 				</div>
 
 				<div class="share">
-					<a href="whatsapp://send?text=<?php echo get_the_excerpt(); ?> <?php echo get_the_permalink().'?utm_source=whatsapp%26utm_medium=referral%26utm_campaign=share'; ?>" data-vars-event-category="site-share-post-wts" data-vars-event-action="<?php echo $post->post_name; ?>" class="icon-wts"></a>
-					<a href="//facebook.com/sharer/sharer.php?u=<?php echo get_the_permalink().'?utm_source=facebook%26utm_medium=referral%26utm_campaign=share'; ?>" class="icon-fb" data-vars-event-category="site-share-post-fb" data-vars-event-action="<?php echo $post->post_name; ?>" target="_blank"></a>
-					<a href="https://twitter.com/intent/tweet?text=<?php echo get_the_excerpt(); ?>&url=<?php echo get_the_permalink().'?utm_source=twitter%26utm_medium=referral%26utm_campaign=share'; ?>&via=fraseado_" data-vars-event-category="site-share-post-tw" data-vars-event-action="<?php echo $post->post_name; ?>" target="_blank" class="icon-tw"></a>
+					<a rel="noreferrer" title="Compartilhar no Whatsapp" href="whatsapp://send?text=<?php echo get_the_excerpt(); ?> <?php echo get_the_permalink().'?utm_source=whatsapp%26utm_medium=referral%26utm_campaign=share'; ?>" data-vars-event-category="site-share-post-wts" data-vars-event-action="<?php echo $post->post_name; ?>" class="icon-wts"></a>
+					<a rel="noreferrer" title="Compartilhar no Facebook" href="//facebook.com/sharer/sharer.php?u=<?php echo get_the_permalink().'?utm_source=facebook%26utm_medium=referral%26utm_campaign=share'; ?>" class="icon-fb" data-vars-event-category="site-share-post-fb" data-vars-event-action="<?php echo $post->post_name; ?>" target="_blank"></a>
+					<a rel="noreferrer" title="Compartilhar no Twitter" href="https://twitter.com/intent/tweet?text=<?php echo get_the_excerpt(); ?>&url=<?php echo get_the_permalink().'?utm_source=twitter%26utm_medium=referral%26utm_campaign=share'; ?>&via=fraseado_" data-vars-event-category="site-share-post-tw" data-vars-event-action="<?php echo $post->post_name; ?>" target="_blank" class="icon-tw"></a>
 				</div>
 
 				<form method="post" class="generator">	
