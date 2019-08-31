@@ -36,7 +36,7 @@ if(document.querySelector('.generator')) {
 	function generator() {
 		// dispara um evento para cada alteração dos campos
 		if(this.name) {
-			typeof ga != 'undefined' && ga('send', 'event', 'site site-generator-option-' + this.name, this.value || 'click');
+			typeof ga != 'undefined' && ga('send', 'event', 'generator-option-' + this.name, this.value || 'click');
 		}
 
 		// seta o elemento canvas

@@ -1,5 +1,3 @@
-!function(t,e){function n(t){return t&&e.XDomainRequest&&!/MSIE 1/.test(navigator.userAgent)?new XDomainRequest:e.XMLHttpRequest?new XMLHttpRequest:void 0}function o(t,e,n){t[e]=t[e]||n}var r=["responseType","withCredentials","timeout","onprogress"];t.ajax=function(t,a){function s(t,e){return function(){c||(a(void 0===f.status?t:f.status,0===f.status?"Error":f.response||f.responseText||e,f),c=!0)}}var u=t.headers||{},i=t.body,d=t.method||(i?"POST":"GET"),c=!1,f=n(t.cors);f.open(d,t.url,!0);var l=f.onload=s(200);f.onreadystatechange=function(){4===f.readyState&&l()},f.onerror=s(null,"Error"),f.ontimeout=s(null,"Timeout"),f.onabort=s(null,"Abort"),i&&(o(u,"X-Requested-With","XMLHttpRequest"),e.FormData&&i instanceof e.FormData||o(u,"Content-Type","application/x-www-form-urlencoded"));for(var p,m=0,v=r.length;v>m;m++)p=r[m],void 0!==t[p]&&(f[p]=t[p]);for(var p in u)f.setRequestHeader(p,u[p]);return f.send(i),f},e.nanoajax=t}({},function(){return this}());
-
 (function() {
 	// lazy load
 	var lazy = {
@@ -62,11 +60,7 @@
 		'adspost' : [
 			{'ad-slot' : '2412083622', 'name' : 'GFP - 4º banner post (resp)', 'show' : 'm|w', 'ad-size' : 'auto', 'ad-format' : 'auto'},
 			{'ad-slot' : '5365550028', 'name' : 'GFP - 5º banner post (resp)', 'show' : 'm|w', 'ad-size' : 'auto', 'ad-format' : 'auto'},
-			{'ad-slot' : '8319016422', 'name' : 'GFP - 6º banner post (resp)', 'show' : 'm|w', 'ad-size' : 'auto', 'ad-format' : 'auto'},
-			{'ad-slot' : '2272482820', 'name' : 'GFP - 7º banner post (resp)', 'show' : 'm|w', 'ad-size' : 'auto', 'ad-format' : 'auto'},
-			{'ad-slot' : '5225949220', 'name' : 'GFP - 8º banner post (resp)', 'show' : 'm|w', 'ad-size' : 'auto', 'ad-format' : 'auto'},
-			{'ad-slot' : '8179415622', 'name' : 'GFP - 9º banner post (resp)', 'show' : 'm|w', 'ad-size' : 'auto', 'ad-format' : 'auto'},
-			{'ad-slot' : '2132882026', 'name' : 'GFP - 10º banner post (resp)','show' : 'm|w', 'ad-size' : 'auto', 'ad-format' : 'auto'}
+			{'ad-slot' : '8319016422', 'name' : 'GFP - 6º banner post (resp)', 'show' : 'm|w', 'ad-size' : 'auto', 'ad-format' : 'auto'}
 		],
 		'adssinglepost' : [
 			{'ad-slot' : ['2722821220', '1074951221'], 'name' : ['GFP - 1º banner (300x600)', 'GFP - 1º banner post (resp)'], 'show' : ['w', 'm'], 'ad-size' : ['300x600', 'auto'], 'ad-format' : ['', 'auto']}
@@ -180,24 +174,12 @@
 	// atualiza carregamento das imagens
 	lazy.update(true);
 
-	// exibe o conteúdo
-	var enable = function(type) {
-		// adiciona os eventos para o menu
-		[].forEach.call(document.querySelectorAll('.menu a'), function(item) { 
-			item.setAttribute('data-vars-event-category', 'site-menu-item'); 
-			item.setAttribute('data-vars-event-action', item.href.split('/').filter(function(v) { if(v) { return v; }} ).pop()); 
-		});
+	// adiciona os eventos
+	events.call(this);
 
-		// adiciona os eventos
-		events.call(this);
-
-		window.addEventListener('scroll', lazy.init);
-		window.addEventListener('gesturechange', lazy.init);
-		window.addEventListener('touchmove', lazy.init);
-	};
-
-	// habilita o scroll
-	enable.call(this, 'load');
+	window.addEventListener('scroll', lazy.init);
+	window.addEventListener('gesturechange', lazy.init);
+	window.addEventListener('touchmove', lazy.init);
 
 	// wts
 	if(window.innerWidth > 768) {

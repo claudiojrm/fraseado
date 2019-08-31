@@ -89,7 +89,7 @@
 					</div>
 				</form>
 				<div class="button download">
-					<a href="#" data-vars-event-category="site-generator-download" data-vars-event-action="minha-imagem"><span>Clique aqui</span> para salvar a imagem!</a>
+					<a href="#" data-vars-event-category="generator-download" data-vars-event-action="minha-imagem"><span>Clique aqui</span> para salvar a imagem!</a>
 				</div>
 			</div>
 			<div class="template-post-info">

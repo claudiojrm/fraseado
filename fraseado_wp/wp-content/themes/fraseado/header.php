@@ -160,12 +160,8 @@
 
 				<nav class="menu">
 					<?php 
-						if($GLOBALS['AMP']) {
-							$menu = wp_nav_menu('container_class=&menu_class=wrapper-menu&menu_id=&depth=1&theme_location=primary&echo=0'); 
-							echo preg_replace('#href="(.*)\/([a-z0-9-]+)\/"#', 'href="$1/$2/?amp" data-vars-event-category="amp amp-menu-item" data-vars-event-action="$2"', $menu);
-						} else {
-							wp_nav_menu('container_class=&menu_class=wrapper-menu&menu_id=&depth=1&theme_location=primary');
-						}	
+						$menu = wp_nav_menu('container_class=&menu_class=wrapper-menu&menu_id=&depth=1&theme_location=primary&echo=0'); 
+						echo preg_replace('#href="(.*)\/([a-z0-9-]+)\/"#', 'href="$1/$2/'.($GLOBALS['AMP'] ? '?amp' : '').'" data-vars-event-category="menu-item" data-vars-event-action="$2"', $menu);
 					?>
 				</nav>
 			</header>
