@@ -12,7 +12,7 @@ app.use('/imagens', express.static(__dirname + '/imagens'));
 app.get(/generate\/([a-z0-9]+)\/([a-z0-9\/_\-]+)/, async function(req, res) {
     const name = req.params[0];
     const uri = req.params[1];
-    const url = 'http://localhost:3000/' + name + '/' + uri;
+    const url = 'http://localhost:3000' + req.originalUrl.replace('generate/', '');
     let error = false;
     let data = [];
 
@@ -21,7 +21,7 @@ app.get(/generate\/([a-z0-9]+)\/([a-z0-9\/_\-]+)/, async function(req, res) {
         const page = await browser.newPage();
 
         await page.goto(url, {
-            waitUntil: 'networkidle2'
+            waitUntil: 'load'
         });
         
         const frases = await page.$$eval('.frases li', frases => 
@@ -38,7 +38,7 @@ app.get(/generate\/([a-z0-9]+)\/([a-z0-9\/_\-]+)/, async function(req, res) {
                 lower : true
             }) || uri.split('/')[0]).replace(/_/g, '-');
 
-            frase.titulo = frase.titulo.substr(0, 30);
+            frase.titulo = frase.titulo.substr(0, 50);
             frase.titulo = frase.titulo.substr(0, Math.min(frase.titulo.length, frase.titulo.lastIndexOf(' ')));
 
             const titulo = slugify(frase.titulo, {
@@ -47,15 +47,15 @@ app.get(/generate\/([a-z0-9]+)\/([a-z0-9\/_\-]+)/, async function(req, res) {
 
             const dir = './imagens/' + name;
             await !fs.existsSync(dir) && fs.mkdirSync(dir);
-            await !fs.existsSync(dir + '/' + slug) && fs.mkdirSync(dir + '/' + slugmk);
+            await !fs.existsSync(dir + '/' + slug) && fs.mkdirSync(dir + '/' + slug);
     
-            const filepath = `${dir}/${slug && slug + '-'}${titulo}.jpg`;
+            const filepath = `${dir}/${slug}/${slug + '-'}${titulo}.jpg`;
 
             await page.evaluateHandle('document.fonts.ready');
             await page.screenshot({
                 path: filepath,
                 type : 'jpeg',
-                quality : 60,
+                quality : 70,
                 clip : {
                     x: 0,
                     y : 768 * i,
@@ -122,7 +122,7 @@ app.get(/([a-z0-9]+)\/([a-z0-9\/_\-]+)/, async function(req, res) {
             let subtitle;
 
             if(typeof alias.autor == 'object') {
-                [,subtitle] = text.match(alias.autor);
+                subtitle = ((text.match(alias.autor) || [])[1] || '');
                 text = text.replace(alias.autor, '');
             } else {
                 subtitle = card.find(alias.autor).text().trim();
@@ -142,10 +142,16 @@ app.get(/([a-z0-9]+)\/([a-z0-9\/_\-]+)/, async function(req, res) {
                 subtitle = '';
             }
             
+            let color = ((data.length + 1) % colors.length);
+            
+            if(!isNaN(parseInt(req.query.bg))) {
+                color = req.query.bg - 1;
+            }
+
             data.push({
                 text,
                 autor : subtitle,
-                color : colors[(data.length + 1) % colors.length]
+                color : colors[color]
             });
         }
     } catch(e) {

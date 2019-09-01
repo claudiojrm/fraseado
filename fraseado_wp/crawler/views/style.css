@@ -63,15 +63,14 @@ body {
 }
 
 .card p {
-    font-size: 16px;
-    font-family: 'Playfair Display';
+    font-size: 19px;
     margin-left: 60px;
     margin-top: 15px;
     background: #000;
     color: #fff;
     display: inline-block;
     padding: 5px 10px;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
 }
 
 .card h1:before {
@@ -84,7 +83,6 @@ body {
     margin-top: 5px;
 }
 
-
 .bg1 {
     background-image: url(/imagens/bg1.jpg);
     background-position: -1px -1px;
@@ -96,6 +94,10 @@ body {
 
 .bg1 p {
     background-color: #053744;
+}
+
+.bg2 p:before {
+    content: '- ';
 }
 
 .bg2 {

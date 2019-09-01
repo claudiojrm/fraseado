@@ -9,8 +9,8 @@ html
             h1=error
         ul.frases
             each frase in data
-                if frase.text
-                    li(class=frase.color)
+                if frase.text || frase.imagem
+                    li(class=`${frase.color} ${frase.autor ? "com-autor" : "sem-autor"}`)
                         if frase.imagem
                             img(src=frase.imagem)
                         else
