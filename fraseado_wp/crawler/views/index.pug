@@ -1,12 +1,20 @@
+doctype html  
 html
     head
         title=title
         style
             include style.css
     body
+        if error
+            h1=error
         ul.frases
             each frase in data
-                li(class=frase.color)
-                    div.card
-                        h1=frase.text
-                        p=frase.autor
+                if frase.text
+                    li(class=frase.color)
+                        if frase.imagem
+                            img(src=frase.imagem)
+                        else
+                            div.card
+                                h1=frase.text
+                                if frase.autor
+                                    p=frase.autor
