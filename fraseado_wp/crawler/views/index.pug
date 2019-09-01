@@ -1,0 +1,12 @@
+html
+    head
+        title=title
+        style
+            include style.css
+    body
+        ul.frases
+            each frase in data
+                li(class=frase.color)
+                    div.card
+                        h1=frase.text
+                        p=frase.autor
