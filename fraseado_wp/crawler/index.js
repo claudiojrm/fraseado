@@ -9,7 +9,7 @@ const app = express();
 app.set('view engine', 'pug');
 app.use('/imagens', express.static(__dirname + '/imagens'));
 
-app.get(/generate\/([a-z0-9]+)\/([a-z0-9\/_\-]+)/, async function(req, res) {
+app.get(/generate\/([a-z0-9]+)\/([A-Za-z0-9\/_\-]+)/, async function(req, res) {
     const name = req.params[0];
     const uri = req.params[1];
     const url = 'http://localhost:3000' + req.originalUrl.replace('generate/', '');
@@ -82,8 +82,14 @@ app.get(/generate\/([a-z0-9]+)\/([a-z0-9\/_\-]+)/, async function(req, res) {
     });
 });
 
-app.get(/([a-z0-9]+)\/([a-z0-9\/_\-]+)/, async function(req, res) {
+app.get(/([a-z0-9]+)\/([A-Za-z0-9\/_\-]+)/, async function(req, res) {
     const sites = {
+        mundodasmensagens : {
+            url : 'https://www.mundodasmensagens.com/',
+            card : '.box',
+            frase : 'p',
+            autor : /\s{3,}(.*?)$/
+        },
         mensagens10 : {
             url : 'https://www.mensagens10.com.br/',
             card : '.card,.content',
@@ -128,7 +134,7 @@ app.get(/([a-z0-9]+)\/([a-z0-9\/_\-]+)/, async function(req, res) {
                 subtitle = card.find(alias.autor).text().trim();
             }
 
-            if(text.length > 100) {
+            if(text.length > 120) {
                 continue;
             }
 
