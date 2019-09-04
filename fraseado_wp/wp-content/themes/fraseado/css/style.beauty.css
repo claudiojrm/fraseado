@@ -429,7 +429,8 @@ amp-img {
     text-align: center;
     letter-spacing: .7px;
     padding-top: 7px;
-    cursor: pointer;
+	cursor: pointer;
+	background: #f4f4f4;
 }
 
 .share .icon-readspeaker:before {
