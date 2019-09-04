@@ -9,7 +9,7 @@
 						<amp-img src="<?php echo $image[0]; ?>" width="200" height="160" layout="responsive" alt="<?php echo $post->post_title; ?>"></amp-img>
 
 						<div class="thumbnail-text">
-							<?php the_excerpt(); ?>
+							<p><?php the_title(); ?></p>
 						</div>
 					</a> 
 				</li>

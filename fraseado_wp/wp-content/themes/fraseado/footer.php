@@ -32,6 +32,6 @@
 			</script>
 		</amp-analytics>
 
-		<?php if(!$GLOBALS['amp']) wp_footer(); ?>
+		<?php if(!$GLOBALS['AMP']) wp_footer(); ?>
 	</body>
 </html>

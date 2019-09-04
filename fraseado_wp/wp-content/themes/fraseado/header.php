@@ -45,9 +45,6 @@
 		<link rel="image_src" href="<?php echo is_array($image) ? $image[0] : $image; ?>">
 		<?php if(!empty($canonical)) { ?>
 			<link rel="canonical" href="<?php echo preg_replace('/[\?&](#038;)?amp/', '', $canonical); ?>">
-			<?php if(!is_page() && !$GLOBALS['AMP']) { ?>
-				<link rel="amphtml" href="<?php echo $canonical.(strrpos($canonical, "?") ? '&' : '?'); ?>amp">
-			<?php } ?>
 		<?php } ?>
 		<?php if(!is_home() && !is_search()) { 
 			global $paged;

@@ -612,4 +612,5 @@ function clear_nav_menu_item_class($classes, $item, $args) {
 }
 
 global $AMP;
-$AMP = isset($_GET['amp']);
+// $AMP = isset($_GET['amp']) && !is_page();
+$AMP = false;
