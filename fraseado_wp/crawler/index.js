@@ -55,7 +55,7 @@ app.get(/generate\/([a-z0-9]+)\/([A-Za-z0-9\/_\-]+)/, async function(req, res) {
             await page.screenshot({
                 path: filepath,
                 type : 'jpeg',
-                quality : 70,
+                quality : 80,
                 clip : {
                     x: 0,
                     y : 768 * i,
@@ -97,9 +97,9 @@ app.get(/([a-z0-9]+)\/([A-Za-z0-9\/_\-]+)/, async function(req, res) {
             autor : /\((.*?)\)$/
         },
         pensador : {
-            url : 'http://www.pensador.com/',
-            card : '.thought-card',
-            frase : '.frase',
+            url : 'https://www.pensador.com/',
+            card : '.thought-card,.pensaFrase',
+            frase : '.frase,.fr',
             autor : '.autor'
         },
         mensagenscomamor : {
@@ -107,9 +107,22 @@ app.get(/([a-z0-9]+)\/([A-Za-z0-9\/_\-]+)/, async function(req, res) {
             card : '.quote-page',
             frase : 'p',
             autor : '.quote-author'
+        },
+        biblia : {
+            url : 'https://www.bibliaonline.com.br/',
+            card : '.jss161',
+            frase : '.jss161',
+            autor : /(^\d+)\s?/,
+            subtitle : 'Salmos ' + req.params[1].replace(/.*?(\d+)$/, '$1:')
+        },
+        kdfrases : {
+            url : 'https://kdfrases.com/',
+            card : '.quote',
+            frase : '.qlink',
+            autor : '.qauthor a'
         }
     };
-    
+
     const alias = sites[req.params[0]];
     const uri = req.params[1];
     const url = alias.url + uri;
@@ -120,22 +133,19 @@ app.get(/([a-z0-9]+)\/([A-Za-z0-9\/_\-]+)/, async function(req, res) {
         const {data:dt} = await axios.get(url);
         const $ = cheerio.load(dt);
         const frases = $(alias.card);
-        const colors = ['bg1', 'bg2'];
+        const colors = ['bg1', 'bg2', 'bg3'];
 
         for (let i = 0; i < frases.length; i++) {
             const card = $(frases[i]);
-            let text = card.find(alias.frase).text().trim().replace(/[!]+/g, '!').replace(/\s+([,\.])/g, '$1').replace(/\n/g, '. ').replace(/;/g, ',');
-            let subtitle;
+            let frase = alias.card == alias.frase ? card : card.find(alias.frase);
+            let text = frase.text().trim().replace(/[!]+/g, '!').replace(/\s+([,\.])/g, '$1').replace(/\n/g, '. ').replace(/;/g, ',').replace(', e', ' e');
+            let subtitle = alias.subtitle || '';
 
             if(typeof alias.autor == 'object') {
-                subtitle = ((text.match(alias.autor) || [])[1] || '');
+                subtitle += ((text.match(alias.autor) || [])[1] || '');
                 text = text.replace(alias.autor, '');
             } else {
-                subtitle = card.find(alias.autor).text().trim();
-            }
-
-            if(text.length > 120) {
-                continue;
+                subtitle += card.find(alias.autor).text().trim();
             }
 
             if(text == text.toUpperCase()) {
@@ -144,7 +154,7 @@ app.get(/([a-z0-9]+)\/([A-Za-z0-9\/_\-]+)/, async function(req, res) {
 
             text = text.slice(0, 1).toUpperCase() + text.slice(1);
 
-            if(subtitle.toLowerCase().includes('frase')) {
+            if(subtitle.toLowerCase().includes('frase') || subtitle.toLowerCase().includes('desconhecido')) {
                 subtitle = '';
             }
             
@@ -162,6 +172,10 @@ app.get(/([a-z0-9]+)\/([A-Za-z0-9\/_\-]+)/, async function(req, res) {
         }
     } catch(e) {
         error = e;
+    }
+
+    if(!data.length) {
+        error = 'Nenhuma frase encontrada';
     }
 
     res.render('index', { 
