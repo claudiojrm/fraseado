@@ -143,6 +143,7 @@ amp-img {
 	padding: 20px 10px;
 	border-bottom: 1px solid #eaeaea;
 	margin-bottom: 30px;
+	text-align: center;
 	position: relative;
 }
 
@@ -156,13 +157,35 @@ amp-img {
 	width: 100%;
 }
 
+.title .story {
+	display: inline-block;
+	background: #4e71a8;
+	color: #fff;
+	padding: 5px 10px;
+	border-radius: 2px;
+	font-size: 10px;
+	margin-top: 10px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.single .title span {
+	font-size: 13px;
+	text-transform: initial;
+}
+
 .title h1 { 
-   text-transform: uppercase; 
-   font-weight: normal;
-   font-size: 20px;
-   text-align: center;
-   letter-spacing: 1px;
-   color: #c7202f;
+	text-transform: uppercase; 
+	font-weight: normal;
+	font-size: 20px;
+	letter-spacing: 1px;
+	color: #c7202f;
+}
+
+.title h1 a {
+	display: flex;
+	justify-content: center;
+	flex-direction: column-reverse;
 }
 
 /**
@@ -317,6 +340,45 @@ amp-img {
 
 .category-info-description {
 	flex: 3;
+}
+
+/**
+ * download
+ */
+.download {
+	margin-bottom: 15px;
+	display: flex;
+	justify-content: flex-end;
+	line-height: .8
+}
+
+.download a {
+	position: relative;
+	padding-left: 12px;
+	text-transform: lowercase;
+	font-size: 12px;
+}
+
+.download a:before {
+	content: '';
+	position: absolute;
+	width: 2px;
+	height: 6px;
+	background: #c7202f;
+	left: 3px;
+	bottom: 4px;
+}
+
+.download a:after {
+	content: '';
+	position: absolute;
+	left: 0;
+	border: 4px solid transparent;
+	border-top-color: #c7202f;
+	border-bottom: 0;
+	width: 0;
+	height: 0;
+	bottom: 0;
 }
 
 /**
@@ -532,4 +594,82 @@ amp-img {
 	.adstatic {
 		display: block;
 	}
+}
+
+
+/**
+ * stories 
+ */
+amp-story {
+	font: normal 14px/1.5 arial, "trebuchet ms";
+	color: white;
+}
+
+amp-story-page .cover h1 {
+	font-size: 20px;
+	margin-bottom: 10px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+amp-story-page .cover p {
+	font-size: 16px;
+}
+
+amp-story-page .posts p {
+	font-size: 18px;
+	position: relative;
+	padding-left: 20px;
+}
+
+amp-story-page .posts p:first-child:before {
+	content: '“';
+	font: 60px/1 georgia;
+	position: absolute;
+	left: -15px;
+	top: -5px;
+	height: 25px;
+}
+
+amp-story-page .layer {
+	border-radius: 0 10px;
+	padding: 30px;
+}
+
+amp-story-page {
+	background-size: cover;
+}
+
+amp-story-page .bg {
+	background: rgba(0, 0, 0, .7);
+}
+
+amp-story-page .ad {
+	text-align: center;
+}
+
+amp-story-page .ad:before {
+	content: 'Publicidade';
+	font-size: 12px;
+	text-transform: uppercase;
+	margin-bottom: 10px;
+	display: block;
+	text-align: center;
+	letter-spacing: 1px;
+}
+
+amp-story-page .share {
+	display: flex;
+	max-width: 100%;
+	justify-content: center;
+	margin-top: 15px;
+}
+
+amp-story-page .share a {
+	width: 44px;
+	margin-right: 5px;
+}
+
+amp-story-page .logo a {
+	margin: 10px auto 0;
 }

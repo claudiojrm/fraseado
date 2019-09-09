@@ -195,3 +195,36 @@ body {
 .bg2 p:before {
     content: '- ';
 }
+
+.bg4 .bg {
+    background: url(/imagens/bg4.jpg);
+}
+
+.bg4 {
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    color: #fff;
+}
+
+.bg4 .card {
+    width: 65%;
+    background: rgba(0, 89, 39, .9);
+    padding: 30px 50px;
+    border-radius: 0 0 0 10px;
+    border-left: 15px double #64971f;
+}
+
+.bg4 h1 {
+    font-weight: normal;
+    text-align: left;
+    font-size: 30px;
+    letter-spacing: 1.2px;
+}
+
+.bg4 p {
+    font-size: 17px;
+    letter-spacing: 1.2px;
+    text-align: right;
+    margin-top: 40px;
+}

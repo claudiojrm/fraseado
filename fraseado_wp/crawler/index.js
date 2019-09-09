@@ -138,7 +138,7 @@ app.get(/([a-z0-9]+)\/([A-Za-z0-9\/_\-]+)/, async function(req, res) {
         for (let i = 0; i < frases.length; i++) {
             const card = $(frases[i]);
             let frase = alias.card == alias.frase ? card : card.find(alias.frase);
-            let text = frase.text().trim().replace(/[!]+/g, '!').replace(/\s+([,\.])/g, '$1').replace(/\n/g, '. ').replace(/;/g, ',').replace(', e', ' e');
+            let text = frase.text().trim().replace(/[!]+/g, '!').replace(/\s+([,\.])/g, '$1').replace(/\n/g, '. ').replace(/;/g, ',').replace(', e', ' e').replace('. .', '.').replace('que. a', 'que a');
             let subtitle = alias.subtitle || '';
 
             if(typeof alias.autor == 'object') {

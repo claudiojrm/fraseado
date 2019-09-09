@@ -10,7 +10,7 @@
 			<?php if($image) { ?>
 				<div class="post-image">
 					<div class="share">
-						<a rel="noreferrer" title="Ouvir texto da imagem" href="#" class="icon-readspeaker" data-vars-event-category="share-post-readspeaker" data-vars-event-action="<?php echo $post->post_name; ?>" >ouvir</a>
+						<a rel="noreferrer" title="Ouvir texto da imagem" href="#" class="icon-readspeaker" data-vars-event-category="share-post-readspeaker" data-vars-event-action="<?php echo $post->post_name; ?>">ouvir</a>
 						<a rel="noreferrer" title="Compartilhar no Whatsapp" href="whatsapp://send?text=<?php echo get_the_excerpt(); ?> <?php echo get_the_permalink().'?utm_source=whatsapp%26utm_medium=referral%26utm_campaign=share'; ?>" data-vars-event-category="share-post-wts" data-vars-event-action="<?php echo $post->post_name; ?>" class="icon-wts"></a>
 						<a rel="noreferrer" title="Compartilhar no Facebook" href="//facebook.com/sharer/sharer.php?u=<?php echo get_the_permalink().'?utm_source=facebook%26utm_medium=referral%26utm_campaign=share'; ?>" class="icon-fb" data-vars-event-category="share-post-fb" data-vars-event-action="<?php echo $post->post_name; ?>" target="_blank"></a>
 						<a rel="noreferrer" title="Compartilhar no Pinterest" href="https://br.pinterest.com/pin/create/button/?url=<?php echo get_the_permalink().'?utm_source=pinterest%26utm_medium=referral%26utm_campaign=share'; ?>&description=<?php echo get_the_excerpt(); ?>&media=<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>" data-vars-event-category="share-post-pin" data-vars-event-action="<?php echo $post->post_name; ?>" target="_blank" class="icon-pin"></a>
@@ -32,7 +32,9 @@
 						layout="responsive" 
 						alt="<?php echo get_the_excerpt(); ?>">
 					</amp-img>
-
+				</div>
+				<div class="download">
+					<a href="<?php echo $full[0]; ?>" download data-vars-event-category="post-download" data-vars-event-action="<?php echo $post->post_name; ?>">baixar imagem</a>
 				</div>
 			<?php } ?>		
 		</div>

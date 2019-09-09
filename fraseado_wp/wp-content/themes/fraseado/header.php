@@ -8,57 +8,11 @@
 <html <?php echo $GLOBALS['AMP'] ? 'amp' : ''; ?> lang="pt-br">
 	<head>
 		<meta charset="<?php bloginfo('charset'); ?>">
-		<meta name="theme-color" content="#c7202f">
+		<title><?php echo wp_title( '|', false, 'right' ); ?></title>
+		<?php wp_head(); ?>
 
-		<?php 
-			$title = wp_title( '|', false, 'right' );
-			if (is_single()) { 
-				setup_postdata($post);
-				$description = get_the_excerpt();
-				$image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'large');
-				$canonical = get_the_permalink();
-				$categories = wp_get_post_categories(get_the_id(), array('orderby' => 'id'));
-				$infocat = get_category($categories[0]);
-				$title = "$infocat->name: $title";
-				$description = "$description $infocat->description";
-
-				wp_reset_postdata();
-			} else if(is_category()) { 
-				$description = get_category($cat)->description; 
-				$canonical = get_term_link(get_category($cat)); 
-				$image = wp_get_attachment_image_src(get_term_meta($cat, 'wpfifc_featured_image', true), 'large');
-			} else if(is_page()) {
-				$description = get_the_excerpt();
-				$image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'large');
-				$canonical = get_the_permalink();
-			} else if(is_404() || is_home()) {
-				$canonical = home_url('/');
-			} else {
-				$canonical = get_pagenum_link();
-			}
-
-			$description = empty($description) ? get_bloginfo('description') : $description;		
-			$image = empty($image) ? get_bloginfo('template_url').'/images/logo-share.png' : $image;
-		?>	
-		<title><?php echo $title; ?></title>
-		<meta name="description" content="<?php echo str_replace('"', "'", $description); ?>">
-		<link rel="image_src" href="<?php echo is_array($image) ? $image[0] : $image; ?>">
-		<?php if(!empty($canonical)) { ?>
-			<link rel="canonical" href="<?php echo preg_replace('/[\?&](#038;)?amp/', '', $canonical); ?>">
-		<?php } ?>
-		<?php if(!is_home() && !is_search()) { 
-			global $paged;
-		?>
-			<?php if(get_previous_posts_link()) { ?>
-				<link rel="prev" href="<?php echo get_pagenum_link($paged - 1); ?>">
-			<?php } ?> 
-			<?php if(get_next_posts_link()) { ?>
-				<link rel="next" href="<?php echo get_pagenum_link($paged + 1); ?>">
-			<?php } ?>
-		<?php } ?>
-				
-		<?php if(!$GLOBALS['AMP']) { ?>
-			<base href="<?php echo home_url('/'); ?>">	
+		<?php if(!$GLOBALS['AMP'] && (!is_page() && !is_search())) { ?>
+		<link rel="amphtml" href="<?php echo home_url(add_query_arg(array(), $wp->request)); ?>/?amp">
 		<?php } ?>
 		
 		<link rel="shortcut icon" href="<?php echo get_bloginfo('template_url'); ?>/images/favicon.ico">
@@ -68,6 +22,7 @@
 		<link rel="dns-prefetch" href="//pagead2.googlesyndication.com">
 		<link rel="dns-prefetch" href="//tpc.googlesyndication.com">
 
+		<meta name="theme-color" content="#c7202f">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width">
 		<meta name="p:domain_verify" content="b8b2ea0a33ab565ed7b88aecd81382f7">
@@ -83,6 +38,10 @@
 		<script async custom-element="amp-sticky-ad" src="https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js"></script>
 		<script async custom-element="amp-fx-flying-carpet" src="https://cdn.ampproject.org/v0/amp-fx-flying-carpet-0.1.js"></script>
 		
+		<?php if($GLOBALS['STORIES']) { ?>
+		<script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
+		<?php } ?>
+
 		<?php if($GLOBALS['AMP']) { ?>
 			<script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
 		<?php } else { ?>
@@ -102,44 +61,11 @@
 					OneSignal.showNativePrompt();
 				});
 			</script>
-		<?php } ?>
-			
-		<?php if(!empty($image) && is_array($image)) { ?>
-		<script type="application/ld+json">
-			{
-				"@context": "http://schema.org",
-				"@type": "NewsArticle",
-				"mainEntityOfPage": "<?php echo get_the_permalink(); ?>",
-				"headline": "<?php echo get_the_title(); ?>",
-				"datePublished": "<?php echo get_the_time('c'); ?>",
-				"dateModified": "<?php echo get_the_time('c'); ?>",
-				"description": "<?php echo get_the_excerpt(); ?>",
-				"author": {
-					"@type": "Person",
-					"name": "Fraseado"
-				},
-				"publisher": {
-					"@type": "Organization",
-					"name": "Fraseado",
-					"logo": {
-						"@type": "ImageObject",
-						"url": "<?php echo get_bloginfo('template_url'); ?>/images/logo.png",
-						"width": 119,
-						"height": 23
-					}
-				},
-				"image": {
-					"@type": "ImageObject",
-					"url": "<?php echo $image[0]; ?>",
-					"height": <?php echo $image[2]; ?>,
-					"width": <?php echo $image[1]; ?>
-				}
-			}
-	    </script>
-	    <?php } ?>
+		<?php } ?>			
 	</head>
 
 	<body <?php body_class(); ?>>
+		<?php if(!$GLOBALS['STORIES']) { ?>
 		<div class="main">
 			<amp-sticky-ad layout="nodisplay">
 				<amp-ad width="100vw" height="320" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="<?php echo $GLOBALS['AMP'] ? '2760362308' : '3414613206'; ?>" data-auto-format="rspv" data-full-width>
@@ -163,3 +89,4 @@
 					?>
 				</nav>
 			</header>
+	<?php } ?>
