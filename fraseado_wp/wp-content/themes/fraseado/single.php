@@ -19,7 +19,8 @@
 </div>
 
 <?php 
-	$qnt = 20;
+	$qnt = 8;
+	include(locate_template('template/gallery.php')); 
 	include(locate_template('template/related.php')); 
 ?>
 

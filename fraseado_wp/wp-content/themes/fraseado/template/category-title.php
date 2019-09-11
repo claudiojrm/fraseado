@@ -10,6 +10,10 @@
 		</a>
 	</h1>
 
+	<?php if(!is_single()) { ?>
+		<p><?php echo $term->description; ?></p>
+	<?php } ?>
+
 	<?php if($hasposts || is_single()) { ?>
 	<a class="story" href="<?php echo get_category_link($term->term_id); ?>?amp&stories" data-vars-event-category="category-story" data-vars-event-action="<?php echo $term->slug; ?>">ver em stories</a>
 	<?php } ?>

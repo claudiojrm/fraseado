@@ -184,16 +184,21 @@ amp-img {
 }
 
 .title h1 a {
-	display: flex;
+	display: inline-flex;
 	justify-content: center;
 	flex-direction: column-reverse;
+}
+
+.title p {
+	font-size: 14px;
+	color: #999;
+	margin-bottom: 5px;
 }
 
 /**
  * publicidade
  */
 .banner {
-	margin-bottom: 10px;
 	text-align: center;
 	overflow: hidden;
 }
@@ -211,7 +216,6 @@ amp-img {
 	font-size: 12px;
 	padding: 10px;
 	text-align: center;
-	margin-top: 40px;
 }
 
 .footer ul {
@@ -243,7 +247,7 @@ amp-img {
 
 .veja-tambem li {
 	width: 50%;
-	padding: 15px 10px;
+	padding: 10px;
 	font-size: 13px;
 }
 
@@ -265,9 +269,36 @@ amp-img {
 }
 
 /**
+ * gallery
+ */
+.single .gallery {
+	margin-bottom: 5px;
+}
+
+.gallery {
+	margin-top: 20px;
+}
+
+.gallery li {
+	padding: 0;
+}
+
+.gallery ul amp-img {
+	border-radius: 0;
+	margin-bottom: 0;
+}
+
+.gallery .wrapper-info {
+	margin-bottom: 0;
+}
+
+.gallery h2 {
+	color: #c7202f;
+}
+
+/**
  * navegação
  */
-
 .navigation,
 .button {
 	text-align: center;
@@ -320,10 +351,10 @@ amp-img {
 }
 
 .wrapper-info {
-	background: #f3f3f3;
-	border-top: 1px solid #eaeaea;
-	border-bottom: 2px solid #e6e6e6;
-	margin-bottom: 20px;
+	background: #f9f9f9;
+	border-top: 1px solid #f1f1f1;
+	border-bottom: 1px solid #f1f1f1;
+	margin-bottom: 15px;
 }
 
 .category-info h2 {
@@ -347,7 +378,7 @@ amp-img {
  * download
  */
 .download {
-	margin-top: -10px;
+	margin-top: -5px;
 	margin-bottom: 10px;
 	display: flex;
 	justify-content: flex-end;
@@ -596,8 +627,12 @@ amp-img {
 	.adstatic {
 		display: block;
 	}
-}
 
+	.gallery,
+	.gallery .wrapper-info {
+		margin-bottom: 20px;
+	}
+}
 
 /**
  * stories 
@@ -656,6 +691,7 @@ amp-story-page .bg {
 amp-story-page .ad {
 	text-align: center;
 	overflow: hidden;
+	margin-top: 100px;
 }
 
 amp-story-page .ad:before {
@@ -697,11 +733,56 @@ amp-story-page .download a {
     font-weight: bold;
 }
 
-
 amp-story-page .download a:before {
     background: #fff;    
 }
 
 amp-story-page .download a:after {
     border-top-color: #fff;
+}
+
+amp-story-page .vertical > div {
+    display: flex;    
+    align-items: center;    
+}
+
+amp-story-page .vertical .layer {
+    padding: 0;    
+	width: 100%;
+	position: relative;
+}
+
+amp-story-page .vertical .layer amp-img {
+    border-radius: 0;
+}
+
+amp-story-page .vertical .download {
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 0;
+	justify-content: center;
+	left: 0;
+	right: 0;
+	border: 0;
+	border-radius: 0 0 0 10px;
+}
+
+amp-story-page .vertical .download a {
+	color: #fff;
+	font-size: 13px;
+	font-weight: 700;
+	padding: 10px 15px 10px 25px;
+	background: #c7202f;
+	border-radius: 0 0 10px 10px;
+}
+
+amp-story-page .vertical .download a:before {
+	bottom: 14px;
+    left: 15px;
+}
+
+amp-story-page .vertical .download a:after {
+	bottom: 10px;
+	left: 12px;
 }

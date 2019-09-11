@@ -16,30 +16,39 @@
 		</amp-story-grid-layer>
 	</amp-story-page>
 
-	<?php $i = 2; ?>
+	<?php 
+		$i = 2;
 	
-	<?php while(have_posts()) : the_post(); ?>
-		<?php if($i == 3) { ?>
+		while(have_posts()) : the_post();
+			$full = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full' );				
+			$vertical = $full[2] > $full[1];
+			if($i == 3 || $i == 12) { 				
+		?>
 		<amp-story-page id="page-ad-<?php echo $i; ?>" style="background: url(<?php echo $imagem[0]; ?>) center;">
 			<amp-story-grid-layer template="fill" class="bg"></amp-story-grid-layer>
-			<amp-story-grid-layer template="vertical" class="posts">
+			<amp-story-grid-layer template="fill" class="posts">
 				<div class="ad">
-					<amp-ad width="100vw" height="320" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="5665182079" data-auto-format="rspv" data-full-width>
-						<div overflow></div>
-					</amp-ad>
+					<amp-ad width="336" height="280" layout="fixed" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="5665182079"></amp-ad>
 				</div>
 			</amp-story-grid-layer>
 		</amp-story-page>
 		<?php } ?>
-		<amp-story-page id="page-<?php echo $i; ?>" style="background: url(<?php echo $imagem[0]; ?>) center;">
+		<amp-story-page id="page-<?php echo $i; ?>" <?php echo $vertical ? '' : 'style="background: url('.$imagem[0].') center"'; ?>>
 			<amp-story-grid-layer template="fill" class="bg"></amp-story-grid-layer>
-			<amp-story-grid-layer template="vertical" class="posts">
+			<amp-story-grid-layer template="<?php echo $vertical ? 'fill' : 'vertical';?>" class="posts <?php echo $vertical ? 'vertical' : '';?>">
 				<div animate-in="fade-in">
 					<div class="layer">
-						<?php the_content(); ?>
+						<?php 
+							if($vertical) {
+						?>
+							<amp-img width="<?php echo $full[1]; ?>" height="<?php echo $full[2]; ?>" src="<?php echo $full[0]; ?>" layout="responsive" alt="<?php the_title(); ?>"></amp-img>
+						<?php 
+							} else {
+								the_content(); 
+							}
+						?>
 						<div class="download">
 							<?php $thumbnail = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'thumbnail' ); ?>
-							<?php $full = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full' ); ?>
 							<a href="<?php echo $full[0]; ?>" target="_blank" data-vars-event-category="story-download" data-vars-event-action="<?php echo $post->post_name; ?>" data-tooltip-icon="<?php echo $thumbnail[0]; ?>">baixar imagem</a>
 						</div>
 					</div>

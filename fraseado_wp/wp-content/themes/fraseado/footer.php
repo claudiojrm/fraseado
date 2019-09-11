@@ -1,4 +1,11 @@
 		<?php if(!$GLOBALS['STORIES']) { ?>
+				<?php 
+					if(!is_home() && !is_single()) { 
+						$qnt = 8;
+						include(locate_template('template/gallery.php')); 
+					}
+				?>
+
 				<footer class="footer">
 					<p>2014-<?php echo date('Y') == 2014 ? 2015 : date('Y'); ?> © Fraseado</p>
 					<ul>

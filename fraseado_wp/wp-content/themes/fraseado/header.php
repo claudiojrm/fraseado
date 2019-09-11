@@ -35,7 +35,6 @@
 		<script async src="https://cdn.ampproject.org/v0.js"></script>
 		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 		<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
-		<script async custom-element="amp-sticky-ad" src="https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js"></script>
 		<script async custom-element="amp-fx-flying-carpet" src="https://cdn.ampproject.org/v0/amp-fx-flying-carpet-0.1.js"></script>
 		
 		<?php if($GLOBALS['STORIES']) { ?>
@@ -67,12 +66,6 @@
 	<body <?php body_class(); ?>>
 		<?php if(!$GLOBALS['STORIES']) { ?>
 		<div class="main">
-			<amp-sticky-ad layout="nodisplay">
-				<amp-ad width="100vw" height="320" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="<?php echo $GLOBALS['AMP'] ? '2760362308' : '3414613206'; ?>" data-auto-format="rspv" data-full-width>
-					<div overflow></div>
-				</amp-ad>
-			</amp-sticky-ad>
-			
 			<header class="header">
 				<div class="wrapper-form">
 					<div class="logo">

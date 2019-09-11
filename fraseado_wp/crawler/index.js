@@ -78,6 +78,7 @@ app.get(/generate\/([a-z0-9]+)\/([A-Za-z0-9\/_\-]+)/, async function(req, res) {
 
     res.render('index', { 
         title: 'Crawler: ' + url,
+        classe : req.query.classe,
         data,
         error
     });
