@@ -8,7 +8,7 @@
 				</footer>
 			</div>
 			
-			<?php if(!$GLOBALS['AMP']) { wp_footer(); } ?>
+			<?php if(!$GLOBALS['AMP']) wp_footer(); ?>
 			<?php include(locate_template('template/analytics.php')); ?>
 		<?php } ?>
 	</body>

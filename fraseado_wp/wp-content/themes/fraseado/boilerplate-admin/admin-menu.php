@@ -531,6 +531,14 @@
 		endif; // H5BP_cache_buster
 
 
+	if(!is_admin()) {
+		// get the options
+		$options = get_option('plugin_options');
+		
+		if (isset($options['H5BP_site_js']) && $options['H5BP_site_js']) {
+			add_action('wp_footer', 'H5BP_add_site_script');
+		}
+	}
 		/*	End customization for Boilerplate */
 
 function editorial_home() {
