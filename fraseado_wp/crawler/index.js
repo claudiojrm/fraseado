@@ -50,6 +50,7 @@ app.get(/generate\/([a-z0-9]+)\/([A-Za-z0-9\/_\-]+)/, async function(req, res) {
             await !fs.existsSync(dir + '/' + slug) && fs.mkdirSync(dir + '/' + slug);
     
             const filepath = `${dir}/${slug}/${slug + '-'}${titulo}.jpg`;
+            const [x, y] = req.query.classe == 'vertical' ? [768, 1024] : [1024, 768];
 
             await page.evaluateHandle('document.fonts.ready');
             await page.screenshot({
@@ -58,9 +59,9 @@ app.get(/generate\/([a-z0-9]+)\/([A-Za-z0-9\/_\-]+)/, async function(req, res) {
                 quality : 80,
                 clip : {
                     x: 0,
-                    y : 768 * i,
-                    width: 1024,
-                    height: 768
+                    y : y * i,
+                    width: x,
+                    height: y
                 }
             });
 
@@ -167,8 +168,7 @@ app.get(/([a-z0-9]+)\/([A-Za-z0-9\/_\-]+)/, async function(req, res) {
             data.push({
                 text,
                 autor : subtitle,
-                color : colors[color],
-                classe : req.query.classe
+                color : colors[color]
             });
         }
     } catch(e) {
@@ -181,6 +181,7 @@ app.get(/([a-z0-9]+)\/([A-Za-z0-9\/_\-]+)/, async function(req, res) {
 
     res.render('index', { 
         title: 'Crawler: ' + url,
+        classe : req.query.classe,
         data,
         error
     });

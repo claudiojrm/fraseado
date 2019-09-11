@@ -7,10 +7,10 @@ html
     body
         if error
             h1=error
-        ul.frases
+        ul(class=`${classe} frases`)
             each frase in data
                 if frase.text || frase.imagem
-                    li(class=`${frase.classe} ${frase.color} ${frase.autor ? "com-autor" : "sem-autor"}`)
+                    li(class=`${frase.color} ${frase.autor ? "com-autor" : "sem-autor"}`)
                         div.bg
                         if frase.imagem
                             img(src=frase.imagem)

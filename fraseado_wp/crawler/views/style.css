@@ -27,17 +27,20 @@ body {
     height: 100%;
 }
 
-.frases .vertical {
+.frases.vertical {
     width: 768px;
+}
+
+.frases.vertical li {
     height: 1024px;
 }
 
-.frases .vertical:after {
+.frases.vertical li:after {
     background-position: center 440px;
     background-size: contain;
 }
 
-.frases .vertical .bg {
+.frases.vertical .bg {
     background-position: center -1px;
 }
 
