@@ -159,7 +159,7 @@ app.get(/([a-z0-9]+)\/([A-Za-z0-9\/_\-]+)/, async function(req, res) {
             }
             
             let color = ((data.length + 1) % colors.length);
-            
+
             if(!isNaN(parseInt(req.query.bg))) {
                 color = req.query.bg - 1;
             }
@@ -167,7 +167,8 @@ app.get(/([a-z0-9]+)\/([A-Za-z0-9\/_\-]+)/, async function(req, res) {
             data.push({
                 text,
                 autor : subtitle,
-                color : colors[color]
+                color : colors[color],
+                classe : req.query.classe
             });
         }
     } catch(e) {
