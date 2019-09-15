@@ -7,7 +7,7 @@
 <div class="title">
 	<h1><?php the_title(); ?></h1>
 </div>
-<div class="wrapper">
+<div class="w">
 
 	<article <?php post_class(' template-generator post template-post'); ?>>		
 		<div class="post-article">

@@ -4,7 +4,7 @@
 <div class="title">
 	<h1>tag: <?php echo single_tag_title( '', false ); ?></h1>
 </div>
-<div class="wrapper">
+<div class="w">
 	
 	<?php get_template_part('template/list-post'); ?>
 

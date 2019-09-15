@@ -61,8 +61,8 @@
 
 				<nav class="menu">
 					<?php 
-						$menu = wp_nav_menu('container_class=&menu_class=wrapper-menu&menu_id=&depth=1&theme_location=primary&echo=0'); 
-						echo preg_replace('#href="(.*)\/([a-z0-9-]+)\/"#', 'href="$1/$2/'.($GLOBALS['AMP'] ? '?amp' : '').'" data-vars-c="menu-item" data-vars-a="$2"', $menu);
+						$menu = wp_nav_menu('container_class=m&menu_class=wrapper-menu&menu_id=m&depth=1&theme_location=primary&echo=0'); 
+						echo preg_replace('#href="(.*)\/([a-z0-9-]+)\/"#', 'href="$1/$2/'.($GLOBALS['AMP'] ? '?amp' : '').'" data-vars-c="menu" data-vars-a="$2"', $menu);
 					?>
 				</nav>
 			</header>

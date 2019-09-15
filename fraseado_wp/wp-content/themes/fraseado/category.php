@@ -14,7 +14,7 @@ if($hasposts) {
 		<?php get_template_part('template/stories'); ?>
 	<?php } else { ?>
 		<?php get_template_part('template/category-title'); ?>
-		<div class="wrapper">
+		<div class="w">
 			<?php get_template_part('template/list-post'); ?>
 
 			<?php if(get_option('posts_per_page') * (get_query_var('paged') ? get_query_var('paged') : 1) < get_category($cat)->category_count) { ?>
@@ -27,7 +27,7 @@ if($hasposts) {
 	<?php } ?>
 <?php } else { ?>
 	<?php include(locate_template('template/category-title.php')); ?>
-	<div class="wrapper">
+	<div class="w">
 		<?php get_template_part('template/list-subcategory'); ?>		
 	</div>
 <?php } ?>

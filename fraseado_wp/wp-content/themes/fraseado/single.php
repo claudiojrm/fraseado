@@ -14,14 +14,14 @@
 	// nome da categoria
 	include(locate_template('template/category-title.php')); 
 ?>
-<div class="wrapper">
+<div class="w">
 	<?php get_template_part('template/post'); ?>
 </div>
 
 <?php 
 	include(locate_template('template/gallery.php')); 
 	
-	$qnt = 12;
+	$qnt = 8;
 	include(locate_template('template/related.php')); 
 ?>
 

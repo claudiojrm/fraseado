@@ -5,7 +5,9 @@
 						include(locate_template('template/gallery.php')); 
 					}
 
-					include(locate_template('template/links.php'));
+					if(!is_home()) {
+						include(locate_template('template/links.php'));
+					}
 				?>
 
 				<footer class="footer">

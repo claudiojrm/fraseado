@@ -1,5 +1,5 @@
 <div class="template-list">
-	<div class="wrapper veja-tambem">
+	<div class="w veja-tambem">
 		<ul>
 			<?php 
 				$categories = array_values(get_categories("number=999&child_of={$cat}&orderby=count&order=DESC"));
@@ -28,7 +28,7 @@
 						<?php if(!empty($medium)) { ?>
 							<amp-img src="<?php echo $medium[0]; ?>" width="200" height="160" alt="<?php echo $cats->description; ?>" layout="responsive"></amp-img>
 						<?php } ?>
-						<div class="thumbnail-text">
+						<div>
 							<h2><?php echo $cats->name; ?></h2>
 							<p><?php echo $cats->description; ?>
 						</div>

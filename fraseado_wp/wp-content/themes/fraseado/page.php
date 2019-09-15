@@ -7,13 +7,13 @@
 <div class="title">
 	<h1><?php the_title(); ?></h1>
 </div>
-<div class="wrapper">
+<div class="w">
 	<article <?php post_class(' template-post template-page'); ?>>	
 		<div class="entry-content">
 			<?php echo get_the_content(); ?>
 		</div>
 
-		<div class="banner pub wrapper">
+		<div class="banner pub w">
 			<div class="adflying">
 				<amp-ad width="100vw" height="320" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="8458617229" data-auto-format="rspv" data-full-width>
 					<div overflow></div>

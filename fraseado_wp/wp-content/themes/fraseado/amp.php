@@ -180,14 +180,14 @@
 			background-position: 12px -418px;
 		}
 
-		.category-info h1 {
+		.category h1 {
 			font-size: 16px;
 			color: #D33569;
 			line-height: 1.2;
 			margin-bottom: 5px;
 		}
 
-		.category-info p {
+		.category p {
 			font-size: 14px;
 			color: #888;
 			line-height: 1.4;

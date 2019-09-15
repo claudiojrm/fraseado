@@ -473,7 +473,7 @@ add_filter('excerpt_more', 'new_excerpt_more');
 add_filter('excerpt_length', 'new_excerpt_length');
 
 function search_form( $form ) {
-	$form = '<form role="search" method="get" id="searchform" class="searchform clear" action="' . home_url( '/' ) . '" target="_top">
+	$form = '<form role="search" method="get" id="searchform" class="searchform" action="' . home_url( '/' ) . '" target="_top">
 				'. ($GLOBALS['AMP'] ? '<input type="hidden" name="amp" />' : ''). '
 				<div>
 					<input type="text" value="' . get_search_query() . '" name="s" id="s" placeholder="Buscar">

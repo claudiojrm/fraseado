@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<div class="wrapper">
+<div class="w">
 	<article class="template-post template-page">
 		<div class="entry-content">
 			<h1 class="page-title">

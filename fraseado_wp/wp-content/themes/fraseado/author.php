@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div class="wrapper">
+<div class="w">
 	<div class="title">
 		<h1>autor: <?php echo get_the_author(); ?></h1>
 	</div>

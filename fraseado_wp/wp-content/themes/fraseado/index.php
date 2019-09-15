@@ -18,15 +18,14 @@
 			include(locate_template('template/category-info.php'));
 		?>
 	
-		<div class="wrapper">
+		<div class="w">
 			<?php
 				// posts da categoria
 				$posts = query_posts(
 					array(
 						'posts_per_page' => 4,
 						'category__in' => array($cat),
-						'orderby' => 'rand',
-						'single' => true
+						'orderby' => 'rand'
 					)
 				);
 
@@ -34,7 +33,7 @@
 				if(count($posts)) {
 					get_template_part('template/list-post');
 				} else {
-					$number = 3;
+					$number = 4;
 					include(locate_template('template/list-subcategory.php'));
 				}
 

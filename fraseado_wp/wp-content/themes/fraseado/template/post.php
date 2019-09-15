@@ -1,6 +1,6 @@
 <?php $image = has_post_thumbnail(); ?>
 		
-<article <?php post_class(' template-post'); ?>>
+<article class="post">
 	<div class="post-article">
 		<div>
 			<div class="entry-content">
@@ -10,11 +10,11 @@
 			<?php if($image) { ?>
 				<div class="post-image">
 					<div class="share">
-						<a rel="noreferrer" title="Ouvir texto da imagem" href="#" class="icon-readspeaker" data-vars-c="share-post-readspeaker" data-vars-a="<?php echo $post->post_name; ?>">ouvir</a>
-						<a rel="noreferrer" title="Compartilhar no Whatsapp" href="whatsapp://send?text=<?php echo get_the_excerpt(); ?> <?php echo get_the_permalink().'?utm_source=whatsapp%26utm_medium=referral%26utm_campaign=share'; ?>" data-vars-c="share-post-wts" data-vars-a="<?php echo $post->post_name; ?>" class="icon-wts"></a>
-						<a rel="noreferrer" title="Compartilhar no Facebook" href="//facebook.com/sharer/sharer.php?u=<?php echo get_the_permalink().'?utm_source=facebook%26utm_medium=referral%26utm_campaign=share'; ?>" class="icon-fb" data-vars-c="share-post-fb" data-vars-a="<?php echo $post->post_name; ?>" target="_blank"></a>
-						<a rel="noreferrer" title="Compartilhar no Pinterest" href="https://br.pinterest.com/pin/create/button/?url=<?php echo get_the_permalink().'?utm_source=pinterest%26utm_medium=referral%26utm_campaign=share'; ?>&description=<?php echo get_the_excerpt(); ?>&media=<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>" data-vars-c="share-post-pin" data-vars-a="<?php echo $post->post_name; ?>" target="_blank" class="icon-pin"></a>
-						<a rel="noreferrer" title="Compartilhar no Twitter" href="https://twitter.com/intent/tweet?text=<?php echo get_the_excerpt(); ?>&url=<?php echo get_the_permalink().'?utm_source=twitter%26utm_medium=referral%26utm_campaign=share'; ?>&via=fraseado_" data-vars-c="share-post-tw" data-vars-a="<?php echo $post->post_name; ?>" target="_blank" class="icon-tw"></a>
+						<a rel="noreferrer" title="Ouvir texto da imagem" href="#" class="icon-readspeaker" data-vars-c="share-readspeaker" data-vars-a="<?php echo $post->post_name; ?>">ouvir</a>
+						<a rel="noreferrer" title="Compartilhar no Whatsapp" href="whatsapp://send?text=<?php echo get_the_excerpt(); ?> <?php echo get_the_permalink().'?utm_source=whatsapp%26utm_medium=referral%26utm_campaign=share'; ?>" data-vars-c="share-wts" data-vars-a="<?php echo $post->post_name; ?>" class="icon-wts"></a>
+						<a rel="noreferrer" title="Compartilhar no Facebook" href="//facebook.com/sharer/sharer.php?u=<?php echo get_the_permalink().'?utm_source=facebook%26utm_medium=referral%26utm_campaign=share'; ?>" class="icon-fb" data-vars-c="share-fb" data-vars-a="<?php echo $post->post_name; ?>" target="_blank"></a>
+						<a rel="noreferrer" title="Compartilhar no Pinterest" href="https://br.pinterest.com/pin/create/button/?url=<?php echo get_the_permalink().'?utm_source=pinterest%26utm_medium=referral%26utm_campaign=share'; ?>&description=<?php echo get_the_excerpt(); ?>&media=<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>" data-vars-c="share-pin" data-vars-a="<?php echo $post->post_name; ?>" target="_blank" class="icon-pin"></a>
+						<a rel="noreferrer" title="Compartilhar no Twitter" href="https://twitter.com/intent/tweet?text=<?php echo get_the_excerpt(); ?>&url=<?php echo get_the_permalink().'?utm_source=twitter%26utm_medium=referral%26utm_campaign=share'; ?>&via=fraseado_" data-vars-c="share-tw" data-vars-a="<?php echo $post->post_name; ?>" target="_blank" class="icon-tw"></a>
 					</div>
 
 					<?php 
