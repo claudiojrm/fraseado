@@ -140,7 +140,7 @@ if(document.querySelector('.generator')) {
 		link.href = canvas.toDataURL('image/jpeg', 60);
 		link.download = 'minha-imagem';
 		link.target = '_blank';
-		link.setAttribute('data-vars-event-action', document.querySelector('textarea').value);
+		link.setAttribute('data-vars-a', document.querySelector('textarea').value);
 		link.parentNode.style.display = 'block';
 	}
 }

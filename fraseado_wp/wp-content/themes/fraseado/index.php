@@ -1,5 +1,10 @@
 <?php get_header(); ?>
 
+<div class="title">
+	<h1>Fraseado</h1>
+	<p>Encontre frases de amor, motivação, deus e muito mais. Compartilhe lindas imagens, a qualquer momento do dia, com mensagens feitas para você.</p>
+</div>
+
 <?php 
 	// categorias destacadas
 	$featured = get_option('destaques_home', array());

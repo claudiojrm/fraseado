@@ -117,6 +117,12 @@ app.get(/([a-z0-9]+)\/([A-Za-z0-9\/_\-]+)/, async function(req, res) {
             autor : /(^\d+)\s?/,
             subtitle : 'Salmos ' + req.params[1].replace(/.*?(\d+)$/, '$1:')
         },
+        frasesdobem : {
+            url : 'https://www.frasesdobem.com.br/',
+            card : '.card',
+            frase : 'p',
+            autor : '.quote-author'
+        },
         kdfrases : {
             url : 'https://kdfrases.com/',
             card : '.quote',
@@ -140,7 +146,7 @@ app.get(/([a-z0-9]+)\/([A-Za-z0-9\/_\-]+)/, async function(req, res) {
         for (let i = 0; i < frases.length; i++) {
             const card = $(frases[i]);
             let frase = alias.card == alias.frase ? card : card.find(alias.frase);
-            let text = frase.text().trim().replace(/[!]+/g, '!').replace(/\s+([,\.])/g, '$1').replace(/\n/g, '. ').replace(/;/g, ',').replace(', e', ' e').replace('. .', '.').replace('que. a', 'que a');
+            let text = frase.text().trim().replace(/[!]+/g, '!').replace(/\s+([,\.])/g, '$1').replace(/\n/g, '. ').replace(/;/g, ',').replace(', e', ' e').replace('. .', '.').replace('que. a', 'que a').replace(/DÁ/g, 'Dá');
             let subtitle = alias.subtitle || '';
 
             if(typeof alias.autor == 'object') {

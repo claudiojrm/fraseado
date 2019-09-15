@@ -16,8 +16,8 @@
 					"on": "click",
 					"request": "event",
 					"vars": {
-						"eventCategory": "${category}",
-						"eventAction" : "${action}"
+						"eventCategory": "${c}",
+						"eventAction" : "${a}"
 					}
 				},
 				"storyPageVisible": {

@@ -13,18 +13,18 @@ if($query->have_posts()) {
 ?>
 	<div class="wrapper-post <?php echo $single ? 'template-post' : 'template-list'; ?>">
 		<article class="slide">
-			<h1 class="separator"><a href="<?php the_permalink(); ?>?amp" data-vars-event-category="amp amp-title-post" data-vars-event-action="<?php echo $post->post_name; ?>"><?php the_title(); ?></a></h1>
+			<h1 class="separator"><a href="<?php the_permalink(); ?>?amp" data-vars-c="amp amp-title-post" data-vars-a="<?php echo $post->post_name; ?>"><?php the_title(); ?></a></h1>
 			
 			<div>
 				<div class="share">
-					<a data-vars-event-category="amp amp-share-wts" data-vars-event-action="<?php echo $post->post_name; ?>" href="whatsapp://send?text=<?php echo get_the_excerpt(); ?> <?php echo get_the_permalink().'?utm_source=whatsapp%26utm_medium=referral%26utm_campaign=share'; ?>" class="icon-wts"></a>
-					<a data-vars-event-category="amp amp-share-fb" data-vars-event-action="<?php echo $post->post_name; ?>" href="//facebook.com/sharer/sharer.php?u=<?php echo get_the_permalink().'?utm_source=facebook%26utm_medium=referral%26utm_campaign=share'; ?>" class="icon-fb" target="_blank"></a>
-					<a data-vars-event-category="amp amp-share-tw" data-vars-event-action="<?php echo $post->post_name; ?>" href="//twitter.com/intent/tweet?text=<?php echo get_the_excerpt(); ?>&url=<?php echo get_the_permalink().'?utm_source=twitter%26utm_medium=referral%26utm_campaign=share'; ?>&via=fraseado_" target="_blank" class="icon-tw"></a>
-					<a data-vars-event-category="amp amp-share-pin" data-vars-event-action="<?php echo $post->post_name; ?>" href="//br.pinterest.com/pin/create/button/?url=<?php echo get_the_permalink().'?utm_source=pinterest%26utm_medium=referral%26utm_campaign=share'; ?>&description=<?php echo get_the_excerpt(); ?>&media=<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>" target="_blank" class="icon-pin"></a>
+					<a data-vars-c="amp amp-share-wts" data-vars-a="<?php echo $post->post_name; ?>" href="whatsapp://send?text=<?php echo get_the_excerpt(); ?> <?php echo get_the_permalink().'?utm_source=whatsapp%26utm_medium=referral%26utm_campaign=share'; ?>" class="icon-wts"></a>
+					<a data-vars-c="amp amp-share-fb" data-vars-a="<?php echo $post->post_name; ?>" href="//facebook.com/sharer/sharer.php?u=<?php echo get_the_permalink().'?utm_source=facebook%26utm_medium=referral%26utm_campaign=share'; ?>" class="icon-fb" target="_blank"></a>
+					<a data-vars-c="amp amp-share-tw" data-vars-a="<?php echo $post->post_name; ?>" href="//twitter.com/intent/tweet?text=<?php echo get_the_excerpt(); ?>&url=<?php echo get_the_permalink().'?utm_source=twitter%26utm_medium=referral%26utm_campaign=share'; ?>&via=fraseado_" target="_blank" class="icon-tw"></a>
+					<a data-vars-c="amp amp-share-pin" data-vars-a="<?php echo $post->post_name; ?>" href="//br.pinterest.com/pin/create/button/?url=<?php echo get_the_permalink().'?utm_source=pinterest%26utm_medium=referral%26utm_campaign=share'; ?>&description=<?php echo get_the_excerpt(); ?>&media=<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>" target="_blank" class="icon-pin"></a>
 				</div>
 
 				<?php if(!empty($image)) { ?>
-					<a href="<?php the_permalink(); ?>?amp" data-vars-event-category="amp amp-image-post" data-vars-event-action="<?php echo $post->post_name; ?>">
+					<a href="<?php the_permalink(); ?>?amp" data-vars-c="amp amp-image-post" data-vars-a="<?php echo $post->post_name; ?>">
 						<amp-img tabindex="0" src="<?php echo $image[0]; ?>" width="500" height="400" layout="responsive" alt="<?php echo get_the_excerpt(); ?>"></amp-img>
 					</a>
 				<?php } ?>
@@ -33,7 +33,7 @@ if($query->have_posts()) {
 			<?php if(!empty($image)) { ?>
 				<p><?php echo get_the_content(); ?></p>
 			<?php } else { ?>
-				<p><a href="<?php the_permalink(); ?>?amp" data-vars-event-category="amp amp-description-post" data-vars-event-action="<?php echo $post->post_name; ?>"><?php echo get_the_content(); ?></a></p>
+				<p><a href="<?php the_permalink(); ?>?amp" data-vars-c="amp amp-description-post" data-vars-a="<?php echo $post->post_name; ?>"><?php echo get_the_content(); ?></a></p>
 			<?php } ?>
 			<!-- GFP - 1º post (AMP - 336x280) -->
 			<div class="banner">
@@ -66,7 +66,7 @@ if($query->have_posts()) {
 	
 				<div class="wrapper-info">
 					<div class="category-info wrapper">
-						<a href="<?php echo get_category_link($term->term_id); ?>?amp" data-vars-event-category="amp amp-category-info" data-vars-event-action="<?php echo $term->slug; ?>" >
+						<a href="<?php echo get_category_link($term->term_id); ?>?amp" data-vars-c="amp amp-category-info" data-vars-a="<?php echo $term->slug; ?>" >
 							<?php if(!empty($imagem)) { ?>
 								<amp-img src="<?php echo $imagem[0]; ?>" layout="responsive" width="<?php echo $imagem[1]; ?>" height="<?php echo $imagem[2]; ?>" alt="<?php echo $term->description; ?>" class="category-info-img"></amp-img>
 							<?php } ?>
@@ -85,7 +85,7 @@ if($query->have_posts()) {
 							if(!empty($image)) {
 							?>
 								<li>
-									<a href="<?php echo get_the_permalink(); ?>?amp" data-vars-event-category="amp amp-related" data-vars-event-action="<?php echo get_the_category()[0]->slug; ?>">
+									<a href="<?php echo get_the_permalink(); ?>?amp" data-vars-c="amp amp-related" data-vars-a="<?php echo get_the_category()[0]->slug; ?>">
 										<amp-img src="<?php echo $image[0]; ?>" width="200" height="160" layout="responsive"></amp-img>
 
 										<div class="thumbnail-text">
@@ -102,7 +102,7 @@ if($query->have_posts()) {
 	</div>
 <?php } else { ?>
 	<li>
-		<a href="<?php echo get_the_permalink(); ?>?amp" data-vars-event-category="amp amp-category" data-vars-event-action="<?php echo $post->post_name; ?>">
+		<a href="<?php echo get_the_permalink(); ?>?amp" data-vars-c="amp amp-category" data-vars-a="<?php echo $post->post_name; ?>">
 			<?php if(!empty($image)) { ?>
 				<amp-img src="<?php echo $image[0]; ?>" width="200" height="160" layout="responsive" alt="<?php echo get_the_excerpt(); ?>"></amp-img>
 			<?php } ?>

@@ -19,8 +19,9 @@
 </div>
 
 <?php 
-	$qnt = 8;
 	include(locate_template('template/gallery.php')); 
+	
+	$qnt = 12;
 	include(locate_template('template/related.php')); 
 ?>
 

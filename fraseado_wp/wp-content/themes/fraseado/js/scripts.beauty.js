@@ -1,4 +1,17 @@
 (function() {
+	var OneSignal = window.OneSignal || [];
+	OneSignal.push(function() {
+		OneSignal.init({
+			appId: '60b16392-d195-42ca-9376-9d6cd5766d8f',
+			welcomeNotification : {
+				title: 'Bem-vindo ao Fraseado!',
+				message: 'Obrigado pela inscrição.'
+			}
+		});
+
+		OneSignal.showNativePrompt();
+	});
+
 	// wts
 	if(window.innerWidth > 768) {
 		var wts = document.querySelector('.icon-wts');

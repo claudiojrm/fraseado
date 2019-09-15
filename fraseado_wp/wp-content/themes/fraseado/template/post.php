@@ -10,11 +10,11 @@
 			<?php if($image) { ?>
 				<div class="post-image">
 					<div class="share">
-						<a rel="noreferrer" title="Ouvir texto da imagem" href="#" class="icon-readspeaker" data-vars-event-category="share-post-readspeaker" data-vars-event-action="<?php echo $post->post_name; ?>">ouvir</a>
-						<a rel="noreferrer" title="Compartilhar no Whatsapp" href="whatsapp://send?text=<?php echo get_the_excerpt(); ?> <?php echo get_the_permalink().'?utm_source=whatsapp%26utm_medium=referral%26utm_campaign=share'; ?>" data-vars-event-category="share-post-wts" data-vars-event-action="<?php echo $post->post_name; ?>" class="icon-wts"></a>
-						<a rel="noreferrer" title="Compartilhar no Facebook" href="//facebook.com/sharer/sharer.php?u=<?php echo get_the_permalink().'?utm_source=facebook%26utm_medium=referral%26utm_campaign=share'; ?>" class="icon-fb" data-vars-event-category="share-post-fb" data-vars-event-action="<?php echo $post->post_name; ?>" target="_blank"></a>
-						<a rel="noreferrer" title="Compartilhar no Pinterest" href="https://br.pinterest.com/pin/create/button/?url=<?php echo get_the_permalink().'?utm_source=pinterest%26utm_medium=referral%26utm_campaign=share'; ?>&description=<?php echo get_the_excerpt(); ?>&media=<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>" data-vars-event-category="share-post-pin" data-vars-event-action="<?php echo $post->post_name; ?>" target="_blank" class="icon-pin"></a>
-						<a rel="noreferrer" title="Compartilhar no Twitter" href="https://twitter.com/intent/tweet?text=<?php echo get_the_excerpt(); ?>&url=<?php echo get_the_permalink().'?utm_source=twitter%26utm_medium=referral%26utm_campaign=share'; ?>&via=fraseado_" data-vars-event-category="share-post-tw" data-vars-event-action="<?php echo $post->post_name; ?>" target="_blank" class="icon-tw"></a>
+						<a rel="noreferrer" title="Ouvir texto da imagem" href="#" class="icon-readspeaker" data-vars-c="share-post-readspeaker" data-vars-a="<?php echo $post->post_name; ?>">ouvir</a>
+						<a rel="noreferrer" title="Compartilhar no Whatsapp" href="whatsapp://send?text=<?php echo get_the_excerpt(); ?> <?php echo get_the_permalink().'?utm_source=whatsapp%26utm_medium=referral%26utm_campaign=share'; ?>" data-vars-c="share-post-wts" data-vars-a="<?php echo $post->post_name; ?>" class="icon-wts"></a>
+						<a rel="noreferrer" title="Compartilhar no Facebook" href="//facebook.com/sharer/sharer.php?u=<?php echo get_the_permalink().'?utm_source=facebook%26utm_medium=referral%26utm_campaign=share'; ?>" class="icon-fb" data-vars-c="share-post-fb" data-vars-a="<?php echo $post->post_name; ?>" target="_blank"></a>
+						<a rel="noreferrer" title="Compartilhar no Pinterest" href="https://br.pinterest.com/pin/create/button/?url=<?php echo get_the_permalink().'?utm_source=pinterest%26utm_medium=referral%26utm_campaign=share'; ?>&description=<?php echo get_the_excerpt(); ?>&media=<?php echo wp_get_attachment_url(get_post_thumbnail_id()); ?>" data-vars-c="share-post-pin" data-vars-a="<?php echo $post->post_name; ?>" target="_blank" class="icon-pin"></a>
+						<a rel="noreferrer" title="Compartilhar no Twitter" href="https://twitter.com/intent/tweet?text=<?php echo get_the_excerpt(); ?>&url=<?php echo get_the_permalink().'?utm_source=twitter%26utm_medium=referral%26utm_campaign=share'; ?>&via=fraseado_" data-vars-c="share-post-tw" data-vars-a="<?php echo $post->post_name; ?>" target="_blank" class="icon-tw"></a>
 					</div>
 
 					<?php 
@@ -34,19 +34,23 @@
 					</amp-img>
 				</div>
 				<div class="download">
-					<a href="<?php echo $full[0]; ?>" download data-vars-event-category="post-download" data-vars-event-action="<?php echo $post->post_name; ?>">baixar imagem</a>
+					<a href="<?php echo $full[0]; ?>" download data-vars-c="post-download" data-vars-a="<?php echo $post->post_name; ?>">baixar imagem</a>
 				</div>
 			<?php } ?>		
 		</div>
 		<div class="template-post-info">
 			<div class="banner pub">
-				<?php if(!$GLOBALS['AMP']) { ?>
-					<div class="adflying">
+				<div class="adflying">
+					<?php if($GLOBALS['AMP']) { ?>
+						<amp-ad width="100vw" height="320" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="8680126423" data-auto-format="rspv" data-full-width>
+							<div overflow></div>
+						</amp-ad>
+					<?php } else { ?>
 						<amp-fx-flying-carpet height="400">
 							<amp-ad width="300" height="600" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="1074951221"></amp-ad>
 						</amp-fx-flying-carpet>
-					</div>
-				<?php } ?>
+					<?php } ?>
+				</div>
 
 				<div class="adstatic">
 					<amp-ad width="300" height="600" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="<?php echo $GLOBALS['AMP'] ? '8680126423' : '1074951221'; ?>"></amp-ad>

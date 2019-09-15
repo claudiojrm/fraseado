@@ -197,7 +197,7 @@ if ( ! function_exists( 'boilerplate_excerpt_length' ) ) :
 	* @return int
 	*/
    function boilerplate_excerpt_length( $length ) {
-	   return 40;
+	   return 70;
    }
 endif;
 add_filter( 'excerpt_length', 'boilerplate_excerpt_length' );
@@ -466,7 +466,7 @@ function new_excerpt_more( $more ) {
 }
 
 function new_excerpt_length($length) {
-	return 12;
+	return 20;
 }
 
 add_filter('excerpt_more', 'new_excerpt_more');

@@ -272,11 +272,11 @@
 	<div class="main">
 		<header class="header">
 			<div class="logo">
-				<a href="<?php echo home_url('/'); ?>" data-vars-event-category="amp amp-logo" data-vars-event-action="click">Frases e mensagens de amor para você compartilhar - Fraseado</a>
+				<a href="<?php echo home_url('/'); ?>" data-vars-c="amp amp-logo" data-vars-a="click">Frases e mensagens de amor para você compartilhar - Fraseado</a>
 			</div>
 			<nav class="menu">
 				<?php $menu = wp_nav_menu('container_class=&menu_class=wrapper-menu&menu_id=&depth=1&theme_location=primary&echo=0'); ?>
-				<?php echo preg_replace('#href="(.*)\/([a-z0-9-]+)\/"#', 'href="$1/$2/?amp" data-vars-event-category="amp amp-menu-item" data-vars-event-action="$2"', $menu); ?>
+				<?php echo preg_replace('#href="(.*)\/([a-z0-9-]+)\/"#', 'href="$1/$2/?amp" data-vars-c="amp amp-menu-item" data-vars-a="$2"', $menu); ?>
 			</nav>
 		</header>
 	
@@ -300,7 +300,7 @@
 		?>
 		<div class="title">
 			<h1>	
-				<a href="<?php echo get_category_link($term->term_id); ?>?amp" data-vars-event-category="amp amp-category-title" data-event-action="<?php echo $term->slug; ?>">
+				<a href="<?php echo get_category_link($term->term_id); ?>?amp" data-vars-c="amp amp-category-title" data-vars-a="<?php echo $term->slug; ?>">
 					<?php echo $term->name; ?>
 				</a>
 			</h1>
@@ -387,7 +387,7 @@
 		</div>
 		<?php if(!empty($link)) { ?>
 			<div class="navigation">
-				<a href="<?php echo $link; ?>?amp" data-vars-event-category="amp amp-more-item" data-vars-event-action="<?php echo trim(str_replace(site_url(), '', $link), '/'); ?>">+ <?php echo $infocat->name; ?>, <b>clique aqui!</b></a>
+				<a href="<?php echo $link; ?>?amp" data-vars-c="amp amp-more-item" data-vars-a="<?php echo trim(str_replace(site_url(), '', $link), '/'); ?>">+ <?php echo $infocat->name; ?>, <b>clique aqui!</b></a>
 			</div>
 		<?php } ?>
 

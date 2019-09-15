@@ -24,7 +24,7 @@
 					$medium = wp_get_attachment_image_src($id, 'medium');
 			?>
 				<li>
-					<a href="<?php echo get_category_link($cats->term_id).($GLOBALS['AMP'] ? '?amp' : ''); ?>" data-vars-event-category="list-subcategory" data-vars-event-action="<?php echo $cats->slug; ?>">
+					<a href="<?php echo get_category_link($cats->term_id).($GLOBALS['AMP'] ? '?amp' : ''); ?>" data-vars-c="list-subcategory" data-vars-a="<?php echo $cats->slug; ?>">
 						<?php if(!empty($medium)) { ?>
 							<amp-img src="<?php echo $medium[0]; ?>" width="200" height="160" alt="<?php echo $cats->description; ?>" layout="responsive"></amp-img>
 						<?php } ?>
