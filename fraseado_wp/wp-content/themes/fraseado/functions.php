@@ -197,7 +197,7 @@ if ( ! function_exists( 'boilerplate_excerpt_length' ) ) :
 	* @return int
 	*/
    function boilerplate_excerpt_length( $length ) {
-	   return 70;
+	   return 80;
    }
 endif;
 add_filter( 'excerpt_length', 'boilerplate_excerpt_length' );
@@ -519,10 +519,6 @@ function remove_jquery_migrate(&$scripts) {
     if(!is_admin()) {
         $scripts->remove( 'jquery');        
     }
-}
-
-if(!isset($_GET['debug'])) {
-	include_once("minify.php");
 }
 
 function my_deregister_scripts(){

@@ -21,7 +21,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<meta name="viewport" content="width=device-width">
 		<meta name="p:domain_verify" content="b8b2ea0a33ab565ed7b88aecd81382f7">
-		<meta name="msvalidate.01" content="8D41387FFE3302C6A706E8DFFE063290" >	
+		<meta name="msvalidate.01" content="8D41387FFE3302C6A706E8DFFE063290">	
 	    <meta property="fb:pages" content="296924883845956">
 	    <meta property="fb:pages" content="299527070076503">
 
@@ -35,9 +35,10 @@
 		<script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 		<script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
 		<script async custom-element="amp-fx-flying-carpet" src="https://cdn.ampproject.org/v0/amp-fx-flying-carpet-0.1.js"></script>
-		
 		<?php if($GLOBALS['STORIES']) { ?>
 		<script async custom-element="amp-story" src="https://cdn.ampproject.org/v0/amp-story-1.0.js"></script>
+		<?php } else if(!is_single()) { ?>
+		<script async custom-element="amp-sticky-ad" src="https://cdn.ampproject.org/v0/amp-sticky-ad-1.0.js"></script>
 		<?php } ?>
 
 		<?php if($GLOBALS['AMP']) { ?>
@@ -62,7 +63,7 @@
 				<nav class="menu">
 					<?php 
 						$menu = wp_nav_menu('container_class=m&menu_class=wrapper-menu&menu_id=m&depth=1&theme_location=primary&echo=0'); 
-						echo preg_replace('#href="(.*)\/([a-z0-9-]+)\/"#', 'href="$1/$2/'.($GLOBALS['AMP'] ? '?amp' : '').'" data-vars-c="menu" data-vars-a="$2"', $menu);
+						echo preg_replace('#href="(.*)\/([a-z0-9-]+)\/"#', 'href="$1/$2/'.($GLOBALS['AMP'] ? '?amp' : '').'" data-vars-a="$2"', $menu);
 					?>
 				</nav>
 			</header>

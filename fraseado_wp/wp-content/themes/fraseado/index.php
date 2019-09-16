@@ -14,32 +14,26 @@
 		foreach ($order as $x => $cat) {
 	?>
 		<?php
-			// informações da categoria
-			include(locate_template('template/category-info.php'));
+			// posts da categoria
+			$posts = query_posts(
+				array(
+					'posts_per_page' => 4,
+					'category__in' => array($cat),
+					'orderby' => 'rand',
+					'home' => true
+				)
+			);
+
+			// list de posts da categoria
+			if(count($posts)) {
+				get_template_part('template/list-post');
+			} else {
+				$number = 4;
+				include(locate_template('template/list-subcategory.php'));
+			}
+
+			wp_reset_query();
 		?>
-	
-		<div class="w">
-			<?php
-				// posts da categoria
-				$posts = query_posts(
-					array(
-						'posts_per_page' => 4,
-						'category__in' => array($cat),
-						'orderby' => 'rand'
-					)
-				);
-
-				// list de posts da categoria
-				if(count($posts)) {
-					get_template_part('template/list-post');
-				} else {
-					$number = 4;
-					include(locate_template('template/list-subcategory.php'));
-				}
-
-				wp_reset_query();
-			?>
-		</div>
 	<?php } ?>
 <?php } ?>
 <?php get_footer(); ?>

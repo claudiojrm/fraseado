@@ -71,7 +71,8 @@ class WP_HTML_Compression {
     protected function removeWhiteSpace($str) {
 	    $str = str_replace("\t", ' ', $str);
 	    $str = str_replace("\n",  '', $str);
-	    $str = str_replace("\r",  '', $str);
+		$str = str_replace("\r",  '', $str);
+		$str = str_replace("> <",  '', $str);
 	    while (stristr($str, '  ')) {
 		    $str = str_replace('  ', ' ', $str);
 	    }
