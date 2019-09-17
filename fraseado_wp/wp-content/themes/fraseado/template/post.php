@@ -32,13 +32,11 @@
 		</div>
 		<div class="template-post-info">
 			<div class="banner pub">
-				<?php if(!$GLOBALS['AMP']) { ?>
-					<div class="adflying">
-						<amp-fx-flying-carpet height="400">
-							<amp-ad width="300" height="600" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="1074951221"></amp-ad>
-						</amp-fx-flying-carpet>
-					</div>
-				<?php } ?>
+				<div class="adflying">
+					<amp-fx-flying-carpet height="400">
+						<amp-ad width="300" height="600" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="<?php echo $GLOBALS['AMP'] ? '8680126423' : '1074951221'; ?>"></amp-ad>
+					</amp-fx-flying-carpet>
+				</div>
 
 				<div class="adstatic">
 					<amp-ad width="300" height="600" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="<?php echo $GLOBALS['AMP'] ? '8680126423' : '1074951221'; ?>"></amp-ad>

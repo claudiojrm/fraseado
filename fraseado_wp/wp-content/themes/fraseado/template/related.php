@@ -7,7 +7,7 @@
 				$i = 0;
 				while(have_posts()) : the_post();
 					$image = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'medium' );
-					$rand = rand(0, 12) % ($i+1) == 0;
+					$rand = rand(0, 1) % ($i+1) == 0;
 				?>
 					<li class="<?php echo ($rand || !$image) ? 'sem-imagem' : ''; ?>">
 						<a href="<?php echo get_the_permalink().($GLOBALS['AMP'] ? '?amp' : ''); ?>" data-vars-a="<?php echo $post->ID; ?>">

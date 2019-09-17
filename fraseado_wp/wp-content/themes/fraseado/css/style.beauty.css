@@ -311,10 +311,6 @@ amp-img {
 /**
  * links
  */
-.links {
-	margin-top: 20px;
-}
-
 .links .tags { 
 	text-align: center; 
 	padding: 0 10px; 
@@ -327,16 +323,12 @@ amp-img {
 	border-radius: 0 10px;
 	text-transform: lowercase;
 	font-size: 13px;
-	margin: 5px 0;
+	margin: 5px 3px;
 }
 
 /**
  * gallery
  */
-.gallery {
-	margin-top: 20px;
-}
-
 .gallery li {
 	padding: 1px;
 	width: 33.3%;
@@ -373,27 +365,24 @@ amp-img {
 /**
  * navegação
  */
-.navigation,
-.button {
+.navigation {
 	text-align: center;
 	margin-bottom: 15px;
 	position: relative;
 	line-height: 1.4;
 }
 
-.button:before,
 .navigation:before {
 	height: 1px;
 	content: '';
 	display: block;
-	background: #ccc;
+	background: #f1f1f1;
 	position: absolute;
 	left: 0;
 	right: 0;
 	top: 50%;
 }
 
-.button a,
 .navigation a {
 	display: inline-block;
 	padding: 15px 20px;
@@ -404,12 +393,6 @@ amp-img {
 	background: #c7202f;
 	color: #fff;
 	border-radius: 5px;
-}
-
-.button span,
-.navigation span {
-	font-weight: bold;
-	display: inline-block;
 }
 
 /**

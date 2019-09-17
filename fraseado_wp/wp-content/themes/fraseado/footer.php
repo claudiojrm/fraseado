@@ -21,13 +21,13 @@
 			
 			<?php if(!$GLOBALS['AMP']) wp_footer(); ?>
 			<?php include(locate_template('template/analytics.php')); ?>
-			
-			<?php if(!is_single()) { ?>
-				<amp-sticky-ad layout="nodisplay">
-					<amp-ad width="100vw" height="320" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="<?php echo $GLOBALS['AMP'] ? '2760362308' : '3414613206'; ?>" data-auto-format="rspv" data-full-width>
-						<div overflow></div>
-					</amp-ad>
-				</amp-sticky-ad>
+
+			<?php if(is_home()) { ?>
+			<amp-sticky-ad layout="nodisplay">
+				<amp-ad width="100vw" height="320" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="<?php echo $GLOBALS['AMP'] ? '2760362308' : '3414613206'; ?>" data-auto-format="rspv" data-full-width>
+					<div overflow></div>
+				</amp-ad>
+			</amp-sticky-ad>
 			<?php } ?>
 		<?php } ?>
 	</body>

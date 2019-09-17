@@ -1,3 +1,11 @@
+<?php if(!is_page()) { ?>
+<div class="w banner">
+	<amp-ad width="100vw" height="320" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="<?php echo $GLOBALS['AMP'] ? '7078240632' : '5505150824'; ?>" data-auto-format="rspv" data-full-width>
+		<div overflow></div>
+	</amp-ad>
+</div>
+<?php } ?>
+
 <section class="veja-tambem gallery">
 	<div class="wrapper-info w">
 		<div class="info">
@@ -30,8 +38,8 @@
 	</div>
 </section>
 
-<?php if($GLOBALS['AMP'] && is_single()) { ?>
-	<amp-ad width="100vw" height="320" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="8680126423" data-auto-format="rspv" data-full-width>
+<div class="w banner adflying">
+	<amp-ad width="100vw" height="320" type="adsense" data-ad-client="ca-pub-0364553986220758" data-ad-slot="<?php echo $GLOBALS['AMP'] ? '5726660028' : '8458617229'; ?>" data-auto-format="rspv" data-full-width>
 		<div overflow></div>
 	</amp-ad>
-<?php } ?>
+</div>

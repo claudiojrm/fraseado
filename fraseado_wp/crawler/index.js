@@ -88,7 +88,7 @@ app.get(/([a-z0-9]+)\/([A-Za-z0-9\/_\-]+)/, async function(req, res) {
     const sites = {
         mundodasmensagens : {
             url : 'https://www.mundodasmensagens.com/',
-            card : '.box',
+            card : '.box',      
             frase : 'p',
             autor : /\s{3,}(.*?)$/
         },

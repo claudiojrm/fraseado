@@ -19,10 +19,9 @@
 </div>
 
 <?php 
-	include(locate_template('template/gallery.php')); 
-	
 	$qnt = 8;
 	include(locate_template('template/related.php')); 
+	include(locate_template('template/gallery.php')); 
 ?>
 
 <?php get_footer(); ?>
